@@ -7,11 +7,11 @@ module.exports = {
     production:{
       user:'nodejs',
       host:'46.101.104.186',
-      ref:'SSH',
-      repo:'SSH',
+      ref:'main',
+      repo:'git@github.com/sirmelo/serveur-sorare-manager',
       path:'/root',
         'pre-deploy-local':'',
-        'post-deploy':'',
+        'post-deploy':'npm install && pm2 reload ecosystem.config.js --env production',
         'pre-setup':'test'
     }
   }
