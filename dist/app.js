@@ -22,7 +22,7 @@ const axios_1 = __importDefault(require("axios"));
 const path_1 = __importDefault(require("path"));
 const router = express_1.default.Router();
 const app1 = (0, express_1.default)();
-const port = 3000;
+const port = 5000;
 const data = [];
 const firebaseConfig = {
     apiKey: "AIzaSyBWJAx66bmvJCQoyX2aCZLlXLgfwyL9sQc",
