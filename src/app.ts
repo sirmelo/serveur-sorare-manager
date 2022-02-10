@@ -11,7 +11,7 @@ import { CronJob } from 'cron';
 
 const router = express.Router(); 
 const app1 = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 const data =[];
 
 const firebaseConfig = {
