@@ -20,6 +20,7 @@ const firestore_1 = require("firebase/firestore");
 const firestore_2 = require("firebase/firestore");
 const axios_1 = __importDefault(require("axios"));
 const path_1 = __importDefault(require("path"));
+const cron_1 = require("cron");
 const router = express_1.default.Router();
 const app1 = (0, express_1.default)();
 const port = 3000;
@@ -44,12 +45,12 @@ router.get('/test', (req, response) => {
     response.send('Dernière mise à jour: ' + Date());
     //__dirname : It will resolve to your project folder.
 });
-// var myJob = new CronJob('*/3 * * * *', function(){
-//   axios.get('http://localhost:3000/api/refresh').then(resp => {
-//     console.log('en marche');
-//   });
-// });
-// myJob.start();
+var myJob = new cron_1.CronJob('0/5 * * * * ', function () {
+    axios_1.default.get('http://46.101.104.186/api/refresh').then(resp => {
+        console.log('en marche');
+    });
+});
+myJob.start();
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
 //     console.log(`${request.method} ${request.path}`);
 //     next();

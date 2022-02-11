@@ -36,14 +36,14 @@ router.get('/test', (req,response) => {
   response.send('Dernière mise à jour: '+ Date());
   //__dirname : It will resolve to your project folder.
 }); 
-// var myJob = new CronJob('*/3 * * * *', function(){
-//   axios.get('http://localhost:3000/api/refresh').then(resp => {
+var myJob = new CronJob('0/5 * * * * ', function(){
+  axios.get('http://46.101.104.186/api/refresh').then(resp => {
 
-//     console.log('en marche');
-//   });
-// });
+    console.log('en marche');
+  });
+});
 
-// myJob.start();
+myJob.start();
 
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
 //     console.log(`${request.method} ${request.path}`);
