@@ -36,13 +36,12 @@ router.get('/test', (req,response) => {
   response.send('Dernière mise à jour: '+ Date());
   //__dirname : It will resolve to your project folder.
 }); 
-var myJob = new CronJob('0/5 * * * * ', function(){
+
+var myJob = new CronJob('00 8,10,12,14,16,18,22,0 * * *', function(){
   axios.get('http://46.101.104.186/api/refresh').then(resp => {
 
-    console.log('en marche');
   });
 });
-
 myJob.start();
 
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
@@ -1600,7 +1599,6 @@ router.get('/api/refresh', async (req,res) => {
     count += 1;
     const user_token = tabUsers[count].token;
     const user = tabUsers[count].user;
-    console.log(user);
     async function main(this:any) {
       const endpoint = 'https://api.sorare.com/graphql'
       const graphQLClient = new GraphQLClient(endpoint, {
@@ -1865,6 +1863,7 @@ router.get('/api/refresh', async (req,res) => {
   var tabBalanceSent: any[] =[0];
   var tabBalanceReceived: any[] =[0];
   var tabAllValue: any[] =[0];
+  var nextRefresh = new Date((new Date()).valueOf() + 1000*3600*2)
   
   set(ref(getDatabase(), user+'/mycards/card/'),(""));
   set(ref(getDatabase(), user+'/myauctions/auction'), (""));
@@ -1872,6 +1871,8 @@ router.get('/api/refresh', async (req,res) => {
   set(ref(getDatabase(), user+'/mycards/nombreCards'), (nbRarityCards));
   set(ref(getDatabase(), user+'/profil/watching/totalWallet'),(userWallet.currentUser.totalBalance/Math.pow(10,18)));
   set(ref(getDatabase(), user+'/profil/lastRefresh'),(Date()));
+  set(ref(getDatabase(), user+'/profil/nextRefresh'),(nextRefresh));
+
 
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
@@ -2356,15 +2357,13 @@ router.get('/api/refresh', async (req,res) => {
   // },{onlyOnce: true});
 
   
-    console.log("Tous les joueurs ont été importé!" + Date());
+    console.log("Data" +user+ 'importés !');
 
     
     main().catch((error) => console.error(error))
 
-
     }
     while (+count < (+nbUsers-1))
-    console.log('test');
     ;
     res.redirect('/');
 

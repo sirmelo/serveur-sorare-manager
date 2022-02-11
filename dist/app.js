@@ -45,9 +45,8 @@ router.get('/test', (req, response) => {
     response.send('Dernière mise à jour: ' + Date());
     //__dirname : It will resolve to your project folder.
 });
-var myJob = new cron_1.CronJob('0/5 * * * * ', function () {
+var myJob = new cron_1.CronJob('00 8,10,12,14,16,18,22,0 * * *', function () {
     axios_1.default.get('http://46.101.104.186/api/refresh').then(resp => {
-        console.log('en marche');
     });
 });
 myJob.start();
@@ -1732,7 +1731,6 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         count += 1;
         const user_token = tabUsers[count].token;
         const user = tabUsers[count].user;
-        console.log(user);
         function main() {
             return __awaiter(this, void 0, void 0, function* () {
                 const endpoint = 'https://api.sorare.com/graphql';
@@ -1991,12 +1989,14 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 var tabBalanceSent = [0];
                 var tabBalanceReceived = [0];
                 var tabAllValue = [0];
+                var nextRefresh = new Date((new Date()).valueOf() + 1000 * 3600 * 2);
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/'), (""));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/myauctions/auction'), (""));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mydirectoffers'), (""));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/nombreCards'), (nbRarityCards));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/watching/totalWallet'), (userWallet.currentUser.totalBalance / Math.pow(10, 18)));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/lastRefresh'), (Date()));
+                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nextRefresh'), (nextRefresh));
                 const reducer = (previousValue, currentValue) => previousValue + currentValue;
                 // #####################################
                 // paginatedCards(first:300)############
@@ -2558,11 +2558,9 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         //     }
         //   }
         // },{onlyOnce: true});
-        console.log("Tous les joueurs ont été importé!" + Date());
+        console.log("Data" + user + 'importés !');
         main().catch((error) => console.error(error));
     } while (+count < (+nbUsers - 1));
-    console.log('test');
-    ;
     res.redirect('/');
 }));
 app1.use('/', router);
