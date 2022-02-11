@@ -10,7 +10,7 @@ module.exports = {
       repo:'https://github.com/sirmelo/serveur-sorare-manager/',
       path:'/root/server',
         'pre-deploy-local':'',
-        'post-deploy':'npm install && pm2 reload ecosystem.config.js --env production',
+        'post-deploy':'npm install && pm2 reload ecosystem.config.js --env production && pm2 delete app',
         'pre-setup':''
     }
   }
