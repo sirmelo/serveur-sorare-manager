@@ -44,6 +44,14 @@ var myJob = new CronJob('32 8,10,12,14,16,18,23,0 * * *', function(){
 });
 myJob.start();
 
+var myJob1 = new CronJob('00 0 * * *', function(){
+  axios.get('http://46.101.104.186/players').then(resp => {
+
+  });
+});
+myJob1.start();
+
+
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
 //     console.log(`${request.method} ${request.path}`);
 //     next();
@@ -735,6 +743,7 @@ router.get('/players', (res, response) => {res
           while (+count < (+nbPlayersLicense-1));
       }
       console.log("Tous les joueurs ont été importé!" + Date());
+      myJob1.start();
     
       
       main().catch((error) => console.error(error))
