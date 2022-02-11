@@ -45,7 +45,7 @@ router.get('/test', (req, response) => {
     response.send('Dernière mise à jour: ' + Date());
     //__dirname : It will resolve to your project folder.
 });
-var myJob = new cron_1.CronJob('20 8,10,12,14,16,18,23,0 * * *', function () {
+var myJob = new cron_1.CronJob('32 8,10,12,14,16,18,23,0 * * *', function () {
     axios_1.default.get('http://46.101.104.186/api/refresh').then(resp => {
     });
 });
