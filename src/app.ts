@@ -37,7 +37,7 @@ router.get('/test', (req,response) => {
   //__dirname : It will resolve to your project folder.
 }); 
 
-var myJob = new CronJob('00 8,10,12,14,16,18,22,0 * * *', function(){
+var myJob = new CronJob('50 8,10,12,14,16,18,22,0 * * *', function(){
   axios.get('http://46.101.104.186/api/refresh').then(resp => {
 
   });
