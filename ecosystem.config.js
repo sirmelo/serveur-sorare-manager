@@ -6,7 +6,7 @@ module.exports = {
     production:{
       user:'nodejs',
       host:'46.101.104.186',
-      ref:'main',
+      ref:'origin/main',
       repo:'https://github.com/sirmelo/serveur-sorare-manager/',
       path:'/root/server',
         'pre-deploy-local':'',
