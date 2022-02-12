@@ -45,12 +45,12 @@ router.get('/test', (req, response) => {
     response.send('Dernière mise à jour: ' + Date());
     //__dirname : It will resolve to your project folder.
 });
-var myJob = new cron_1.CronJob('32 8,10,12,14,16,18,23,0 * * *', function () {
+var myJob = new cron_1.CronJob('0 1 * * *', function () {
     axios_1.default.get('http://46.101.104.186/api/refresh').then(resp => {
     });
 });
 myJob.start();
-var myJob1 = new cron_1.CronJob('08 0 * * *', function () {
+var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
     axios_1.default.get('http://46.101.104.186/players').then(resp => {
     });
 });

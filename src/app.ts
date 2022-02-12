@@ -37,14 +37,14 @@ router.get('/test', (req,response) => {
   //__dirname : It will resolve to your project folder.
 }); 
 
-var myJob = new CronJob('32 8,10,12,14,16,18,23,0 * * *', function(){
+var myJob = new CronJob('0 1 * * *', function(){
   axios.get('http://46.101.104.186/api/refresh').then(resp => {
 
   });
 });
 myJob.start();
 
-var myJob1 = new CronJob('08 0 * * *', function(){
+var myJob1 = new CronJob('0 2 * * *', function(){
   axios.get('http://46.101.104.186/players').then(resp => {
 
   });
