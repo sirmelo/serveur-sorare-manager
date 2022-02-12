@@ -50,7 +50,7 @@ var myJob = new cron_1.CronJob('32 8,10,12,14,16,18,23,0 * * *', function () {
     });
 });
 myJob.start();
-var myJob1 = new cron_1.CronJob('00 0 * * *', function () {
+var myJob1 = new cron_1.CronJob('08 0 * * *', function () {
     axios_1.default.get('http://46.101.104.186/players').then(resp => {
     });
 });
@@ -69,7 +69,7 @@ router.get('/players', (res, response) => {
             const endpoint = 'https://api.sorare.com/graphql';
             const graphQLClient = new graphql_request_1.GraphQLClient(endpoint, {
                 headers: {
-                    authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMTEwNjUyYS0zZTY3LTQ3YzgtOTNkNC04NWQ3ZWM1MGZiNzMiLCJzY3AiOiJ1c2VyIiwiYXVkIjoiQmV0c29yYXJlIiwiaWF0IjoxNjQwMDM3MTkxLCJleHAiOiIxNjcxNTk0MTQzIiwianRpIjoiMjMzNjY5OTQtNzRkMi00ZDQ1LTg5YWQtOTA2ODU2M2Q3MGIwIn0.rXnYZLlpMB9pYQ6f_9JIKekXx5BU9c4vhj_eZi_wK6c',
+                    authorization: 'Bearer mtps42938jsQu3-kuE88Z5Bk9-bZzHwvwLAd14-xG4Y',
                     APIKEY: '411b4c69a0cb415c93cabba1abfd650a92dc2b5916d6ff82d837044658c56686f928a96fe86074051eaa53732c236386ac38588504bc1f73ef508c4c422sr128',
                     'content-type': 'application/json'
                 },
