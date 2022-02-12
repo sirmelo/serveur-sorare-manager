@@ -880,7 +880,7 @@ router.get('/api/profil', function (req, res) {
                     user: global.user,
                     token: user_token,
                 });
-                axios_1.default.get('https://serveur-sorare.herokuapp.com/api/cards/?token=' + user_token + '&user=' + global.user + '').then(resp => {
+                axios_1.default.get('http://46.101.104.186/api/cards/?token=' + user_token + '&user=' + global.user + '').then(resp => {
                     console.log('en marche');
                 });
             });
