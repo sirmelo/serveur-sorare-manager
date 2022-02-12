@@ -1160,6 +1160,7 @@ router.get('/api/cards', (req,res) => {
     const docRef = doc(getFirestore(),"players",global.competition, position, playerslug);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
+      global.noteSorareManger = docSnap.data().noteBetSorare;
       if(rarity==="limited"){global.lastValue = docSnap.data().priceLimited, global.onSale =docSnap.data().onSaleLimited}
       else if(rarity==="rare"){global.lastValue = docSnap.data().priceRare, global.onSale =docSnap.data().onSaleRare}
     } else {
@@ -1197,6 +1198,8 @@ router.get('/api/cards', (req,res) => {
     set(ref(getDatabase(), user+'/mycards/card/'+i+'/rentapotent'),(global.lastValue-global.priceAchat));
     set(ref(getDatabase(), user+'/mycards/card/'+i+'/teamUrl'),(global.teamUrl));
     set(ref(getDatabase(), user+'/mycards/card/'+i+'/team'),(global.team));
+    set(ref(getDatabase(), user+'/mycards/card/'+i+'/noteSorareManger'),(global.noteSorareManger));
+
 
 
     if(global.priceAchat!=0){

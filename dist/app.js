@@ -1229,6 +1229,7 @@ router.get('/api/cards', (req, res) => {
                 const docRef = (0, firestore_2.doc)((0, firestore_1.getFirestore)(), "players", global.competition, position, playerslug);
                 const docSnap = yield (0, firestore_1.getDoc)(docRef);
                 if (docSnap.exists()) {
+                    global.noteSorareManger = docSnap.data().noteBetSorare;
                     if (rarity === "limited") {
                         global.lastValue = docSnap.data().priceLimited, global.onSale = docSnap.data().onSaleLimited;
                     }
@@ -1272,6 +1273,7 @@ router.get('/api/cards', (req, res) => {
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/rentapotent'), (global.lastValue - global.priceAchat));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/teamUrl'), (global.teamUrl));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/team'), (global.team));
+                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/noteSorareManger'), (global.noteSorareManger));
                 if (global.priceAchat != 0) {
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/rentapotentPercent'), (((global.lastValue - global.priceAchat)) / global.priceAchat) * 100);
                 }
