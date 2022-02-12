@@ -1719,7 +1719,7 @@ router.get('/api/cards', (req, res) => {
     //     }
     //   }
     // },{onlyOnce: true});
-    console.log("Tous les joueurs ont été importé!" + Date());
+    console.log("Toutes les data de cartes de : " + user + ' importées');
     main().catch((error) => console.error(error));
 });
 // #############REFRESH DATA###############
@@ -2564,7 +2564,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         //     }
         //   }
         // },{onlyOnce: true});
-        console.log("Data" + user + 'importés !');
+        console.log("Toutes les data de cartes de : " + user + ' importées');
         main().catch((error) => console.error(error));
     } while (+count < (+nbUsers - 1));
     res.redirect('/');

@@ -1584,7 +1584,7 @@ router.get('/api/cards', (req,res) => {
   // },{onlyOnce: true});
 
   
-    console.log("Tous les joueurs ont été importé!" + Date());
+    console.log("Toutes les data de cartes de : " + user+ ' importées');
 
     
     main().catch((error) => console.error(error))
@@ -2366,7 +2366,7 @@ router.get('/api/refresh', async (req,res) => {
   // },{onlyOnce: true});
 
   
-    console.log("Data" +user+ 'importés !');
+    console.log("Toutes les data de cartes de : " + user+ ' importées');
 
     
     main().catch((error) => console.error(error))
