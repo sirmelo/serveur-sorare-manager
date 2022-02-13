@@ -865,6 +865,17 @@ router.get('/api/profil', function (req, res) {
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/createdAt'), (myProfil.createdAt));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/clubName'), (myProfil.profile.clubName));
+                (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
+                    const profil = snapshot.val();
+                    if (profil.points != undefined) {
+                        const points = profil.points - 10;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (points));
+                    }
+                    else {
+                        const points = 300;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (points));
+                    }
+                }, { onlyOnce: true });
                 if (myProfil.profile.pictureUrl === "") {
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/pictureUrl'), ("https://firebasestorage.googleapis.com/v0/b/betsorare.appspot.com/o/avatar-unknow.png?alt=media&token=8b97f8a9-3c6b-4c46-b0f7-e9b31317d83b"));
                 }

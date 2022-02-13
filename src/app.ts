@@ -800,6 +800,18 @@ router.get('/api/profil', async function(req, res) {
     set(ref(getDatabase(), global.user+'/profil/totalBalance'),(myProfil.totalBalance/Math.pow(10,18)));
     set(ref(getDatabase(), global.user+'/profil/createdAt'),(myProfil.createdAt));
     set(ref(getDatabase(), global.user+'/profil/clubName'),(myProfil.profile.clubName));
+    
+    onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
+      const profil = snapshot.val();
+      if(profil.points != undefined){
+        const points = profil.points-10;
+        set(ref(getDatabase(), global.user+'/profil/points'),(points));
+      }else{
+        const points = 300;
+        set(ref(getDatabase(), global.user+'/profil/points'),(points));
+      }
+    },{onlyOnce: true});  
+
     if(myProfil.profile.pictureUrl===""){
       set(ref(getDatabase(), global.user+'/profil/pictureUrl'),("https://firebasestorage.googleapis.com/v0/b/betsorare.appspot.com/o/avatar-unknow.png?alt=media&token=8b97f8a9-3c6b-4c46-b0f7-e9b31317d83b"));
     }else{
