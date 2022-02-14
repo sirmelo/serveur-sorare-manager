@@ -894,8 +894,9 @@ router.get('/api/profil', function (req, res) {
                 // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
                 // axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
                 // const axios = require('axios');
-                // const reponse = await axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
-                router.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
+                axios_1.default.get('/api/cards/?token=' + user_token + '&user=' + global.user + '').then(res => {
+                    console.log(res.data);
+                });
             });
         })
             .catch(function (error) {
@@ -2591,6 +2592,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         //   }
         // },{onlyOnce: true});
         console.log("Toutes les data de cartes de : " + user + ' importées');
+        res.send('Hello World!');
         main().catch((error) => console.error(error));
     } while (+count < (+nbUsers - 1));
     res.redirect('/');
