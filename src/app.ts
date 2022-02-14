@@ -2691,18 +2691,6 @@ var myJob = new CronJob('*/2 * * * * ', async function(){
   var tabBalanceReceived: any[] =[0];
   var tabAllValue: any[] =[0];
   var nextRefresh = new Date((new Date()).valueOf() + 1000*3600*2)
-
-  onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
-    const profil = snapshot.val();
-    if(profil.points != undefined){
-      const points = profil.points-10;
-      set(ref(getDatabase(), user+'/profil/points'),(points));
-    }else{
-      const points = 300;
-      set(ref(getDatabase(), user+'/profil/points'),(points));
-    }
-  },{onlyOnce: true});  
-
   
   set(ref(getDatabase(), user+'/mycards/card/'),(""));
   set(ref(getDatabase(), user+'/myauctions/auction'), (""));

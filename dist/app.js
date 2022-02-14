@@ -2872,17 +2872,6 @@ var myJob = new cron_1.CronJob('*/2 * * * * ', function () {
                     var tabBalanceReceived = [0];
                     var tabAllValue = [0];
                     var nextRefresh = new Date((new Date()).valueOf() + 1000 * 3600 * 2);
-                    (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
-                        const profil = snapshot.val();
-                        if (profil.points != undefined) {
-                            const points = profil.points - 10;
-                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
-                        }
-                        else {
-                            const points = 300;
-                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
-                        }
-                    }, { onlyOnce: true });
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/'), (""));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/myauctions/auction'), (""));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mydirectoffers'), (""));
