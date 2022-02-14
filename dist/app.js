@@ -893,9 +893,9 @@ router.get('/api/profil', function (req, res) {
                 });
                 // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
                 // axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
-                const axios = require('axios');
-                const reponse = yield axios.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
-                reponse("ok");
+                // const axios = require('axios');
+                // const reponse = await axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+                router.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
             });
         })
             .catch(function (error) {
@@ -1738,7 +1738,7 @@ router.get('/api/cards', (req, res) => {
     main().catch((error) => console.error(error));
 });
 // #############REFRESH DATA###############
-router.get('/api/refresh', (req, res, reponse) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const db = (0, firestore_1.getFirestore)();
     var tabUsers = [];
     const querySnapshot = yield (0, firestore_1.getDocs)((0, firestore_1.collection)(db, "users"));
@@ -2591,7 +2591,6 @@ router.get('/api/refresh', (req, res, reponse) => __awaiter(void 0, void 0, void
         //   }
         // },{onlyOnce: true});
         console.log("Toutes les data de cartes de : " + user + ' importées');
-        reponse("ok");
         main().catch((error) => console.error(error));
     } while (+count < (+nbUsers - 1));
     res.redirect('/');

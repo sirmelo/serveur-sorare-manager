@@ -828,11 +828,11 @@ router.get('/api/profil', async function(req, res) {
     });
     // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
   // axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
-  const axios = require('axios');
+  // const axios = require('axios');
 
-  const reponse = await axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
-  reponse("ok")
-  
+  // const reponse = await axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+  router.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+
   })
 
   
@@ -1613,7 +1613,7 @@ router.get('/api/cards', (req,res) => {
 
 // #############REFRESH DATA###############
 
-router.get('/api/refresh', async (req,res,reponse) => {
+router.get('/api/refresh', async (req,res) => {
   const db = getFirestore();
   var tabUsers: any[] =[];
   const querySnapshot = await getDocs(collection(db, "users"));
@@ -2399,7 +2399,6 @@ router.get('/api/refresh', async (req,res,reponse) => {
 
   
     console.log("Toutes les data de cartes de : " + user+ ' importées');
-    reponse("ok")
     
     main().catch((error) => console.error(error))
 
