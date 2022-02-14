@@ -3136,7 +3136,7 @@ router.get('/api/refresh', async (req,res) => {
 // ################################################################
 // #########################  REFRESH DATA   ######################
 
-var myJob = new CronJob('*/1 * * * *', async function(){
+var myJob = new CronJob('0 1 * * *', async function(){
 
   const db = getFirestore();
   var tabUsers: any[] =[];
