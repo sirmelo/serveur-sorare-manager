@@ -2598,7 +2598,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
 // ################################################################
 // ################################################################
 // #########################  CRON   ##############################
-var myJob = new cron_1.CronJob('*/2 * * * * ', function () {
+var myJob = new cron_1.CronJob('0 3 * * *', function () {
     return __awaiter(this, void 0, void 0, function* () {
         const db = (0, firestore_1.getFirestore)();
         var tabUsers = [];
