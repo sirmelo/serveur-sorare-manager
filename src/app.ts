@@ -3136,7 +3136,7 @@ router.get('/api/refresh', async (req,res) => {
 // ################################################################
 // #########################  REFRESH DATA   ######################
 
-var myJob = new CronJob('*/2 * * * * ', async function(){
+var myJob = new CronJob('*/2 * * * *', async function(){
 
   const db = getFirestore();
   var tabUsers: any[] =[];
@@ -3965,7 +3965,6 @@ var myJob = new CronJob('*/2 * * * * ', async function(){
           // },{onlyOnce: true});
         
             console.log("Toutes les data de cartes de : " + user+ ' importées');
-
     }
   }
     while (+count < (+nbUsers-1))
