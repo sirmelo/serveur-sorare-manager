@@ -2824,7 +2824,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
                     const profil = snapshot.val();
                     if (profil.points != undefined) {
-                        const points = profil.points - 10;
+                        const points = profil.points;
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
                     }
                     else {
