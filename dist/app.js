@@ -3400,7 +3400,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
 // ################################################################
 // ################################################################
 // #########################  REFRESH DATA   ######################
-var myJob = new cron_1.CronJob('0 1 * * *', function () {
+var myJob = new cron_1.CronJob('*/2 * * * * ', function () {
     return __awaiter(this, void 0, void 0, function* () {
         const db = (0, firestore_1.getFirestore)();
         var tabUsers = [];
@@ -3424,32 +3424,84 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                             'content-type': 'application/json'
                         },
                     });
-                    const GET_WALLET_CURRENT_USER = (0, graphql_request_1.gql) `
-      query current_user{
-        currentUser{
-          totalBalance
-          cardCounts{
-            limited
-            rare
-            superRare
-            unique
+                    const GET_PROFIL_CURRENT_USER = (0, graphql_request_1.gql) `
+        query current_user{
+          currentUser{
+            totalBalance
+            nickname
+            createdAt
+            allTimeBestDecksInFormation{
+              pictureUrl
+            }
+            profile{
+              clubName
+              pictureUrl
+              proSince
+              slug
+              discordUsername
+              clubBanner{
+                pictureUrl
+              }
+            }
           }
-          directOffers(direction:SENT){
-            totalCount
-            nodes{
-              aasmState
-              id
-              creditCardFee
-              acceptedAt
-              sendWeiAmount
-              sendCardOffers{
+        }
+        `;
+                    const GET_WALLET_CURRENT_USER = (0, graphql_request_1.gql) `
+        query current_user{
+          currentUser{
+            totalBalance
+            cardCounts{
+              limited
+              rare
+              superRare
+              unique
+            }
+            directOffers(direction:SENT){
+              totalCount
+              nodes{
+                aasmState
                 id
-                card{
+                creditCardFee
+                acceptedAt
+                sendWeiAmount
+                sendCardOffers{
+                  id
+                  card{
+                    rarity
+                    age
+                    slug
+                    name
+                    pictureUrl
+                    player{
+                      displayName
+                      slug
+                      position
+                      age
+                      activeClub{
+                        pictureUrl
+                        slug
+                        name
+                          domesticLeague{
+                          slug
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            wonEnglishAuctions(sortByEndDate:DESC){
+              totalCount
+              nodes{
+                id
+                name
+                currentPrice
+                creditCardFee
+                endDate
+                cards{
                   rarity
-                  age
-                  slug
-                  name
                   pictureUrl
+                  slug
                   player{
                     displayName
                     slug
@@ -3459,133 +3511,104 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                       pictureUrl
                       slug
                       name
-                        domesticLeague{
+                      domesticLeague{
                         slug
                       }
                     }
                   }
                 }
               }
-            }
-          }
-          wonEnglishAuctions(sortByEndDate:DESC){
-            totalCount
-            nodes{
-              id
-              name
-              currentPrice
-              creditCardFee
-              endDate
-              cards{
+             }    
+            paginatedCards(first:300){
+              nodes{
                 rarity
-                pictureUrl
-                slug
                 player{
-                  displayName
-                  slug
                   position
+                  slug
+                  displayName
                   age
                   activeClub{
                     pictureUrl
-                    slug
                     name
+                    slug
                     domesticLeague{
                       slug
                     }
                   }
                 }
-              }
-            }
-           }    
-          paginatedCards(first:300){
-            nodes{
-              rarity
-              player{
-                position
+                grade
+                onSale
+                ownerSince
+                xp
+                owner{
+                  from
+                  price
+                  transferType
+                }
+                name
                 slug
-                displayName
-                age
-                activeClub{
-                  pictureUrl
-                  name
-                  slug
-                  domesticLeague{
-                    slug
-                  }
-                }
+                pictureUrl
               }
-              grade
-              onSale
-              ownerSince
-              xp
-              owner{
-                from
-                price
-                transferType
-              }
-              name
-              slug
-              pictureUrl
             }
           }
         }
-      }
-      `;
+        `;
                     const GET_DIRECT_OFFER_RECEIVE_CURRENT_USER = (0, graphql_request_1.gql) `
-      query direct_offer{
-        currentUser{
-          directOffers(direction:RECEIVED){
-            totalCount
-            nodes{
-              aasmState
-              id
-              creditCardFee
-              acceptedAt
-              sendWeiAmount
-              receiveWeiAmount
-              sendCardOffers{
-                  id
-                card{
-                  rarity
-                  age
-                  slug
-                  name
-                  pictureUrl
-                  player{
-                    displayName
-                    slug
-                    position
+        query direct_offer{
+          currentUser{
+            directOffers(direction:RECEIVED){
+              totalCount
+              nodes{
+                aasmState
+                id
+                creditCardFee
+                acceptedAt
+                sendWeiAmount
+                receiveWeiAmount
+                sendCardOffers{
+                    id
+                  card{
+                    rarity
                     age
-                    activeClub{
-                      pictureUrl
+                    slug
+                    name
+                    pictureUrl
+                    player{
+                      displayName
                       slug
-                      name
-                        domesticLeague{
+                      position
+                      age
+                      activeClub{
+                        pictureUrl
                         slug
+                        name
+                          domesticLeague{
+                          slug
+                        }
                       }
                     }
                   }
                 }
-              }
-              receiveCardOffers{
-                id
-                card{
-                  rarity
-                  age
-                  slug
-                  name
-                  pictureUrl
-                  player{
-                    displayName
-                    slug
-                    position
+                receiveCardOffers{
+                  id
+                  card{
+                    rarity
                     age
-                    activeClub{
-                      pictureUrl
+                    slug
+                    name
+                    pictureUrl
+                    player{
+                      displayName
                       slug
-                      name
-                        domesticLeague{
+                      position
+                      age
+                      activeClub{
+                        pictureUrl
                         slug
+                        name
+                          domesticLeague{
+                          slug
+                        }
                       }
                     }
                   }
@@ -3594,63 +3617,63 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
             }
           }
         }
-      }
-      `;
+        `;
                     const GET_DIRECT_OFFER_SENT_CURRENT_USER = (0, graphql_request_1.gql) `
-      query direct_offer{
-        currentUser{
-          directOffers(direction:SENT){
-            totalCount
-            nodes{
-              aasmState
-              id
-              creditCardFee
-              acceptedAt
-              sendWeiAmount
-              receiveWeiAmount
-              sendCardOffers{
-                  id
-                card{
-                  rarity
-                  age
-                  slug
-                  name
-                  pictureUrl
-                  player{
-                    displayName
-                    slug
-                    position
+        query direct_offer{
+          currentUser{
+            directOffers(direction:SENT){
+              totalCount
+              nodes{
+                aasmState
+                id
+                creditCardFee
+                acceptedAt
+                sendWeiAmount
+                receiveWeiAmount
+                sendCardOffers{
+                    id
+                  card{
+                    rarity
                     age
-                    activeClub{
-                      pictureUrl
+                    slug
+                    name
+                    pictureUrl
+                    player{
+                      displayName
                       slug
-                      name
-                        domesticLeague{
+                      position
+                      age
+                      activeClub{
+                        pictureUrl
                         slug
+                        name
+                          domesticLeague{
+                          slug
+                        }
                       }
                     }
                   }
                 }
-              }
-              receiveCardOffers{
-                id
-                card{
-                  rarity
-                  age
-                  slug
-                  name
-                  pictureUrl
-                  player{
-                    displayName
-                    slug
-                    position
+                receiveCardOffers{
+                  id
+                  card{
+                    rarity
                     age
-                    activeClub{
-                      pictureUrl
+                    slug
+                    name
+                    pictureUrl
+                    player{
+                      displayName
                       slug
-                      name
-                        domesticLeague{
+                      position
+                      age
+                      activeClub{
+                        pictureUrl
                         slug
+                        name
+                          domesticLeague{
+                          slug
+                        }
                       }
                     }
                   }
@@ -3659,8 +3682,41 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
             }
           }
         }
-      }
-      `;
+        `;
+                    const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
+                    const myProfil = profil.currentUser;
+                    console.log(myProfil);
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/token'), (user_token));
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nickname'), (myProfil.nickname));
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/createdAt'), (myProfil.createdAt));
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/clubName'), (myProfil.profile.clubName));
+                    (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/'), (snapshot) => {
+                        const profil = snapshot.val();
+                        if (profil.points != undefined) {
+                            const points = profil.points;
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                        }
+                        else {
+                            const points = 300;
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                        }
+                    }, { onlyOnce: true });
+                    if (myProfil.profile.pictureUrl === "") {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/pictureUrl'), ("https://firebasestorage.googleapis.com/v0/b/betsorare.appspot.com/o/avatar-unknow.png?alt=media&token=8b97f8a9-3c6b-4c46-b0f7-e9b31317d83b"));
+                    }
+                    else {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/pictureUrl'), (myProfil.profile.pictureUrl));
+                    }
+                    if (myProfil.allTimeBestDecksInFormation[0] != null) {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/BestDeck'), (myProfil.allTimeBestDecksInFormation[0]));
+                    }
+                    const users = (0, firestore_1.collection)(db, "users");
+                    yield (0, firestore_2.setDoc)((0, firestore_2.doc)(users, user), {
+                        Maj: Date(),
+                        user: user,
+                        token: user_token,
+                    });
                     const dbRef = (0, database_1.ref)((0, database_1.getDatabase)());
                     const userWallet = yield graphQLClient.request(GET_WALLET_CURRENT_USER);
                     const myCards = userWallet.currentUser.paginatedCards.nodes;
@@ -3673,14 +3729,12 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                     var tabBalanceSent = [0];
                     var tabBalanceReceived = [0];
                     var tabAllValue = [0];
-                    var nextRefresh = new Date((new Date()).valueOf() + 1000 * 3600 * 2);
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/'), (""));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/myauctions/auction'), (""));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mydirectoffers'), (""));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/nombreCards'), (nbRarityCards));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/watching/totalWallet'), (userWallet.currentUser.totalBalance / Math.pow(10, 18)));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/lastRefresh'), (Date()));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nextRefresh'), (nextRefresh));
                     const reducer = (previousValue, currentValue) => previousValue + currentValue;
                     // #####################################
                     // paginatedCards(first:300)############
@@ -3752,6 +3806,7 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                         const docRef = (0, firestore_2.doc)((0, firestore_1.getFirestore)(), "players", global.competition, position, playerslug);
                         const docSnap = yield (0, firestore_1.getDoc)(docRef);
                         if (docSnap.exists()) {
+                            global.noteSorareManger = docSnap.data().noteBetSorare;
                             if (rarity === "limited") {
                                 global.lastValue = docSnap.data().priceLimited, global.onSale = docSnap.data().onSaleLimited;
                             }
@@ -3795,6 +3850,7 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/rentapotent'), (global.lastValue - global.priceAchat));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/teamUrl'), (global.teamUrl));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/team'), (global.team));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/noteSorareManger'), (global.noteSorareManger));
                         if (global.priceAchat != 0) {
                             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/' + i + '/rentapotentPercent'), (((global.lastValue - global.priceAchat)) / global.priceAchat) * 100);
                         }
@@ -4229,21 +4285,20 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/0/date'), (Date()));
                         }
                     }, { onlyOnce: true });
+                    // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
+                    //   global.myLockedPrice = snapshot.val();
+                    //   if(global.myLockedPrice != undefined){
+                    //   for(let g=0; g<global.myLockedPrice.length; g++){
+                    //     if(global.myLockedPrice[g].cardSlug === global.cardslug){
+                    //       global.priceAchat = global.myLockedPrice[g].priceLocked;
+                    //       global.lock="lock"
+                    //       }
+                    //     }
+                    //   }
+                    // },{onlyOnce: true});
+                    console.log("Toutes les data de cartes de : " + user + ' importées');
                 });
             }
-            // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
-            //   global.myLockedPrice = snapshot.val();
-            //   if(global.myLockedPrice != undefined){
-            //   for(let g=0; g<global.myLockedPrice.length; g++){
-            //     if(global.myLockedPrice[g].cardSlug === global.cardslug){
-            //       global.priceAchat = global.myLockedPrice[g].priceLocked;
-            //       global.lock="lock"
-            //       }
-            //     }
-            //   }
-            // },{onlyOnce: true});
-            console.log("Toutes les data de cartes de : " + user + ' importées');
-            main().catch((error) => console.error(error));
         } while (+count < (+nbUsers - 1));
     });
 });
