@@ -3949,13 +3949,11 @@ var myJob = new CronJob('*/1 * * * *', async function(){
               set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
               set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
               }
-            },{onlyOnce: true});  
+              const points = wallet.points;
+              const newPoints = points-10;
+              set(ref(getDatabase(), user+'/profil/points'),(newPoints));
+              console.log(newPoints)
 
-            onValue(ref(getDatabase(), user+'/profil/'), (snapshot:DataSnapshot) => {
-              const profil = snapshot.val();
-                const points = profil.points-10;
-                console.log(points);
-                set(ref(getDatabase(), user+'/profil/points'),(points));
             },{onlyOnce: true});  
   
           // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {

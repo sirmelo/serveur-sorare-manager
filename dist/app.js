@@ -4282,12 +4282,10 @@ var myJob = new cron_1.CronJob('*/1 * * * *', function () {
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/'), (wallet.watching));
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/0/date'), (Date()));
                 }
-            }, { onlyOnce: true });
-            (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/'), (snapshot) => {
-                const profil = snapshot.val();
-                const points = profil.points - 10;
-                console.log(points);
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                const points = wallet.points;
+                const newPoints = points - 10;
+                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (newPoints));
+                console.log(newPoints);
             }, { onlyOnce: true });
             // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
             //   global.myLockedPrice = snapshot.val();
