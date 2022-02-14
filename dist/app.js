@@ -891,7 +891,7 @@ router.get('/api/profil', function (req, res) {
                     user: global.user,
                     token: user_token,
                 });
-                res.redirect('/api/cards/?token=' + user_token + '&user=' + global.user + '');
+                const data = redirect('/api/cards/?token=' + user_token + '&user=' + global.user + '');
                 //   axios.get('http://46.101.104.186/api/cards/?token='+user_token+'&user='+global.user+'').then(resp => {
                 //     console.log('en marche');
                 // });
@@ -2586,4 +2586,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
 }));
 app1.use('/', router);
 app1.listen(port);
+function redirect(arg0) {
+    throw new Error('Function not implemented.');
+}
 //# sourceMappingURL=app.js.map
