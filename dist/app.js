@@ -1109,20 +1109,6 @@ router.get('/api/profil', function (req, res) {
                     user: global.user,
                     token: global.user_token,
                 });
-            });
-        })
-            .catch(function (error) {
-            console.log(error);
-        });
-        function main() {
-            return __awaiter(this, void 0, void 0, function* () {
-                const endpoint = 'https://api.sorare.com/graphql';
-                const graphQLClient = new graphql_request_1.GraphQLClient(endpoint, {
-                    headers: {
-                        Authorization: 'Bearer ' + global.user_token + '',
-                        'content-type': 'application/json'
-                    },
-                });
                 const dbRef = (0, database_1.ref)((0, database_1.getDatabase)());
                 const userWallet = yield graphQLClient.request(GET_WALLET_CURRENT_USER);
                 const myCards = userWallet.currentUser.paginatedCards.nodes;
@@ -1691,21 +1677,23 @@ router.get('/api/profil', function (req, res) {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/0/date'), (Date()));
                     }
                 }, { onlyOnce: true });
+                // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
+                //   global.myLockedPrice = snapshot.val();
+                //   if(global.myLockedPrice != undefined){
+                //   for(let g=0; g<global.myLockedPrice.length; g++){
+                //     if(global.myLockedPrice[g].cardSlug === global.cardslug){
+                //       global.priceAchat = global.myLockedPrice[g].priceLocked;
+                //       global.lock="lock"
+                //       }
+                //     }
+                //   }
+                // },{onlyOnce: true});
+                console.log("Toutes les data de cartes de : " + global.user + ' importées');
             });
-        }
-        // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
-        //   global.myLockedPrice = snapshot.val();
-        //   if(global.myLockedPrice != undefined){
-        //   for(let g=0; g<global.myLockedPrice.length; g++){
-        //     if(global.myLockedPrice[g].cardSlug === global.cardslug){
-        //       global.priceAchat = global.myLockedPrice[g].priceLocked;
-        //       global.lock="lock"
-        //       }
-        //     }
-        //   }
-        // },{onlyOnce: true});
-        console.log("Toutes les data de cartes de : " + global.user + ' importées');
-        main().catch((error) => console.error(error));
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
     });
 });
 // ########################  REQUETES  ##############################

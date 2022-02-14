@@ -989,11 +989,13 @@ router.get('/api/profil', async function(req, res) {
   global.user = req.query.user;
   console.log(global.user);
   console.log(code);
+
   const headers = {'content-type': 'application/x-www-form-urlencoded'}
   axios.post('https://api.sorare.com/oauth/token','client_id=Jx38v06GOdnDTFVriMGYuh5A0DN26eCYP0txLu614AI&client_secret=z7d_cdmmj2zJsUY-Ko-q2gjJ58zewWnJYH-X9P_e2qg&code='+code+'&grant_type=authorization_code&redirect_uri=http://localhost:4200/auth/sorare/callback',{headers: headers})
   .then(async function (response) {
     res=response.data.access_token;
     global.user_token = response.data.access_token;
+
     const endpoint = 'https://api.sorare.com/graphql'
     const graphQLClient = new GraphQLClient(endpoint, {
       headers: {
@@ -1037,18 +1039,8 @@ router.get('/api/profil', async function(req, res) {
       user:global.user,
       token:global.user_token,
     });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-async function main(this:any) {
-  const endpoint = 'https://api.sorare.com/graphql'
-  const graphQLClient = new GraphQLClient(endpoint, {
-    headers: {
-      Authorization: 'Bearer '+global.user_token+'',
-      'content-type': 'application/json'
-    },
-    })
+
+  
     const dbRef = ref(getDatabase());
     const userWallet = await graphQLClient.request(GET_WALLET_CURRENT_USER);
   
@@ -1544,7 +1536,6 @@ async function main(this:any) {
         }
       },{onlyOnce: true});  
   
-    }
     // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
     //   global.myLockedPrice = snapshot.val();
     //   if(global.myLockedPrice != undefined){
@@ -1557,12 +1548,11 @@ async function main(this:any) {
     //   }
     // },{onlyOnce: true});
   
-    
       console.log("Toutes les data de cartes de : " + global.user+ ' importées');
-  
-      
-      main().catch((error) => console.error(error))
-  
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   });  
 
 // ########################  REQUETES  ##############################
