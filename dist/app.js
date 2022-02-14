@@ -45,16 +45,15 @@ router.get('/test', (req, response) => {
     response.send('Dernière mise à jour: ' + Date());
     //__dirname : It will resolve to your project folder.
 });
-var myJob = new cron_1.CronJob('0 3 * * *', function () {
-    axios_1.default.get('/api/refresh').then(resp => {
-    });
-});
-myJob.start();
-var myJob1 = new cron_1.CronJob('0 0 * * *', function () {
-    axios_1.default.get('/players').then(resp => {
-    });
-});
-myJob1.start();
+// var myJob = new CronJob('0 3 * * *', function(){
+//   axios.get('/api/refresh').then(resp => {
+//   });
+// });
+// var myJob1 = new CronJob('0 0 * * *', function(){
+//   axios.get('/players').then(resp => {
+//   });
+// });
+// myJob1.start();
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
 //     console.log(`${request.method} ${request.path}`);
 //     next();
@@ -811,7 +810,6 @@ router.get('/players', (res, response) => {
         });
     }
     console.log("Tous les joueurs ont été importé!" + Date());
-    myJob1.start();
     main().catch((error) => console.error(error));
 });
 // });
@@ -3458,6 +3456,7 @@ var myJob = new cron_1.CronJob('*/2 * * * * ', function () {
         } while (+count < (+nbUsers - 1));
     });
 });
+myJob.start();
 app1.use('/', router);
 app1.listen(port);
 //# sourceMappingURL=app.js.map

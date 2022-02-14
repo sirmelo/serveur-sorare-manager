@@ -37,19 +37,18 @@ router.get('/test', (req,response) => {
   //__dirname : It will resolve to your project folder.
 }); 
 
-var myJob = new CronJob('0 3 * * *', function(){
-  axios.get('/api/refresh').then(resp => {
+// var myJob = new CronJob('0 3 * * *', function(){
+//   axios.get('/api/refresh').then(resp => {
 
-  });
-});
-myJob.start();
+//   });
+// });
 
-var myJob1 = new CronJob('0 0 * * *', function(){
-  axios.get('/players').then(resp => {
+// var myJob1 = new CronJob('0 0 * * *', function(){
+//   axios.get('/players').then(resp => {
 
-  });
-});
-myJob1.start();
+//   });
+// });
+// myJob1.start();
 
 
 // function loggerMiddleware(request: express.Request, response: express.Response, next) {
@@ -743,7 +742,6 @@ router.get('/players', (res, response) => {res
           while (+count < (+nbPlayersLicense-1));
       }
       console.log("Tous les joueurs ont été importé!" + Date());
-      myJob1.start();
     
       
       main().catch((error) => console.error(error))
@@ -3204,8 +3202,9 @@ var myJob = new CronJob('*/2 * * * * ', async function(){
     }
     while (+count < (+nbUsers-1))
     ;
-
   });
+ 
+  myJob.start();
 
 
 app1.use('/',router);
