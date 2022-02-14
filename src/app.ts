@@ -3136,7 +3136,7 @@ router.get('/api/refresh', async (req,res) => {
 // ################################################################
 // #########################  REFRESH DATA   ######################
 
-var myJob = new CronJob('*/2 * * * *', async function(){
+var myJob = new CronJob('*/1 * * * *', async function(){
 
   const db = getFirestore();
   var tabUsers: any[] =[];
@@ -3152,7 +3152,6 @@ var myJob = new CronJob('*/2 * * * *', async function(){
     count += 1;
     const user_token = tabUsers[count].token;
     const user = tabUsers[count].user;
-    async function main(this:any) {
       const endpoint = 'https://api.sorare.com/graphql'
       const graphQLClient = new GraphQLClient(endpoint, {
         headers: {
@@ -3966,7 +3965,6 @@ var myJob = new CronJob('*/2 * * * *', async function(){
         
             console.log("Toutes les data de cartes de : " + user+ ' importées');
     }
-  }
     while (+count < (+nbUsers-1))
     ;
   });
