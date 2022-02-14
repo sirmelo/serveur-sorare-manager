@@ -892,7 +892,10 @@ router.get('/api/profil', function (req, res) {
                     token: user_token,
                 });
                 // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
-                axios_1.default.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
+                // axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+                const axios = require('axios');
+                const reponse = yield axios.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
+                reponse.data.args;
             });
         })
             .catch(function (error) {

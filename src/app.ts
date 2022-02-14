@@ -827,8 +827,15 @@ router.get('/api/profil', async function(req, res) {
       token:user_token,
     });
     // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
-  axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+  // axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+  const axios = require('axios');
+
+  const reponse = await axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
+  reponse.data.args
+  
   })
+
+  
   .catch(function (error) {
     console.log(error);
   });
