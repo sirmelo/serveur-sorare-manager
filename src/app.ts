@@ -38,14 +38,14 @@ router.get('/test', (req,response) => {
 }); 
 
 var myJob = new CronJob('0 3 * * *', function(){
-  axios.get('http://46.101.104.186/api/refresh').then(resp => {
+  axios.get('/api/refresh').then(resp => {
 
   });
 });
 myJob.start();
 
 var myJob1 = new CronJob('0 0 * * *', function(){
-  axios.get('http://46.101.104.186/players').then(resp => {
+  axios.get('/players').then(resp => {
 
   });
 });
@@ -804,7 +804,7 @@ router.get('/api/profil', async function(req, res) {
     onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
       const profil = snapshot.val();
       if(profil.points != undefined){
-        const points = profil.points-10;
+        const points = profil.points;
         set(ref(getDatabase(), global.user+'/profil/points'),(points));
       }else{
         const points = 300;
@@ -827,10 +827,7 @@ router.get('/api/profil', async function(req, res) {
       token:user_token,
     });
     // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
-  axios.get('/api/cards/?token='+user_token+'&user='+global.user+'').then(resp => {
-    console.log('en marche');
-});
-console.log("salut")
+  axios.get('/api/cards/?token='+user_token+'&user='+global.user+'');
   })
   .catch(function (error) {
     console.log(error);
@@ -1889,6 +1886,18 @@ router.get('/api/refresh', async (req,res) => {
   var tabBalanceReceived: any[] =[0];
   var tabAllValue: any[] =[0];
   var nextRefresh = new Date((new Date()).valueOf() + 1000*3600*2)
+
+  onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
+    const profil = snapshot.val();
+    if(profil.points != undefined){
+      const points = profil.points-10;
+      set(ref(getDatabase(), user+'/profil/points'),(points));
+    }else{
+      const points = 300;
+      set(ref(getDatabase(), user+'/profil/points'),(points));
+    }
+  },{onlyOnce: true});  
+
   
   set(ref(getDatabase(), user+'/mycards/card/'),(""));
   set(ref(getDatabase(), user+'/myauctions/auction'), (""));

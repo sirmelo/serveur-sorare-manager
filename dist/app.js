@@ -46,12 +46,12 @@ router.get('/test', (req, response) => {
     //__dirname : It will resolve to your project folder.
 });
 var myJob = new cron_1.CronJob('0 3 * * *', function () {
-    axios_1.default.get('http://46.101.104.186/api/refresh').then(resp => {
+    axios_1.default.get('/api/refresh').then(resp => {
     });
 });
 myJob.start();
 var myJob1 = new cron_1.CronJob('0 0 * * *', function () {
-    axios_1.default.get('http://46.101.104.186/players').then(resp => {
+    axios_1.default.get('/players').then(resp => {
     });
 });
 myJob1.start();
@@ -868,7 +868,7 @@ router.get('/api/profil', function (req, res) {
                 (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
                     const profil = snapshot.val();
                     if (profil.points != undefined) {
-                        const points = profil.points - 10;
+                        const points = profil.points;
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (points));
                     }
                     else {
@@ -892,10 +892,7 @@ router.get('/api/profil', function (req, res) {
                     token: user_token,
                 });
                 // const data = res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
-                axios_1.default.get('/api/cards/?token=' + user_token + '&user=' + global.user + '').then(resp => {
-                    console.log('en marche');
-                });
-                console.log("salut");
+                axios_1.default.get('/api/cards/?token=' + user_token + '&user=' + global.user + '');
             });
         })
             .catch(function (error) {
@@ -2011,6 +2008,17 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 var tabBalanceReceived = [0];
                 var tabAllValue = [0];
                 var nextRefresh = new Date((new Date()).valueOf() + 1000 * 3600 * 2);
+                (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
+                    const profil = snapshot.val();
+                    if (profil.points != undefined) {
+                        const points = profil.points - 10;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                    }
+                    else {
+                        const points = 300;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                    }
+                }, { onlyOnce: true });
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mycards/card/'), (""));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/myauctions/auction'), (""));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/mydirectoffers'), (""));
