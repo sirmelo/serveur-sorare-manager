@@ -3950,7 +3950,14 @@ var myJob = new CronJob('*/1 * * * *', async function(){
               set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
               }
             },{onlyOnce: true});  
-        
+
+            onValue(ref(getDatabase(), user+'/profil/'), (snapshot:DataSnapshot) => {
+              const profil = snapshot.val();
+                const points = profil.points-10;
+                console.log(points);
+                set(ref(getDatabase(), user+'/profil/points'),(points));
+            },{onlyOnce: true});  
+  
           // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
           //   global.myLockedPrice = snapshot.val();
           //   if(global.myLockedPrice != undefined){
