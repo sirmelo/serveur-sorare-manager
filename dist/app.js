@@ -891,9 +891,11 @@ router.get('/api/profil', function (req, res) {
                     user: global.user,
                     token: user_token,
                 });
-                axios_1.default.get('http://46.101.104.186/api/cards/?token=' + user_token + '&user=' + global.user + '').then(resp => {
-                    console.log('en marche');
-                });
+                res.redirect('/api/cards/?token=' + user_token + '&user=' + global.user + '');
+                //   axios.get('http://46.101.104.186/api/cards/?token='+user_token+'&user='+global.user+'').then(resp => {
+                //     console.log('en marche');
+                // });
+                console.log("salut");
             });
         })
             .catch(function (error) {

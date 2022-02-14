@@ -800,7 +800,7 @@ router.get('/api/profil', async function(req, res) {
     set(ref(getDatabase(), global.user+'/profil/totalBalance'),(myProfil.totalBalance/Math.pow(10,18)));
     set(ref(getDatabase(), global.user+'/profil/createdAt'),(myProfil.createdAt));
     set(ref(getDatabase(), global.user+'/profil/clubName'),(myProfil.profile.clubName));
-    
+
     onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
       const profil = snapshot.val();
       if(profil.points != undefined){
@@ -826,10 +826,11 @@ router.get('/api/profil', async function(req, res) {
       user:global.user,
       token:user_token,
     });
-  axios.get('http://46.101.104.186/api/cards/?token='+user_token+'&user='+global.user+'').then(resp => {
-    console.log('en marche');
-});
-
+    res.redirect('/api/cards/?token='+user_token+'&user='+global.user+'')
+//   axios.get('http://46.101.104.186/api/cards/?token='+user_token+'&user='+global.user+'').then(resp => {
+//     console.log('en marche');
+// });
+console.log("salut")
   })
   .catch(function (error) {
     console.log(error);
