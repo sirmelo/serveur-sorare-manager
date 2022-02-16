@@ -319,7 +319,7 @@ console.log(count,"etape3")
                 let detailScore: any[] =[];
                 
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
-                if(get_player.status =null || get_player.status ===undefined || get_player.allSo5Scores.nodes ===[] || get_player.allSo5Scores.nodes ===undefined){
+                if(get_player.allSo5Scores.nodes ===null || get_player.allSo5Scores.nodes ===undefined){
                   sdsl5=0;
                   sdsl15=0;
                   saal15=0;
