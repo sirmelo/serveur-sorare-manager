@@ -4444,248 +4444,264 @@ for(let i=0; i< nbPlayersLicense; i++){
                 }
             };
 
-          // ######## RECHERCHE PRIX RARE ########
-          if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
-            let slugsRare: any[] =[];
-            for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
-                const variables = {slugs: slugsRare};
-                const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
-                const getCardsrare = cardsRareData.cards;
-                tabCardsRare.push([getCardsrare.flat(Infinity)]);
-                tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
-                result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
-                if(result !=null ) {
-                    global.cardsOnSaleRare = result;
-                    for(let i=0; i<result.length;i++){
-                        if (result[i].pictureUrl !=undefined){
-                            global.cardpicturerare = result[i].pictureUrl;
+              // ######## RECHERCHE PRIX RARE ########
+              if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
+                let slugsRare: any[] =[];
+                for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
+                    const variables = {slugs: slugsRare};
+                    const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
+                    const getCardsrare = cardsRareData.cards;
+                    tabCardsRare.push([getCardsrare.flat(Infinity)]);
+                    tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
+                    result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
+                    if(result !=null ) {
+                        global.cardsOnSaleRare = result;
+                        for(let i=0; i<result.length;i++){
+                            if (result[i].pictureUrl !=undefined){
+                                global.cardpicturerare = result[i].pictureUrl;
+                            }
+                        }
+                    };
+
+                    for ( let n = 0; n < result.length; n++ ){
+                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
+                        bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
+                        if (bestpriceRare === Infinity){
+                            priceRare=0;
+                            global.onSaleRare="false";
+                        }
+                        else {priceRare=bestpriceRare};
+                        global.onSaleRare="true";
+                      } 
+                    }else{
+                      global.onSaleRare="false";
+                      global.cardpicturerare="";
+                      global.cardsOnSaleRare=[];
+                    }
+              // ######## RECHERCHE PRIX LIMITED ########
+              if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
+                let slugsLimited: any[] =[];
+                for ( let k = 0; k < nbArrayLimited ; k++) { slugsLimited = tabSlugCardLimited.slice(0+(k*100),100+(k*100))
+                    const variables = {slugs: slugsLimited};
+                    const cardsLimitedData = await graphQLClient.request(GET_PRICE,variables);
+                    const getCardsLimited = cardsLimitedData.cards;
+                    tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
+                    tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
+                    result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
+                    if(result !=null ) {
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
+                        global.cardsOnSaleLimited = result;
+                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[0].pictureUrl));
+                        for(let i=0; i<result.length;i++){
+                            if (result[i].pictureUrl !=undefined){
+                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[i].pictureUrl));
+                                global.cardpicturelimited = result[i].pictureUrl;
+                            }
                         }
                     }
-                };
 
-                for ( let n = 0; n < result.length; n++ ){
-                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
-                    bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
-                    if (bestpriceRare === Infinity){
-                        priceRare=0;
-                        global.onSaleRare="false";
-                    }
-                    else {priceRare=bestpriceRare};
-                    global.onSaleRare="true";
-                  } 
-                };
-          // ######## RECHERCHE PRIX LIMITED ########
-          if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
-            let slugsLimited: any[] =[];
-            for ( let k = 0; k < nbArrayLimited ; k++) { slugsLimited = tabSlugCardLimited.slice(0+(k*100),100+(k*100))
-                const variables = {slugs: slugsLimited};
-                const cardsLimitedData = await graphQLClient.request(GET_PRICE,variables);
-                const getCardsLimited = cardsLimitedData.cards;
-                tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
-                tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
-                result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
-                if(result !=null ) {
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
-                    global.cardsOnSaleLimited = result;
-                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[0].pictureUrl));
-                    for(let i=0; i<result.length;i++){
-                        if (result[i].pictureUrl !=undefined){
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[i].pictureUrl));
-                            global.cardpicturelimited = result[i].pictureUrl;
+                    for ( let n = 0; n < result.length; n++ ){
+                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
+                        bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
+                        if (bestpriceLimited === Infinity){
+                            priceLimited=0
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
+                            global.onSaleLimited ="false";
+                        }
+                        else {priceLimited=bestpriceLimited};
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
+                        global.onSaleLimited ="true";
+                    };
+                  }else{
+                    global.onSaleLimited="false";
+                    global.cardpicturelimited="";
+                    global.cardsOnSaleLimited=[];
+                  }
+              // ######## RECHERCHE PRIX SUPER RARE ########
+              if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
+                let slugsSuperRare: any[] =[];
+                for ( let k = 0; k < nbArraySuperRare ; k++) { slugsSuperRare = tabSlugCardSuperRare.slice(0+(k*100),100+(k*100))
+                    const variables = {slugs: slugsSuperRare};
+                    const cardsSuperRareData = await graphQLClient.request(GET_PRICE,variables);
+                    const getCardsSuperRare = cardsSuperRareData.cards;
+                    tabCardsSuperRare.push([getCardsSuperRare.flat(Infinity)]);
+                    tabCardsSuperRareTOTAL = tabCardsSuperRare.flat(Infinity);
+                    result = tabCardsSuperRareTOTAL.filter(tabCardsSuperRareTOTAL => tabCardsSuperRareTOTAL.onSale === true);
+                    if(result !=null ) {
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleSuperRare'),(result));
+                        global.cardsOnSaleSuperRare = result;
+                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[0].pictureUrl));
+                        for(let i=0; i<result.length;i++){
+                            if (result[i].pictureUrl !=undefined){
+                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[i].pictureUrl));
+                                global.cardpictureSuperRare = result[i].pictureUrl;
+                            }
                         }
                     }
-                }
 
-                for ( let n = 0; n < result.length; n++ ){
-                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
-                    bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
-                    if (bestpriceLimited === Infinity){
-                        priceLimited=0
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
-                        global.onSaleLimited ="false";
-                    }
-                    else {priceLimited=bestpriceLimited};
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
-                    global.onSaleLimited ="true";
-                };
-              }
-          // ######## RECHERCHE PRIX SUPER RARE ########
-          if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
-            let slugsSuperRare: any[] =[];
-            for ( let k = 0; k < nbArraySuperRare ; k++) { slugsSuperRare = tabSlugCardSuperRare.slice(0+(k*100),100+(k*100))
-                const variables = {slugs: slugsSuperRare};
-                const cardsSuperRareData = await graphQLClient.request(GET_PRICE,variables);
-                const getCardsSuperRare = cardsSuperRareData.cards;
-                tabCardsSuperRare.push([getCardsSuperRare.flat(Infinity)]);
-                tabCardsSuperRareTOTAL = tabCardsSuperRare.flat(Infinity);
-                result = tabCardsSuperRareTOTAL.filter(tabCardsSuperRareTOTAL => tabCardsSuperRareTOTAL.onSale === true);
-                if(result !=null ) {
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleSuperRare'),(result));
-                    global.cardsOnSaleSuperRare = result;
-                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[0].pictureUrl));
-                    for(let i=0; i<result.length;i++){
-                        if (result[i].pictureUrl !=undefined){
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[i].pictureUrl));
-                            global.cardpictureSuperRare = result[i].pictureUrl;
+                    for ( let n = 0; n < result.length; n++ ){
+                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceSuperRare.push([result[n].liveSingleSaleOffer.price])}
+                        bestpriceSuperRare =  Math.min(...(tabPriceSuperRare.flat(Infinity)))/Math.pow(10,18)}
+                        if (bestpriceSuperRare === Infinity){
+                            priceSuperRare=0
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
+                            global.onSaleSuperRare ="false";
+                        }
+                        else {priceSuperRare=bestpriceSuperRare};
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
+                        global.onSaleSuperRare ="true";
+                    };
+                  }else{
+                    global.onSaleSuperRare="false";
+                    global.cardpictureSuperRare="";
+                    global.cardsOnSaleSuperRare=[];
+                  }
+              // ######## RECHERCHE PRIX UNIQUE ########
+              if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
+                let slugsUnique: any[] =[];
+                for ( let k = 0; k < nbArrayUnique ; k++) { slugsUnique = tabSlugCardUnique.slice(0+(k*100),100+(k*100))
+                    const variables = {slugs: slugsUnique};
+                    const cardsUniqueData = await graphQLClient.request(GET_PRICE,variables);
+                    const getCardsUnique = cardsUniqueData.cards;
+                    tabCardsUnique.push([getCardsUnique.flat(Infinity)]);
+                    tabCardsUniqueTOTAL = tabCardsUnique.flat(Infinity);
+                    result = tabCardsUniqueTOTAL.filter(tabCardsUniqueTOTAL => tabCardsUniqueTOTAL.onSale === true);
+                    if(result !=null ) {
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleUnique'),(result));
+                        global.cardsOnSaleUnique = result;
+                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[0].pictureUrl));
+                        for(let i=0; i<result.length;i++){
+                            if (result[i].pictureUrl !=undefined){
+                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[i].pictureUrl));
+                                global.cardpictureUnique = result[i].pictureUrl;
+                            }
                         }
                     }
-                }
 
-                for ( let n = 0; n < result.length; n++ ){
-                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceSuperRare.push([result[n].liveSingleSaleOffer.price])}
-                    bestpriceSuperRare =  Math.min(...(tabPriceSuperRare.flat(Infinity)))/Math.pow(10,18)}
-                    if (bestpriceSuperRare === Infinity){
-                        priceSuperRare=0
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
-                        global.onSaleSuperRare ="false";
-                    }
-                    else {priceSuperRare=bestpriceSuperRare};
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
-                    global.onSaleSuperRare ="true";
-                };
-              }
-          // ######## RECHERCHE PRIX UNIQUE ########
-          if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
-            let slugsUnique: any[] =[];
-            for ( let k = 0; k < nbArrayUnique ; k++) { slugsUnique = tabSlugCardUnique.slice(0+(k*100),100+(k*100))
-                const variables = {slugs: slugsUnique};
-                const cardsUniqueData = await graphQLClient.request(GET_PRICE,variables);
-                const getCardsUnique = cardsUniqueData.cards;
-                tabCardsUnique.push([getCardsUnique.flat(Infinity)]);
-                tabCardsUniqueTOTAL = tabCardsUnique.flat(Infinity);
-                result = tabCardsUniqueTOTAL.filter(tabCardsUniqueTOTAL => tabCardsUniqueTOTAL.onSale === true);
-                if(result !=null ) {
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleUnique'),(result));
-                    global.cardsOnSaleUnique = result;
-                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[0].pictureUrl));
-                    for(let i=0; i<result.length;i++){
-                        if (result[i].pictureUrl !=undefined){
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[i].pictureUrl));
-                            global.cardpictureUnique = result[i].pictureUrl;
+                    for ( let n = 0; n < result.length; n++ ){
+                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceUnique.push([result[n].liveSingleSaleOffer.price])}
+                        bestpriceUnique =  Math.min(...(tabPriceUnique.flat(Infinity)))/Math.pow(10,18)}
+                        if (bestpriceUnique === Infinity){
+                            priceUnique=0
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
+                            global.onSaleUnique ="false";
                         }
-                    }
-                }
-
-                for ( let n = 0; n < result.length; n++ ){
-                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceUnique.push([result[n].liveSingleSaleOffer.price])}
-                    bestpriceUnique =  Math.min(...(tabPriceUnique.flat(Infinity)))/Math.pow(10,18)}
-                    if (bestpriceUnique === Infinity){
-                        priceUnique=0
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
-                        global.onSaleUnique ="false";
-                    }
-                    else {priceUnique=bestpriceUnique};
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
-                    global.onSaleUnique ="true";
-                };
-              }
+                        else {priceUnique=bestpriceUnique};
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
+                        global.onSaleUnique ="true";
+                    };
+                  }else{
+                    global.onSaleUnique="false";
+                    global.cardpictureUnique="";
+                    global.cardsOnSaleUnique=[];
+                  }
 
 
-            variables = {slug: playerslug,};
-            const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
-            
-            if (position==="Goalkeeper"){
-            const getCardsPictureCommon = await graphQLClient.request(GET_CARD_COMMON,variables);
-            if(getCardsPictureCommon.player.cardSampleUrl !== null){global.cardpicturecommon = getCardsPictureCommon.player.cardSampleUrl;
-                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(global.cardpicturecommon))
-                ;}
+                variables = {slug: playerslug,};
+                const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
                 
-            else{
-              //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(""));global.cardpicturecommon="false"
-              };
-            }else {global.cardpicturecommon="false"};
-            global.minsPlayed=[];
-            global.score =[];
-            for (let i=0; i<15; i++){
-                if(liste_resultats.player.gameStats && liste_resultats.player.gameStats[i] && liste_resultats.player.gameStats[i].minsPlayed !==null){
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(liste_resultats.player.gameStats[i].minsPlayed));
-                    global.minsPlayed.push(liste_resultats.player.gameStats[i].minsPlayed);
-                }else{
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(0));
-                    global.minsPlayed.push(0);
-                }
-                if(liste_resultats.player.allSo5Scores && liste_resultats.player.allSo5Scores.nodes[i] && liste_resultats.player.allSo5Scores.nodes[i].score !==null){
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(liste_resultats.player.allSo5Scores.nodes[i].score)); 
-                    global.score.push(liste_resultats.player.allSo5Scores.nodes[i].score);  
-                }else{
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(0)); 
-                    global.score.push(0);
-                }
-              };
-              if(priceLimited !=null && sl5 !=null && priceLimited !=0){
-                global.ratioLimited = Math.round(sl5/priceLimited);
-                
-              }else{global.ratioLimited=0};
+                if (position==="Goalkeeper"){
+                const getCardsPictureCommon = await graphQLClient.request(GET_CARD_COMMON,variables);
+                if(getCardsPictureCommon.player.cardSampleUrl !== null){global.cardpicturecommon = getCardsPictureCommon.player.cardSampleUrl;
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(global.cardpicturecommon))
+                    ;}
+                    
+                else{
+                  //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(""));global.cardpicturecommon="false"
+                  };
+                }else {global.cardpicturecommon="false"};
+                global.minsPlayed=[];
+                global.score =[];
+                for (let i=0; i<15; i++){
+                    if(liste_resultats.player.gameStats && liste_resultats.player.gameStats[i] && liste_resultats.player.gameStats[i].minsPlayed !==null){
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(liste_resultats.player.gameStats[i].minsPlayed));
+                        global.minsPlayed.push(liste_resultats.player.gameStats[i].minsPlayed);
+                    }else{
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(0));
+                        global.minsPlayed.push(0);
+                    }
+                    if(liste_resultats.player.allSo5Scores && liste_resultats.player.allSo5Scores.nodes[i] && liste_resultats.player.allSo5Scores.nodes[i].score !==null){
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(liste_resultats.player.allSo5Scores.nodes[i].score)); 
+                        global.score.push(liste_resultats.player.allSo5Scores.nodes[i].score);  
+                    }else{
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(0)); 
+                        global.score.push(0);
+                    }
+                  };
+                  if(priceLimited !=null && sl5 !=null && priceLimited !=0){
+                    global.ratioLimited = Math.round(sl5/priceLimited);
+                    
+                  }else{global.ratioLimited=0};
 
-              if(priceRare !=null && sl5 !=null && priceRare !=0){
-                global.ratioRare = Math.round(sl5/priceRare);
-              }else{global.ratioRare=0}
+                  if(priceRare !=null && sl5 !=null && priceRare !=0){
+                    global.ratioRare = Math.round(sl5/priceRare);
+                  }else{global.ratioRare=0}
 
-              if(priceSuperRare !=null && sl5 !=null && priceSuperRare !=0){
-                global.ratioSuperRare = Math.round(sl5/priceSuperRare);
-              }else{global.ratioSuperRare=0}
+                  if(priceSuperRare !=null && sl5 !=null && priceSuperRare !=0){
+                    global.ratioSuperRare = Math.round(sl5/priceSuperRare);
+                  }else{global.ratioSuperRare=0}
 
-              if(priceUnique !=null && sl5 !=null && priceUnique !=0){
-                global.ratioUnique = Math.round(sl5/priceUnique);
-              }else{global.ratioUnique=0}
+                  if(priceUnique !=null && sl5 !=null && priceUnique !=0){
+                    global.ratioUnique = Math.round(sl5/priceUnique);
+                  }else{global.ratioUnique=0}
 
-    const playerRef = collection(db,"players", global.competition, position);
-    await setDoc(doc(playerRef, playerslug),{
-      Maj:Date(),
-      age:age,
-      cardpicturelimited:global.cardpicturelimited,
-      cardpicturerare:global.cardpicturerare,
-      cardpicturecommon:global.cardpicturecommon,
-      cardsOnSaleLimited:global.cardsOnSaleLimited,
-      cardsOnSaleRare:global.cardsOnSaleRare,
-      competition:global.competition,
-      leagueslug:global.leagueslug,
-      minsPlayed:global.minsPlayed,
-      nationalteamPicture:global.nationalteamPicture,
-      nationalteamname:global.nationalteamname,
-      noteBetSorare:noteBetSorare,
-      notebetAge:notebetAge,
-      notebetSl15:notebetSl15,
-      notebetSl5:notebetSl5,
-      notebetTj5:notebetTj5,
-      notebetaal5:notebetaal5,
-      notebetaal15:notebetaal15,
-      notebetdsl15:notebetdsl15,
-      onSaleLimited:global.onSaleLimited,
-      onSaleRare:global.onSaleRare,
-      onSaleUnique:global.onSaleUnique,
-      onSaleSuperRare:global.onSaleSuperRare,
-      playername:playername,
-      playerpictureURL:global.playerpictureURL,
-      playerslug:playerslug,
-      position:position,
-      priceLimited:priceLimited,
-      priceSuperRare:priceSuperRare,
-      priceUnique:priceUnique,
-      priceRare:priceRare,
-      saal15:saal15,
-      saal5:saal5,
-      score:global.score,
-      sdsl15:sdsl15,
-      sdsl5:sdsl5,
-      sl5:sl5,
-      sl15:sl15,
-      status:global.statut,
-      teamleague:global.teamleague,
-      teamname:global.teamname,
-      teampictureURL:global.teampictureURL,
-      teamslug:global.teamslug,
-      tj5:tj5,
-      tj15:tj15,
-      ratioRare:global.ratioRare,
-      ratioLimited:global.ratioLimited,
-      ratioSuperRare:global.ratioSuperRare,
-      ratioUnique:global.ratioUnique,
-      // allSo5Scores:global.allSo5Scores
-    });
+        const playerRef = collection(db,"players", global.competition, position);
+        await setDoc(doc(playerRef, playerslug),{
+          Maj:Date(),
+          age:age,
+          cardpicturelimited:global.cardpicturelimited,
+          cardpicturerare:global.cardpicturerare,
+          cardpicturecommon:global.cardpicturecommon,
+          cardsOnSaleLimited:global.cardsOnSaleLimited,
+          cardsOnSaleRare:global.cardsOnSaleRare,
+          competition:global.competition,
+          leagueslug:global.leagueslug,
+          minsPlayed:global.minsPlayed,
+          nationalteamPicture:global.nationalteamPicture,
+          nationalteamname:global.nationalteamname,
+          noteBetSorare:noteBetSorare,
+          notebetAge:notebetAge,
+          notebetSl15:notebetSl15,
+          notebetSl5:notebetSl5,
+          notebetTj5:notebetTj5,
+          notebetaal5:notebetaal5,
+          notebetaal15:notebetaal15,
+          notebetdsl15:notebetdsl15,
+          onSaleLimited:global.onSaleLimited,
+          onSaleRare:global.onSaleRare,
+          onSaleUnique:global.onSaleUnique,
+          onSaleSuperRare:global.onSaleSuperRare,
+          playername:playername,
+          playerpictureURL:global.playerpictureURL,
+          playerslug:playerslug,
+          position:position,
+          priceLimited:priceLimited,
+          priceSuperRare:priceSuperRare,
+          priceUnique:priceUnique,
+          priceRare:priceRare,
+          saal15:saal15,
+          saal5:saal5,
+          score:global.score,
+          sdsl15:sdsl15,
+          sdsl5:sdsl5,
+          sl5:sl5,
+          sl15:sl15,
+          status:global.statut,
+          teamleague:global.teamleague,
+          teamname:global.teamname,
+          teampictureURL:global.teampictureURL,
+          teamslug:global.teamslug,
+          tj5:tj5,
+          tj15:tj15,
+          ratioRare:global.ratioRare,
+          ratioLimited:global.ratioLimited,
+          ratioSuperRare:global.ratioSuperRare,
+          ratioUnique:global.ratioUnique,
+          // allSo5Scores:global.allSo5Scores
+        });
 
     console.log("joueur n°: " + (count+1)+" "+playername + " importé!")
 

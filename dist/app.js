@@ -4837,7 +4837,11 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                     global.onSaleRare = "true";
                                 }
                             }
-                            ;
+                            else {
+                                global.onSaleRare = "false";
+                                global.cardpicturerare = "";
+                                global.cardsOnSaleRare = [];
+                            }
                             // ######## RECHERCHE PRIX LIMITED ########
                             if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
                                 let slugsLimited = [];
@@ -4880,6 +4884,11 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                     global.onSaleLimited = "true";
                                 }
                                 ;
+                            }
+                            else {
+                                global.onSaleLimited = "false";
+                                global.cardpicturelimited = "";
+                                global.cardsOnSaleLimited = [];
                             }
                             // ######## RECHERCHE PRIX SUPER RARE ########
                             if (nbArraySuperRare != 0 && nbArraySuperRare != null && nbArraySuperRare != undefined) {
@@ -4924,6 +4933,11 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 }
                                 ;
                             }
+                            else {
+                                global.onSaleSuperRare = "false";
+                                global.cardpictureSuperRare = "";
+                                global.cardsOnSaleSuperRare = [];
+                            }
                             // ######## RECHERCHE PRIX UNIQUE ########
                             if (nbArrayUnique != 0 && nbArrayUnique != null && nbArrayUnique != undefined) {
                                 let slugsUnique = [];
@@ -4966,6 +4980,11 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                     global.onSaleUnique = "true";
                                 }
                                 ;
+                            }
+                            else {
+                                global.onSaleUnique = "false";
+                                global.cardpictureUnique = "";
+                                global.cardsOnSaleUnique = [];
                             }
                             variables = { slug: playerslug, };
                             const liste_resultats = yield graphQLClient.request(GET_RESULTATS, variables);
