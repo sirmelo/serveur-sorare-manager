@@ -319,25 +319,26 @@ console.log(count,"etape3")
                 let detailScore: any[] =[];
                 
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
-              //   if(get_player.status !=null || get_player.status !=undefined || get_player.allSo5Scores.nodes !=[] || get_player.allSo5Scores.nodes !=undefined){
-              //     for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-              //     sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
-              //     saal5 = +sl5-(sdsl5);
-              //     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal5'),(saal5));
-              //     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl5'),(sdsl5));
-              //     };  
-              //     for (let j = 0; j < +get_player.status.lastFifteenSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-              //     sdsl15 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFifteenSo5Appearances);
-              //     saal15 = +sl15-(sdsl15);
-              //     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal15'),(saal15));
-              //     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl15'),(sdsl15));
-              //     };
-              // }else{
-                sdsl5=0;
-                sdsl15=0;
-                saal15=0;
-                saal5=0;
-              // }
+                if(get_player.status =null || get_player.status ===undefined || get_player.allSo5Scores.nodes ===[] || get_player.allSo5Scores.nodes ===undefined){
+                  sdsl5=0;
+                  sdsl15=0;
+                  saal15=0;
+                  saal5=0;  
+              }else{
+                for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
+                  sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
+                  saal5 = +sl5-(sdsl5);
+                  //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal5'),(saal5));
+                  //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl5'),(sdsl5));
+                  };  
+                  for (let j = 0; j < +get_player.status.lastFifteenSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
+                  sdsl15 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFifteenSo5Appearances);
+                  saal15 = +sl15-(sdsl15);
+                  //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal15'),(saal15));
+                  //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl15'),(sdsl15));
+                  };
+
+              }
 console.log(count,"etape3-2")
                     //Notation saalx & sdslx
                     //#######################
