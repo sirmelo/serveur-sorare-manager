@@ -319,7 +319,7 @@ console.log(count,"etape3")
                 let detailScore: any[] =[];
                 
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
-                if(get_player.status !=null && get_player.status !=undefined && get_player.allSo5Scores!=null && get_player.allSo5Scores!=undefined){
+                if(get_player.status !=null && get_player.status !=undefined && get_player.allSo5Scores.nodes!=null && get_player.allSo5Scores.nodes!=undefined){
                   for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
                   sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
                   saal5 = +sl5-(sdsl5);
