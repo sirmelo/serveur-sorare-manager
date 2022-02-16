@@ -701,7 +701,7 @@ router.get('/players', (res, response) => {res
           ratioLimited:global.ratioLimited,
           ratioSuperRare:global.ratioSuperRare,
           ratioUnique:global.ratioUnique,
-          allSo5Scores:global.allSo5Scores
+          // allSo5Scores:global.allSo5Scores
         });
 
         console.log("joueur n°: " + (count+1)+" "+playername + " importé!")
@@ -4667,7 +4667,7 @@ for(let i=0; i< nbPlayersLicense; i++){
       ratioLimited:global.ratioLimited,
       ratioSuperRare:global.ratioSuperRare,
       ratioUnique:global.ratioUnique,
-      allSo5Scores:global.allSo5Scores
+      // allSo5Scores:global.allSo5Scores
     });
 
     console.log("joueur n°: " + (count+1)+" "+playername + " importé!")

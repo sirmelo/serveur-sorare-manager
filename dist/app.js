@@ -775,7 +775,7 @@ router.get('/players', (res, response) => {
                             ratioLimited: global.ratioLimited,
                             ratioSuperRare: global.ratioSuperRare,
                             ratioUnique: global.ratioUnique,
-                            allSo5Scores: global.allSo5Scores
+                            // allSo5Scores:global.allSo5Scores
                         });
                         console.log("joueur n°: " + (count + 1) + " " + playername + " importé!");
                     }
@@ -5063,7 +5063,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 ratioLimited: global.ratioLimited,
                                 ratioSuperRare: global.ratioSuperRare,
                                 ratioUnique: global.ratioUnique,
-                                allSo5Scores: global.allSo5Scores
+                                // allSo5Scores:global.allSo5Scores
                             });
                             console.log("joueur n°: " + (count + 1) + " " + playername + " importé!");
                         }
