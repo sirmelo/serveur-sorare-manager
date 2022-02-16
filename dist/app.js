@@ -867,7 +867,7 @@ router.get('/players', (res, response) => {
                             ratioUnique: global.ratioUnique,
                             // allSo5Scores:global.allSo5Scores
                         });
-                        console.log("joueur n°: " + (count + 1) + " " + playername + " importé!");
+                        console.log("joueur n°: " + (count) + " " + playername + " importé!");
                     }
                     else {
                         console.log("joueur n°: " + (count + 1) + " " + playername + " non importé!");
