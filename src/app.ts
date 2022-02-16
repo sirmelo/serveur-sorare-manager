@@ -528,6 +528,10 @@ router.get('/players', (res, response) => {res
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
                         global.onSaleLimited ="true";
                     };
+                  }else{
+                    global.onSaleLimited="false";
+                    global.cardpicturelimited="";
+                    global.cardsOnSaleLimited=[];
                   }
               // ######## RECHERCHE PRIX SUPER RARE ########
               if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){

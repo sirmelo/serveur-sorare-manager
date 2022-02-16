@@ -575,6 +575,11 @@ router.get('/players', (res, response) => {
                             }
                             ;
                         }
+                        else {
+                            global.onSaleLimited = "false";
+                            global.cardpicturelimited = "";
+                            global.cardsOnSaleLimited = [];
+                        }
                         // ######## RECHERCHE PRIX SUPER RARE ########
                         if (nbArraySuperRare != 0 && nbArraySuperRare != null && nbArraySuperRare != undefined) {
                             let slugsSuperRare = [];
