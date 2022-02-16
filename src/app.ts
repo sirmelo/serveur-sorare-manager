@@ -317,8 +317,9 @@ console.log(count,"etape2")
 
 console.log(count,"etape3")
                 let detailScore: any[] =[];
+                console.log("test", get_player.status)
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
-                if(get_player.status !=null && get_player.status.playingStatus !=null){
+                if(get_player.status !=null && get_player.status !=undefined){
                   for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
                   sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
                   saal5 = +sl5-(sdsl5);
@@ -337,6 +338,7 @@ console.log(count,"etape3")
                 saal15=0;
                 saal5=0;
               }
+console.log(count,"etape3")
                     //Notation saalx & sdslx
                     //#######################
                     const baremeNoteSadx=[[0,-1],[0.5,5],[1,8],[1.5,10],[2,15],[2.5,18],[3,22],[3.5,25],[4,35],[4.5,50],[5,99]];
