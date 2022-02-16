@@ -1549,23 +1549,23 @@ router.get('/api/profil', async function(req, res) {
   
   
       // #####SAVE HISTORY WALLET#####
-      axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
-        global.ethValue=resp.data;
-        set(ref(getDatabase(), global.user+'/profil/watching/ethValue'),(resp.data));
-      });
+      // axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
+      //   global.ethValue=resp.data;
+      //   set(ref(getDatabase(), global.user+'/profil/watching/ethValue'),(resp.data));
+      // });
     
-      onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
-        const wallet = snapshot.val();
-        if(wallet.historique != undefined){
-        const nbHistory = wallet.historique.length
-        set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
-        set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
+      // onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
+      //   const wallet = snapshot.val();
+      //   if(wallet.historique != undefined){
+      //   const nbHistory = wallet.historique.length
+      //   set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
+      //   set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
   
-        }else{
-        set(ref(getDatabase(), global.user+'/profil/historique/0/'),(wallet.watching));
-        set(ref(getDatabase(), global.user+'/profil//historique/0/date'),(Date()));
-        }
-      },{onlyOnce: true});  
+      //   }else{
+      //   set(ref(getDatabase(), global.user+'/profil/historique/0/'),(wallet.watching));
+      //   set(ref(getDatabase(), global.user+'/profil//historique/0/date'),(Date()));
+      //   }
+      // },{onlyOnce: true});  
   
     // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
     //   global.myLockedPrice = snapshot.val();
@@ -3159,23 +3159,23 @@ router.get('/api/refresh', async (req,res) => {
         
         
             // // #####SAVE HISTORY WALLET#####
-            // axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
-            //   global.ethValue=resp.data;
-            //   set(ref(getDatabase(), user+'/profil/watching/ethValue'),(resp.data));
-            // });
+            axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
+              global.ethValue=resp.data;
+              set(ref(getDatabase(), user+'/profil/watching/ethValue'),(resp.data));
+            });
           
-            // onValue(ref(getDatabase(), user+'/profil/'), (snapshot:DataSnapshot) => {
-            //   const wallet = snapshot.val();
-            //   if(wallet.historique != undefined){
-            //   const nbHistory = wallet.historique.length
-            //   set(ref(getDatabase(), user+'/profil/historique/'+nbHistory),(wallet.watching));
-            //   set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
+            onValue(ref(getDatabase(), user+'/profil/'), (snapshot:DataSnapshot) => {
+              const wallet = snapshot.val();
+              if(wallet.historique != undefined){
+              const nbHistory = wallet.historique.length
+              set(ref(getDatabase(), user+'/profil/historique/'+nbHistory),(wallet.watching));
+              set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
         
-            //   }else{
-            //   set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
-            //   set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
-            //   }
-            // },{onlyOnce: true});  
+              }else{
+              set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
+              set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
+              }
+            },{onlyOnce: true});  
         
             console.log("Toutes les data de cartes de : " + user+ ' importées');
     }
