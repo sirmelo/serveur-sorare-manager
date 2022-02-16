@@ -316,6 +316,9 @@ console.log(count,"etape2")
                 };
                 console.log(count, "test", get_player.status)
 console.log(count,"etape3")
+console.log(get_player.allSo5Scores.nodes)
+console.log(get_player.allSo5Scores.nodes.length)
+
                 let detailScore: any[] =[];
                 
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;

@@ -333,6 +333,8 @@ router.get('/players', (res, response) => {
                         ;
                         console.log(count, "test", get_player.status);
                         console.log(count, "etape3");
+                        console.log(get_player.allSo5Scores.nodes);
+                        console.log(get_player.allSo5Scores.nodes.length);
                         let detailScore = [];
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
                         if (get_player.allSo5Scores.nodes[0].detailedScore === null || get_player.allSo5Scores.nodes[0].detailedScore === undefined) {
