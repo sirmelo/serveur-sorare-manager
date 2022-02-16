@@ -337,7 +337,7 @@ router.get('/players', (res, response) => {
                         console.log(get_player.allSo5Scores.nodes.length);
                         let detailScore = [];
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
-                        if (get_player.allSo5Scores.nodes[0].detailedScore === null || get_player.allSo5Scores.nodes[0].detailedScore === undefined) {
+                        if (get_player.allSo5Scores.nodes.length = 0) {
                             sdsl5 = 0;
                             sdsl15 = 0;
                             saal15 = 0;
