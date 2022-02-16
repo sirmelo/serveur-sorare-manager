@@ -314,10 +314,10 @@ console.log(count,"etape2")
                     global.teamslug = "";
 
                 };
-
+                console.log(count, "test", get_player.status)
 console.log(count,"etape3")
                 let detailScore: any[] =[];
-                console.log("test", get_player.status)
+                
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
                 if(get_player.status !=null && get_player.status !=undefined){
                   for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);

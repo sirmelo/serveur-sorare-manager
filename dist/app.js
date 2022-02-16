@@ -331,9 +331,9 @@ router.get('/players', (res, response) => {
                             global.teamslug = "";
                         }
                         ;
+                        console.log(count, "test", get_player.status);
                         console.log(count, "etape3");
                         let detailScore = [];
-                        console.log("test", get_player.status);
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
                         if (get_player.status != null && get_player.status != undefined) {
                             for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {
