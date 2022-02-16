@@ -185,7 +185,7 @@ router.get('/players', (res, response) => {
             const allPlayers = data.releasedPlayerValues;
             const nbPlayersLicense = allPlayers.length;
             var allPlayersLicence = [];
-            let count = 397;
+            let count = 390;
             let variables;
             for (let i = 0; i < nbPlayersLicense; i++) {
                 allPlayersLicence.push(allPlayers[i].slug);
@@ -743,7 +743,7 @@ router.get('/players', (res, response) => {
                         else {
                             global.ratioUnique = 0;
                         }
-                        console.log(playerslug, global.competition, position);
+                        console.log(count, playerslug, global.competition, position);
                         console.log({ age: age,
                             cardpicturelimited: global.cardpicturelimited,
                             cardpicturerare: global.cardpicturerare,
