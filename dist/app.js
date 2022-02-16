@@ -335,7 +335,7 @@ router.get('/players', (res, response) => {
                         console.log(count, "etape3");
                         let detailScore = [];
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
-                        if (get_player.status != null && get_player.status != undefined && get_player.allSo5Scores.nodes != null && get_player.allSo5Scores.nodes != undefined) {
+                        if (get_player.status != null && get_player.status != undefined && get_player.allSo5Scores.nodes != [] && get_player.allSo5Scores.nodes != undefined) {
                             for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {
                                 detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
                                 sdsl5 = Math.round(detailScore.reduce(reducer) / +get_player.status.lastFiveSo5Appearances);
