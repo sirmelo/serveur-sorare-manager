@@ -546,7 +546,6 @@ router.get('/players', (res, response) => {
                                 tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
                                 tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
                                 result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
-                                console.log(result);
                                 if (result != null) {
                                     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
                                     global.cardsOnSaleLimited = result;
