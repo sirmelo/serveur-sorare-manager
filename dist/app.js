@@ -185,7 +185,7 @@ router.get('/players', (res, response) => {
             const allPlayers = data.releasedPlayerValues;
             const nbPlayersLicense = allPlayers.length;
             var allPlayersLicence = [];
-            let count = 3468;
+            let count = -1;
             let variables;
             for (let i = 0; i < nbPlayersLicense; i++) {
                 allPlayersLicence.push(allPlayers[i].slug);
@@ -3438,23 +3438,22 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         }
         const allBalanceReceived = tabBalanceReceived.reduce(reducer).toFixed(3);
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/watching/balanceReceived'), (+allBalanceReceived));
-        // #####SAVE HISTORY WALLET#####
-        axios_1.default.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {
-            global.ethValue = resp.data;
-            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/watching/ethValue'), (resp.data));
-        });
-        (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/'), (snapshot) => {
-            const wallet = snapshot.val();
-            if (wallet.historique != undefined) {
-                const nbHistory = wallet.historique.length;
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory), (wallet.watching));
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory + '/date'), (Date()));
-            }
-            else {
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/'), (wallet.watching));
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/0/date'), (Date()));
-            }
-        }, { onlyOnce: true });
+        // // #####SAVE HISTORY WALLET#####
+        // axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
+        //   global.ethValue=resp.data;
+        //   set(ref(getDatabase(), user+'/profil/watching/ethValue'),(resp.data));
+        // });
+        // onValue(ref(getDatabase(), user+'/profil/'), (snapshot:DataSnapshot) => {
+        //   const wallet = snapshot.val();
+        //   if(wallet.historique != undefined){
+        //   const nbHistory = wallet.historique.length
+        //   set(ref(getDatabase(), user+'/profil/historique/'+nbHistory),(wallet.watching));
+        //   set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
+        //   }else{
+        //   set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
+        //   set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
+        //   }
+        // },{onlyOnce: true});  
         console.log("Toutes les data de cartes de : " + user + ' importées');
     } while (+count < (+nbUsers - 1));
     res.redirect('/');
