@@ -542,6 +542,7 @@ router.get('/players', (res, response) => {
                                 tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
                                 tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
                                 result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
+                                console.log(result);
                                 if (result != null) {
                                     //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
                                     global.cardsOnSaleLimited = result;
@@ -724,7 +725,10 @@ router.get('/players', (res, response) => {
                         else {
                             global.ratioUnique = 0;
                         }
-                        console.log({ age: age,
+                        const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
+                        yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
+                            Maj: Date(),
+                            age: age,
                             cardpicturelimited: global.cardpicturelimited,
                             cardpicturerare: global.cardpicturerare,
                             cardpicturecommon: global.cardpicturecommon,
@@ -744,59 +748,6 @@ router.get('/players', (res, response) => {
                             notebetaal15: notebetaal15,
                             notebetdsl15: notebetdsl15,
                             onSaleLimited: global.onSaleLimited,
-                            onSaleRare: global.onSaleRare,
-                            onSaleUnique: global.onSaleUnique,
-                            onSaleSuperRare: global.onSaleSuperRare,
-                            playername: playername,
-                            playerpictureURL: global.playerpictureURL,
-                            playerslug: playerslug,
-                            position: position,
-                            priceLimited: priceLimited,
-                            priceSuperRare: priceSuperRare,
-                            priceUnique: priceUnique,
-                            priceRare: priceRare,
-                            saal15: saal15,
-                            saal5: saal5,
-                            score: global.score,
-                            sdsl15: sdsl15,
-                            sdsl5: sdsl5,
-                            sl5: sl5,
-                            sl15: sl15,
-                            status: global.statut,
-                            teamleague: global.teamleague,
-                            teamname: global.teamname,
-                            teampictureURL: global.teampictureURL,
-                            teamslug: global.teamslug,
-                            tj5: tj5,
-                            tj15: tj15,
-                            ratioRare: global.ratioRare,
-                            ratioLimited: global.ratioLimited,
-                            ratioSuperRare: global.ratioSuperRare,
-                            ratioUnique: global.ratioUnique,
-                        });
-                        const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
-                        yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
-                            Maj: Date(),
-                            age: age,
-                            cardpicturelimited: global.cardpicturelimited,
-                            cardpicturerare: global.cardpicturerare,
-                            cardpicturecommon: global.cardpicturecommon,
-                            cardsOnSaleLimited: [],
-                            cardsOnSaleRare: global.cardsOnSaleRare,
-                            competition: global.competition,
-                            leagueslug: global.leagueslug,
-                            minsPlayed: global.minsPlayed,
-                            nationalteamPicture: global.nationalteamPicture,
-                            nationalteamname: global.nationalteamname,
-                            noteBetSorare: noteBetSorare,
-                            notebetAge: notebetAge,
-                            notebetSl15: notebetSl15,
-                            notebetSl5: notebetSl5,
-                            notebetTj5: notebetTj5,
-                            notebetaal5: notebetaal5,
-                            notebetaal15: notebetaal15,
-                            notebetdsl15: notebetdsl15,
-                            onSaleLimited: "false",
                             onSaleRare: global.onSaleRare,
                             onSaleUnique: global.onSaleUnique,
                             onSaleSuperRare: global.onSaleSuperRare,
