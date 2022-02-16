@@ -530,7 +530,11 @@ router.get('/players', (res, response) => {
                                 global.onSaleRare = "true";
                             }
                         }
-                        ;
+                        else {
+                            global.onSaleRare = "false";
+                            global.cardpicturerare = "";
+                            global.cardsOnSaleRare = [];
+                        }
                         // ######## RECHERCHE PRIX LIMITED ########
                         if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
                             let slugsLimited = [];
@@ -623,6 +627,11 @@ router.get('/players', (res, response) => {
                             }
                             ;
                         }
+                        else {
+                            global.onSaleSuperRare = "false";
+                            global.cardpictureSuperRare = "";
+                            global.cardsOnSaleSuperRare = [];
+                        }
                         // ######## RECHERCHE PRIX UNIQUE ########
                         if (nbArrayUnique != 0 && nbArrayUnique != null && nbArrayUnique != undefined) {
                             let slugsUnique = [];
@@ -665,6 +674,11 @@ router.get('/players', (res, response) => {
                                 global.onSaleUnique = "true";
                             }
                             ;
+                        }
+                        else {
+                            global.onSaleUnique = "false";
+                            global.cardpictureUnique = "";
+                            global.cardsOnSaleUnique = [];
                         }
                         variables = { slug: playerslug, };
                         const liste_resultats = yield graphQLClient.request(GET_RESULTATS, variables);

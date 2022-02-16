@@ -491,7 +491,11 @@ router.get('/players', (res, response) => {res
                         else {priceRare=bestpriceRare};
                         global.onSaleRare="true";
                       } 
-                    };
+                    }else{
+                      global.onSaleRare="false";
+                      global.cardpicturerare="";
+                      global.cardsOnSaleRare=[];
+                    }
               // ######## RECHERCHE PRIX LIMITED ########
               if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
                 let slugsLimited: any[] =[];
@@ -568,6 +572,10 @@ router.get('/players', (res, response) => {res
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
                         global.onSaleSuperRare ="true";
                     };
+                  }else{
+                    global.onSaleSuperRare="false";
+                    global.cardpictureSuperRare="";
+                    global.cardsOnSaleSuperRare=[];
                   }
               // ######## RECHERCHE PRIX UNIQUE ########
               if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
@@ -604,6 +612,10 @@ router.get('/players', (res, response) => {res
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
                         global.onSaleUnique ="true";
                     };
+                  }else{
+                    global.onSaleUnique="false";
+                    global.cardpictureUnique="";
+                    global.cardsOnSaleUnique=[];
                   }
 
 
