@@ -649,7 +649,7 @@ router.get('/players', (res, response) => {res
                   if(priceUnique !=null && sl5 !=null && priceUnique !=0){
                     global.ratioUnique = Math.round(sl5/priceUnique);
                   }else{global.ratioUnique=0}
-                console.log(playerslug+" etape1")
+                console.log(global.competition, position,playerslug+" etape1")
         const playerRef = collection(db,"players", global.competition, position);
         await setDoc(doc(playerRef, playerslug),{
           Maj:Date(),

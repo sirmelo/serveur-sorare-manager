@@ -724,7 +724,7 @@ router.get('/players', (res, response) => {
                         else {
                             global.ratioUnique = 0;
                         }
-                        console.log(playerslug + " etape1");
+                        console.log(global.competition, position, playerslug + " etape1");
                         const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                         yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                             Maj: Date(),
