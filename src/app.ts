@@ -210,6 +210,7 @@ router.get('/players', (res, response) => {res
                 const age = get_player.age;
                 const position = get_player.position;
                 const playerslug = get_player.slug;
+                console.log(count,playerslug)
 
                 if(  get_player.status !=null && get_player.status.playingStatus !=null){
                     global.statut = get_player.status.playingStatus;
