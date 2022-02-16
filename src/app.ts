@@ -183,7 +183,7 @@ router.get('/players', (res, response) => {res
     var allPlayersLicence: any[] =[];
 
 
-    let count = 1867;
+    let count = 3465;
     let variables
     for(let i=0; i< nbPlayersLicense; i++){
         allPlayersLicence.push(allPlayers[i].slug)
@@ -210,7 +210,7 @@ router.get('/players', (res, response) => {res
                 const age = get_player.age;
                 const position = get_player.position;
                 const playerslug = get_player.slug;
-                console.log(count,playerslug)
+console.log(count,"etape1")
 
                 if(  get_player.status !=null && get_player.status.playingStatus !=null){
                     global.statut = get_player.status.playingStatus;
@@ -223,6 +223,7 @@ router.get('/players', (res, response) => {res
                 if(get_player.allSo5Scores.nodes != undefined){
                   global.allSo5Scores = get_player.allSo5Scores.nodes;
                 }else{global.allSo5Scores=[]}
+
                 const sl5 = Math.round(get_player.status.lastFiveSo5AverageScore);
                 const sl15 = Math.round(get_player.status.lastFifteenSo5AverageScore);
                 const tj15 = Math.round(((get_player.status.lastFifteenSo5Appearances)/15)*100);
@@ -231,7 +232,7 @@ router.get('/players', (res, response) => {res
                 let sdsl15 = 0;
                 let saal5 = 0;
                 let saal15 = 0;
-
+console.log(count,"etape2")
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -314,7 +315,7 @@ router.get('/players', (res, response) => {res
 
                 };
 
-
+console.log(count,"etape3")
                 let detailScore: any[] =[];
                 const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
                 for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
@@ -392,7 +393,7 @@ router.get('/players', (res, response) => {res
                     };
                 let noteBetSorare =Math.round((+notebetTj5+notebetdsl5+notebetTj15+notebetdsl15+notebetaal15+notebetSl5+notebetSl15+notebetAge+notebetaal5)*2.22);
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
-
+console.log(count,"etape4")
                 let tabSlugCardRare: any[] =[];
                 let tabSlugCardLimited: any[] =[];
                 let tabSlugCardSuperRare: any[] =[];
@@ -461,7 +462,7 @@ router.get('/players', (res, response) => {res
                       };  
                     }
                 };
-
+console.log(count,"etape5")
               // ######## RECHERCHE PRIX RARE ########
               if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
                 let slugsRare: any[] =[];
@@ -495,7 +496,7 @@ router.get('/players', (res, response) => {res
                       global.onSaleRare="false";
                       global.cardpicturerare="";
                       global.cardsOnSaleRare=[];
-                    }
+console.log(count,"etape6")                   }
               // ######## RECHERCHE PRIX LIMITED ########
               if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
                 let slugsLimited: any[] =[];
@@ -536,6 +537,7 @@ router.get('/players', (res, response) => {res
                     global.cardpicturelimited="";
                     global.cardsOnSaleLimited=[];
                   }
+console.log(count,"etape6")
               // ######## RECHERCHE PRIX SUPER RARE ########
               if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
                 let slugsSuperRare: any[] =[];
@@ -576,6 +578,8 @@ router.get('/players', (res, response) => {res
                     global.cardpictureSuperRare="";
                     global.cardsOnSaleSuperRare=[];
                   }
+console.log(count,"etape7")
+
               // ######## RECHERCHE PRIX UNIQUE ########
               if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
                 let slugsUnique: any[] =[];
@@ -617,7 +621,7 @@ router.get('/players', (res, response) => {res
                     global.cardsOnSaleUnique=[];
                   }
 
-
+console.log(count,"etape8")
                 variables = {slug: playerslug,};
                 const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
                 
@@ -627,10 +631,10 @@ router.get('/players', (res, response) => {res
                     //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(global.cardpicturecommon))
                     ;}
                     
-                else{
-                  //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(""));global.cardpicturecommon="false"
-                  };
+                else{global.cardpicturecommon = ""}
+
                 }else {global.cardpicturecommon="false"};
+
                 global.minsPlayed=[];
                 global.score =[];
                 for (let i=0; i<15; i++){
@@ -649,6 +653,7 @@ router.get('/players', (res, response) => {res
                         global.score.push(0);
                     }
                   };
+console.log(count,"etape9")
                   if(priceLimited !=null && sl5 !=null && priceLimited !=0){
                     global.ratioLimited = Math.round(sl5/priceLimited);
                     
@@ -665,6 +670,7 @@ router.get('/players', (res, response) => {res
                   if(priceUnique !=null && sl5 !=null && priceUnique !=0){
                     global.ratioUnique = Math.round(sl5/priceUnique);
                   }else{global.ratioUnique=0}
+console.log(count,"etape10")
               console.log(count, playerslug,global.competition, position)
               console.log({age:age,
                 cardpicturelimited:global.cardpicturelimited,

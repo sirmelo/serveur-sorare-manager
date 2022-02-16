@@ -185,7 +185,7 @@ router.get('/players', (res, response) => {
             const allPlayers = data.releasedPlayerValues;
             const nbPlayersLicense = allPlayers.length;
             var allPlayersLicence = [];
-            let count = 1867;
+            let count = 3465;
             let variables;
             for (let i = 0; i < nbPlayersLicense; i++) {
                 allPlayersLicence.push(allPlayers[i].slug);
@@ -207,7 +207,7 @@ router.get('/players', (res, response) => {
                         const age = get_player.age;
                         const position = get_player.position;
                         const playerslug = get_player.slug;
-                        console.log(count, playerslug);
+                        console.log(count, "etape1");
                         if (get_player.status != null && get_player.status.playingStatus != null) {
                             global.statut = get_player.status.playingStatus;
                             ////set(ref(getDatabase(),'/test/clubsReady/' +count+ '/status'),(global.statut));
@@ -231,6 +231,7 @@ router.get('/players', (res, response) => {
                         let sdsl15 = 0;
                         let saal5 = 0;
                         let saal15 = 0;
+                        console.log(count, "etape2");
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -330,6 +331,7 @@ router.get('/players', (res, response) => {
                             global.teamslug = "";
                         }
                         ;
+                        console.log(count, "etape3");
                         let detailScore = [];
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
                         for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {
@@ -421,6 +423,7 @@ router.get('/players', (res, response) => {
                         ;
                         let noteBetSorare = Math.round((+notebetTj5 + notebetdsl5 + notebetTj15 + notebetdsl15 + notebetaal15 + notebetSl5 + notebetSl15 + notebetAge + notebetaal5) * 2.22);
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
+                        console.log(count, "etape4");
                         let tabSlugCardRare = [];
                         let tabSlugCardLimited = [];
                         let tabSlugCardSuperRare = [];
@@ -493,6 +496,7 @@ router.get('/players', (res, response) => {
                             }
                         }
                         ;
+                        console.log(count, "etape5");
                         // ######## RECHERCHE PRIX RARE ########
                         if (nbArrayRare != 0 && nbArrayRare != null && nbArrayRare != undefined) {
                             let slugsRare = [];
@@ -534,6 +538,7 @@ router.get('/players', (res, response) => {
                             global.onSaleRare = "false";
                             global.cardpicturerare = "";
                             global.cardsOnSaleRare = [];
+                            console.log(count, "etape6");
                         }
                         // ######## RECHERCHE PRIX LIMITED ########
                         if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
@@ -583,6 +588,7 @@ router.get('/players', (res, response) => {
                             global.cardpicturelimited = "";
                             global.cardsOnSaleLimited = [];
                         }
+                        console.log(count, "etape6");
                         // ######## RECHERCHE PRIX SUPER RARE ########
                         if (nbArraySuperRare != 0 && nbArraySuperRare != null && nbArraySuperRare != undefined) {
                             let slugsSuperRare = [];
@@ -631,6 +637,7 @@ router.get('/players', (res, response) => {
                             global.cardpictureSuperRare = "";
                             global.cardsOnSaleSuperRare = [];
                         }
+                        console.log(count, "etape7");
                         // ######## RECHERCHE PRIX UNIQUE ########
                         if (nbArrayUnique != 0 && nbArrayUnique != null && nbArrayUnique != undefined) {
                             let slugsUnique = [];
@@ -679,6 +686,7 @@ router.get('/players', (res, response) => {
                             global.cardpictureUnique = "";
                             global.cardsOnSaleUnique = [];
                         }
+                        console.log(count, "etape8");
                         variables = { slug: playerslug, };
                         const liste_resultats = yield graphQLClient.request(GET_RESULTATS, variables);
                         if (position === "Goalkeeper") {
@@ -689,9 +697,8 @@ router.get('/players', (res, response) => {
                                 ;
                             }
                             else {
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(""));global.cardpicturecommon="false"
+                                global.cardpicturecommon = "";
                             }
-                            ;
                         }
                         else {
                             global.cardpicturecommon = "false";
@@ -718,6 +725,7 @@ router.get('/players', (res, response) => {
                             }
                         }
                         ;
+                        console.log(count, "etape9");
                         if (priceLimited != null && sl5 != null && priceLimited != 0) {
                             global.ratioLimited = Math.round(sl5 / priceLimited);
                         }
@@ -743,6 +751,7 @@ router.get('/players', (res, response) => {
                         else {
                             global.ratioUnique = 0;
                         }
+                        console.log(count, "etape10");
                         console.log(count, playerslug, global.competition, position);
                         console.log({ age: age,
                             cardpicturelimited: global.cardpicturelimited,
