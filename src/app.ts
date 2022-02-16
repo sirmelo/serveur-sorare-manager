@@ -4180,7 +4180,7 @@ const nbPlayersLicense = allPlayers.length;
 var allPlayersLicence: any[] =[];
 
 
-let count = 3468;
+let count = -1;
 let variables
 for(let i=0; i< nbPlayersLicense; i++){
     allPlayersLicence.push(allPlayers[i].slug)

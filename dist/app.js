@@ -4510,7 +4510,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                 const allPlayers = data.releasedPlayerValues;
                 const nbPlayersLicense = allPlayers.length;
                 var allPlayersLicence = [];
-                let count = 3468;
+                let count = -1;
                 let variables;
                 for (let i = 0; i < nbPlayersLicense; i++) {
                     allPlayersLicence.push(allPlayers[i].slug);
