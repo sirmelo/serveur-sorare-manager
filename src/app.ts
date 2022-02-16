@@ -210,7 +210,7 @@ router.get('/players', (res, response) => {res
                 const age = get_player.age;
                 const position = get_player.position;
                 const playerslug = get_player.slug;
-console.log(count,playerslug,"etape1")
+// console.log(count,playerslug,"etape1")
 
                 if(  get_player.status !=null && get_player.status.playingStatus !=null){
                     global.statut = get_player.status.playingStatus;
@@ -232,7 +232,7 @@ console.log(count,playerslug,"etape1")
                 let sdsl15 = 0;
                 let saal5 = 0;
                 let saal15 = 0;
-console.log(count,"etape2")
+// console.log(count,"etape2")
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -314,10 +314,7 @@ console.log(count,"etape2")
                     global.teamslug = "";
 
                 };
-                console.log(count, "test", get_player.status)
-console.log(count,"etape3")
-console.log(get_player.allSo5Scores.nodes)
-console.log(get_player.allSo5Scores.nodes.length)
+// console.log(count,"etape3")
 
                 let detailScore: any[] =[];
                 
@@ -342,7 +339,7 @@ console.log(get_player.allSo5Scores.nodes.length)
                   };
 
               }
-console.log(count,"etape3-2")
+// console.log(count,"etape3-2")
                     //Notation saalx & sdslx
                     //#######################
                     const baremeNoteSadx=[[0,-1],[0.5,5],[1,8],[1.5,10],[2,15],[2.5,18],[3,22],[3.5,25],[4,35],[4.5,50],[5,99]];
@@ -406,7 +403,7 @@ console.log(count,"etape3-2")
                     };
                 let noteBetSorare =Math.round((+notebetTj5+notebetdsl5+notebetTj15+notebetdsl15+notebetaal15+notebetSl5+notebetSl15+notebetAge+notebetaal5)*2.22);
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
-console.log(count,"etape4")
+// console.log(count,"etape4")
                 let tabSlugCardRare: any[] =[];
                 let tabSlugCardLimited: any[] =[];
                 let tabSlugCardSuperRare: any[] =[];
@@ -448,7 +445,6 @@ console.log(count,"etape4")
                     nbCardsLimited = get_player.cardSupply[f].limited;
                     nbCardsSuperRare = get_player.cardSupply[f].superRare;
                     nbCardsUnique = get_player.cardSupply[f].unique;
-                    console.log(nbCardsSuperRare,nbCardsUnique)
                     season = get_player.cardSupply[f].season.startYear;
                     if(nbCardsRare != 0){
                       for (let h = 0; h < nbCardsRare; h++){
@@ -684,57 +680,6 @@ console.log(count,"etape9")
                     global.ratioUnique = Math.round(sl5/priceUnique);
                   }else{global.ratioUnique=0}
 console.log(count,"etape10")
-              console.log(count, playerslug,global.competition, position)
-              console.log({age:age,
-                cardpicturelimited:global.cardpicturelimited,
-                cardpicturerare:global.cardpicturerare,
-                cardpicturecommon:global.cardpicturecommon,
-                cardsOnSaleLimited:global.cardsOnSaleLimited,
-                cardsOnSaleRare:global.cardsOnSaleRare,
-                competition:global.competition,
-                leagueslug:global.leagueslug,
-                minsPlayed:global.minsPlayed,
-                nationalteamPicture:global.nationalteamPicture,
-                nationalteamname:global.nationalteamname,
-                noteBetSorare:noteBetSorare,
-                notebetAge:notebetAge,
-                notebetSl15:notebetSl15,
-                notebetSl5:notebetSl5,
-                notebetTj5:notebetTj5,
-                notebetaal5:notebetaal5,
-                notebetaal15:notebetaal15,
-                notebetdsl15:notebetdsl15,
-                onSaleLimited:global.onSaleLimited,
-                onSaleRare:global.onSaleRare,
-                onSaleUnique:global.onSaleUnique,
-                onSaleSuperRare:global.onSaleSuperRare,
-                playername:playername,
-                playerpictureURL:global.playerpictureURL,
-                playerslug:playerslug,
-                position:position,
-                priceLimited:priceLimited,
-                priceSuperRare:priceSuperRare,
-                priceUnique:priceUnique,
-                priceRare:priceRare,
-                saal15:saal15,
-                saal5:saal5,
-                score:global.score,
-                sdsl15:sdsl15,
-                sdsl5:sdsl5,
-                sl5:sl5,
-                sl15:sl15,
-                status:global.statut,
-                teamleague:global.teamleague,
-                teamname:global.teamname,
-                teampictureURL:global.teampictureURL,
-                teamslug:global.teamslug,
-                tj5:tj5,
-                tj15:tj15,
-                ratioRare:global.ratioRare,
-                ratioLimited:global.ratioLimited,
-                ratioSuperRare:global.ratioSuperRare,
-                ratioUnique:global.ratioUnique,
-      })
         const playerRef = collection(db,"players", global.competition, position);
         await setDoc(doc(playerRef, playerslug),{
           Maj:Date(),
@@ -4235,7 +4180,7 @@ const nbPlayersLicense = allPlayers.length;
 var allPlayersLicence: any[] =[];
 
 
-let count = -1;
+let count = 3468;
 let variables
 for(let i=0; i< nbPlayersLicense; i++){
     allPlayersLicence.push(allPlayers[i].slug)
@@ -4262,6 +4207,7 @@ for(let i=0; i< nbPlayersLicense; i++){
             const age = get_player.age;
             const position = get_player.position;
             const playerslug = get_player.slug;
+// console.log(count,playerslug,"etape1")
 
             if(  get_player.status !=null && get_player.status.playingStatus !=null){
                 global.statut = get_player.status.playingStatus;
@@ -4274,6 +4220,7 @@ for(let i=0; i< nbPlayersLicense; i++){
             if(get_player.allSo5Scores.nodes != undefined){
               global.allSo5Scores = get_player.allSo5Scores.nodes;
             }else{global.allSo5Scores=[]}
+
             const sl5 = Math.round(get_player.status.lastFiveSo5AverageScore);
             const sl15 = Math.round(get_player.status.lastFifteenSo5AverageScore);
             const tj15 = Math.round(((get_player.status.lastFifteenSo5Appearances)/15)*100);
@@ -4282,7 +4229,7 @@ for(let i=0; i< nbPlayersLicense; i++){
             let sdsl15 = 0;
             let saal5 = 0;
             let saal15 = 0;
-
+// console.log(count,"etape2")
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -4364,22 +4311,32 @@ for(let i=0; i< nbPlayersLicense; i++){
                 global.teamslug = "";
 
             };
-
+// console.log(count,"etape3")
 
             let detailScore: any[] =[];
+            
             const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
+            if(get_player.allSo5Scores.nodes.length===0){
+              sdsl5=0;
+              sdsl15=0;
+              saal15=0;
+              saal5=0;  
+          }else{
             for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-            sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
-            saal5 = +sl5-(sdsl5);
-            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal5'),(saal5));
-            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl5'),(sdsl5));
-            };  
-            for (let j = 0; j < +get_player.status.lastFifteenSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-            sdsl15 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFifteenSo5Appearances);
-            saal15 = +sl15-(sdsl15);
-            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal15'),(saal15));
-            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl15'),(sdsl15));
-            };
+              sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
+              saal5 = +sl5-(sdsl5);
+              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal5'),(saal5));
+              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl5'),(sdsl5));
+              };  
+              for (let j = 0; j < +get_player.status.lastFifteenSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
+              sdsl15 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFifteenSo5Appearances);
+              saal15 = +sl15-(sdsl15);
+              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal15'),(saal15));
+              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl15'),(sdsl15));
+              };
+
+          }
+// console.log(count,"etape3-2")
                 //Notation saalx & sdslx
                 //#######################
                 const baremeNoteSadx=[[0,-1],[0.5,5],[1,8],[1.5,10],[2,15],[2.5,18],[3,22],[3.5,25],[4,35],[4.5,50],[5,99]];
@@ -4443,7 +4400,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 };
             let noteBetSorare =Math.round((+notebetTj5+notebetdsl5+notebetTj15+notebetdsl15+notebetaal15+notebetSl5+notebetSl15+notebetAge+notebetaal5)*2.22);
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
-
+// console.log(count,"etape4")
             let tabSlugCardRare: any[] =[];
             let tabSlugCardLimited: any[] =[];
             let tabSlugCardSuperRare: any[] =[];
@@ -4485,7 +4442,6 @@ for(let i=0; i< nbPlayersLicense; i++){
                 nbCardsLimited = get_player.cardSupply[f].limited;
                 nbCardsSuperRare = get_player.cardSupply[f].superRare;
                 nbCardsUnique = get_player.cardSupply[f].unique;
-                console.log(nbCardsSuperRare,nbCardsUnique)
                 season = get_player.cardSupply[f].season.startYear;
                 if(nbCardsRare != 0){
                   for (let h = 0; h < nbCardsRare; h++){
@@ -4512,267 +4468,271 @@ for(let i=0; i< nbPlayersLicense; i++){
                   };  
                 }
             };
-
-              // ######## RECHERCHE PRIX RARE ########
-              if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
-                let slugsRare: any[] =[];
-                for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
-                    const variables = {slugs: slugsRare};
-                    const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
-                    const getCardsrare = cardsRareData.cards;
-                    tabCardsRare.push([getCardsrare.flat(Infinity)]);
-                    tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
-                    result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
-                    if(result !=null ) {
-                        global.cardsOnSaleRare = result;
-                        for(let i=0; i<result.length;i++){
-                            if (result[i].pictureUrl !=undefined){
-                                global.cardpicturerare = result[i].pictureUrl;
-                            }
-                        }
-                    };
-
-                    for ( let n = 0; n < result.length; n++ ){
-                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
-                        bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceRare === Infinity){
-                            priceRare=0;
-                            global.onSaleRare="false";
-                        }
-                        else {priceRare=bestpriceRare};
-                        global.onSaleRare="true";
-                      } 
-                    }else{
-                      global.onSaleRare="false";
-                      global.cardpicturerare="";
-                      global.cardsOnSaleRare=[];
-                    }
-              // ######## RECHERCHE PRIX LIMITED ########
-              if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
-                let slugsLimited: any[] =[];
-                for ( let k = 0; k < nbArrayLimited ; k++) { slugsLimited = tabSlugCardLimited.slice(0+(k*100),100+(k*100))
-                    const variables = {slugs: slugsLimited};
-                    const cardsLimitedData = await graphQLClient.request(GET_PRICE,variables);
-                    const getCardsLimited = cardsLimitedData.cards;
-                    tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
-                    tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
-                    result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
-                    if(result !=null ) {
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
-                        global.cardsOnSaleLimited = result;
-                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[0].pictureUrl));
-                        for(let i=0; i<result.length;i++){
-                            if (result[i].pictureUrl !=undefined){
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[i].pictureUrl));
-                                global.cardpicturelimited = result[i].pictureUrl;
-                            }
+console.log(count,"etape5")
+          // ######## RECHERCHE PRIX RARE ########
+          if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
+            let slugsRare: any[] =[];
+            for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
+                const variables = {slugs: slugsRare};
+                const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
+                const getCardsrare = cardsRareData.cards;
+                tabCardsRare.push([getCardsrare.flat(Infinity)]);
+                tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
+                result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
+                if(result !=null ) {
+                    global.cardsOnSaleRare = result;
+                    for(let i=0; i<result.length;i++){
+                        if (result[i].pictureUrl !=undefined){
+                            global.cardpicturerare = result[i].pictureUrl;
                         }
                     }
+                };
 
-                    for ( let n = 0; n < result.length; n++ ){
-                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
-                        bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceLimited === Infinity){
-                            priceLimited=0
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
-                            global.onSaleLimited ="false";
-                        }
-                        else {priceLimited=bestpriceLimited};
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
-                        global.onSaleLimited ="true";
-                    };
-                  }else{
-                    global.onSaleLimited="false";
-                    global.cardpicturelimited="";
-                    global.cardsOnSaleLimited=[];
-                  }
-              // ######## RECHERCHE PRIX SUPER RARE ########
-              if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
-                let slugsSuperRare: any[] =[];
-                for ( let k = 0; k < nbArraySuperRare ; k++) { slugsSuperRare = tabSlugCardSuperRare.slice(0+(k*100),100+(k*100))
-                    const variables = {slugs: slugsSuperRare};
-                    const cardsSuperRareData = await graphQLClient.request(GET_PRICE,variables);
-                    const getCardsSuperRare = cardsSuperRareData.cards;
-                    tabCardsSuperRare.push([getCardsSuperRare.flat(Infinity)]);
-                    tabCardsSuperRareTOTAL = tabCardsSuperRare.flat(Infinity);
-                    result = tabCardsSuperRareTOTAL.filter(tabCardsSuperRareTOTAL => tabCardsSuperRareTOTAL.onSale === true);
-                    if(result !=null ) {
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleSuperRare'),(result));
-                        global.cardsOnSaleSuperRare = result;
-                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[0].pictureUrl));
-                        for(let i=0; i<result.length;i++){
-                            if (result[i].pictureUrl !=undefined){
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[i].pictureUrl));
-                                global.cardpictureSuperRare = result[i].pictureUrl;
-                            }
+                for ( let n = 0; n < result.length; n++ ){
+                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
+                    bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
+                    if (bestpriceRare === Infinity){
+                        priceRare=0;
+                        global.onSaleRare="false";
+                    }
+                    else {priceRare=bestpriceRare};
+                    global.onSaleRare="true";
+                  } 
+                }else{
+                  global.onSaleRare="false";
+                  global.cardpicturerare="";
+                  global.cardsOnSaleRare=[];
+console.log(count,"etape6")                   }
+          // ######## RECHERCHE PRIX LIMITED ########
+          if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
+            let slugsLimited: any[] =[];
+            for ( let k = 0; k < nbArrayLimited ; k++) { slugsLimited = tabSlugCardLimited.slice(0+(k*100),100+(k*100))
+                const variables = {slugs: slugsLimited};
+                const cardsLimitedData = await graphQLClient.request(GET_PRICE,variables);
+                const getCardsLimited = cardsLimitedData.cards;
+                tabCardsLimited.push([getCardsLimited.flat(Infinity)]);
+                tabCardsLimitedTOTAL = tabCardsLimited.flat(Infinity);
+                result = tabCardsLimitedTOTAL.filter(tabCardsLimitedTOTAL => tabCardsLimitedTOTAL.onSale === true);
+                if(result !=null ) {
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleLimited'),(result));
+                    global.cardsOnSaleLimited = result;
+                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[0].pictureUrl));
+                    for(let i=0; i<result.length;i++){
+                        if (result[i].pictureUrl !=undefined){
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpicturelimited'),(result[i].pictureUrl));
+                            global.cardpicturelimited = result[i].pictureUrl;
                         }
                     }
+                }
 
-                    for ( let n = 0; n < result.length; n++ ){
-                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceSuperRare.push([result[n].liveSingleSaleOffer.price])}
-                        bestpriceSuperRare =  Math.min(...(tabPriceSuperRare.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceSuperRare === Infinity){
-                            priceSuperRare=0
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
-                            global.onSaleSuperRare ="false";
-                        }
-                        else {priceSuperRare=bestpriceSuperRare};
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
-                        global.onSaleSuperRare ="true";
-                    };
-                  }else{
-                    global.onSaleSuperRare="false";
-                    global.cardpictureSuperRare="";
-                    global.cardsOnSaleSuperRare=[];
-                  }
-              // ######## RECHERCHE PRIX UNIQUE ########
-              if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
-                let slugsUnique: any[] =[];
-                for ( let k = 0; k < nbArrayUnique ; k++) { slugsUnique = tabSlugCardUnique.slice(0+(k*100),100+(k*100))
-                    const variables = {slugs: slugsUnique};
-                    const cardsUniqueData = await graphQLClient.request(GET_PRICE,variables);
-                    const getCardsUnique = cardsUniqueData.cards;
-                    tabCardsUnique.push([getCardsUnique.flat(Infinity)]);
-                    tabCardsUniqueTOTAL = tabCardsUnique.flat(Infinity);
-                    result = tabCardsUniqueTOTAL.filter(tabCardsUniqueTOTAL => tabCardsUniqueTOTAL.onSale === true);
-                    if(result !=null ) {
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleUnique'),(result));
-                        global.cardsOnSaleUnique = result;
-                        // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[0].pictureUrl));
-                        for(let i=0; i<result.length;i++){
-                            if (result[i].pictureUrl !=undefined){
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[i].pictureUrl));
-                                global.cardpictureUnique = result[i].pictureUrl;
-                            }
+                for ( let n = 0; n < result.length; n++ ){
+                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
+                    bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
+                    if (bestpriceLimited === Infinity){
+                        priceLimited=0
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
+                        global.onSaleLimited ="false";
+                    }
+                    else {priceLimited=bestpriceLimited};
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
+                    global.onSaleLimited ="true";
+                };
+              }else{
+                global.onSaleLimited="false";
+                global.cardpicturelimited="";
+                global.cardsOnSaleLimited=[];
+              }
+console.log(count,"etape6")
+          // ######## RECHERCHE PRIX SUPER RARE ########
+          if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
+            let slugsSuperRare: any[] =[];
+            for ( let k = 0; k < nbArraySuperRare ; k++) { slugsSuperRare = tabSlugCardSuperRare.slice(0+(k*100),100+(k*100))
+                const variables = {slugs: slugsSuperRare};
+                const cardsSuperRareData = await graphQLClient.request(GET_PRICE,variables);
+                const getCardsSuperRare = cardsSuperRareData.cards;
+                tabCardsSuperRare.push([getCardsSuperRare.flat(Infinity)]);
+                tabCardsSuperRareTOTAL = tabCardsSuperRare.flat(Infinity);
+                result = tabCardsSuperRareTOTAL.filter(tabCardsSuperRareTOTAL => tabCardsSuperRareTOTAL.onSale === true);
+                if(result !=null ) {
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleSuperRare'),(result));
+                    global.cardsOnSaleSuperRare = result;
+                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[0].pictureUrl));
+                    for(let i=0; i<result.length;i++){
+                        if (result[i].pictureUrl !=undefined){
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureSuperRare'),(result[i].pictureUrl));
+                            global.cardpictureSuperRare = result[i].pictureUrl;
                         }
                     }
+                }
 
-                    for ( let n = 0; n < result.length; n++ ){
-                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceUnique.push([result[n].liveSingleSaleOffer.price])}
-                        bestpriceUnique =  Math.min(...(tabPriceUnique.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceUnique === Infinity){
-                            priceUnique=0
-                            //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
-                            global.onSaleUnique ="false";
+                for ( let n = 0; n < result.length; n++ ){
+                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceSuperRare.push([result[n].liveSingleSaleOffer.price])}
+                    bestpriceSuperRare =  Math.min(...(tabPriceSuperRare.flat(Infinity)))/Math.pow(10,18)}
+                    if (bestpriceSuperRare === Infinity){
+                        priceSuperRare=0
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
+                        global.onSaleSuperRare ="false";
+                    }
+                    else {priceSuperRare=bestpriceSuperRare};
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
+                    global.onSaleSuperRare ="true";
+                };
+              }else{
+                global.onSaleSuperRare="false";
+                global.cardpictureSuperRare="";
+                global.cardsOnSaleSuperRare=[];
+              }
+console.log(count,"etape7")
+
+          // ######## RECHERCHE PRIX UNIQUE ########
+          if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
+            let slugsUnique: any[] =[];
+            for ( let k = 0; k < nbArrayUnique ; k++) { slugsUnique = tabSlugCardUnique.slice(0+(k*100),100+(k*100))
+                const variables = {slugs: slugsUnique};
+                const cardsUniqueData = await graphQLClient.request(GET_PRICE,variables);
+                const getCardsUnique = cardsUniqueData.cards;
+                tabCardsUnique.push([getCardsUnique.flat(Infinity)]);
+                tabCardsUniqueTOTAL = tabCardsUnique.flat(Infinity);
+                result = tabCardsUniqueTOTAL.filter(tabCardsUniqueTOTAL => tabCardsUniqueTOTAL.onSale === true);
+                if(result !=null ) {
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardsOnSaleUnique'),(result));
+                    global.cardsOnSaleUnique = result;
+                    // //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[0].pictureUrl));
+                    for(let i=0; i<result.length;i++){
+                        if (result[i].pictureUrl !=undefined){
+                            //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/cardpictureUnique'),(result[i].pictureUrl));
+                            global.cardpictureUnique = result[i].pictureUrl;
                         }
-                        else {priceUnique=bestpriceUnique};
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
-                        global.onSaleUnique ="true";
-                    };
-                  }else{
-                    global.onSaleUnique="false";
-                    global.cardpictureUnique="";
-                    global.cardsOnSaleUnique=[];
-                  }
+                    }
+                }
 
+                for ( let n = 0; n < result.length; n++ ){
+                    if ((result[n].liveSingleSaleOffer != null)) {tabPriceUnique.push([result[n].liveSingleSaleOffer.price])}
+                    bestpriceUnique =  Math.min(...(tabPriceUnique.flat(Infinity)))/Math.pow(10,18)}
+                    if (bestpriceUnique === Infinity){
+                        priceUnique=0
+                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
+                        global.onSaleUnique ="false";
+                    }
+                    else {priceUnique=bestpriceUnique};
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
+                    global.onSaleUnique ="true";
+                };
+              }else{
+                global.onSaleUnique="false";
+                global.cardpictureUnique="";
+                global.cardsOnSaleUnique=[];
+              }
 
-                variables = {slug: playerslug,};
-                const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
+console.log(count,"etape8")
+            variables = {slug: playerslug,};
+            const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
+            
+            if (position==="Goalkeeper"){
+            const getCardsPictureCommon = await graphQLClient.request(GET_CARD_COMMON,variables);
+            if(getCardsPictureCommon.player.cardSampleUrl !== null){global.cardpicturecommon = getCardsPictureCommon.player.cardSampleUrl;
+                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(global.cardpicturecommon))
+                ;}
                 
-                if (position==="Goalkeeper"){
-                const getCardsPictureCommon = await graphQLClient.request(GET_CARD_COMMON,variables);
-                if(getCardsPictureCommon.player.cardSampleUrl !== null){global.cardpicturecommon = getCardsPictureCommon.player.cardSampleUrl;
-                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(global.cardpicturecommon))
-                    ;}
-                    
-                else{
-                  //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/cardpicturecommon'),(""));global.cardpicturecommon="false"
-                  };
-                }else {global.cardpicturecommon="false"};
-                global.minsPlayed=[];
-                global.score =[];
-                for (let i=0; i<15; i++){
-                    if(liste_resultats.player.gameStats && liste_resultats.player.gameStats[i] && liste_resultats.player.gameStats[i].minsPlayed !==null){
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(liste_resultats.player.gameStats[i].minsPlayed));
-                        global.minsPlayed.push(liste_resultats.player.gameStats[i].minsPlayed);
-                    }else{
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(0));
-                        global.minsPlayed.push(0);
-                    }
-                    if(liste_resultats.player.allSo5Scores && liste_resultats.player.allSo5Scores.nodes[i] && liste_resultats.player.allSo5Scores.nodes[i].score !==null){
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(liste_resultats.player.allSo5Scores.nodes[i].score)); 
-                        global.score.push(liste_resultats.player.allSo5Scores.nodes[i].score);  
-                    }else{
-                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(0)); 
-                        global.score.push(0);
-                    }
-                  };
-                  if(priceLimited !=null && sl5 !=null && priceLimited !=0){
-                    global.ratioLimited = Math.round(sl5/priceLimited);
-                    
-                  }else{global.ratioLimited=0};
+            else{global.cardpicturecommon = ""}
 
-                  if(priceRare !=null && sl5 !=null && priceRare !=0){
-                    global.ratioRare = Math.round(sl5/priceRare);
-                  }else{global.ratioRare=0}
+            }else {global.cardpicturecommon="false"};
 
-                  if(priceSuperRare !=null && sl5 !=null && priceSuperRare !=0){
-                    global.ratioSuperRare = Math.round(sl5/priceSuperRare);
-                  }else{global.ratioSuperRare=0}
+            global.minsPlayed=[];
+            global.score =[];
+            for (let i=0; i<15; i++){
+                if(liste_resultats.player.gameStats && liste_resultats.player.gameStats[i] && liste_resultats.player.gameStats[i].minsPlayed !==null){
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(liste_resultats.player.gameStats[i].minsPlayed));
+                    global.minsPlayed.push(liste_resultats.player.gameStats[i].minsPlayed);
+                }else{
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/minsPlayed/'+i),(0));
+                    global.minsPlayed.push(0);
+                }
+                if(liste_resultats.player.allSo5Scores && liste_resultats.player.allSo5Scores.nodes[i] && liste_resultats.player.allSo5Scores.nodes[i].score !==null){
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(liste_resultats.player.allSo5Scores.nodes[i].score)); 
+                    global.score.push(liste_resultats.player.allSo5Scores.nodes[i].score);  
+                }else{
+                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/score/'+i),(0)); 
+                    global.score.push(0);
+                }
+              };
+console.log(count,"etape9")
+              if(priceLimited !=null && sl5 !=null && priceLimited !=0){
+                global.ratioLimited = Math.round(sl5/priceLimited);
+                
+              }else{global.ratioLimited=0};
 
-                  if(priceUnique !=null && sl5 !=null && priceUnique !=0){
-                    global.ratioUnique = Math.round(sl5/priceUnique);
-                  }else{global.ratioUnique=0}
+              if(priceRare !=null && sl5 !=null && priceRare !=0){
+                global.ratioRare = Math.round(sl5/priceRare);
+              }else{global.ratioRare=0}
 
-        const playerRef = collection(db,"players", global.competition, position);
-        await setDoc(doc(playerRef, playerslug),{
-          Maj:Date(),
-          age:age,
-          cardpicturelimited:global.cardpicturelimited,
-          cardpicturerare:global.cardpicturerare,
-          cardpicturecommon:global.cardpicturecommon,
-          cardsOnSaleLimited:global.cardsOnSaleLimited,
-          cardsOnSaleRare:global.cardsOnSaleRare,
-          competition:global.competition,
-          leagueslug:global.leagueslug,
-          minsPlayed:global.minsPlayed,
-          nationalteamPicture:global.nationalteamPicture,
-          nationalteamname:global.nationalteamname,
-          noteBetSorare:noteBetSorare,
-          notebetAge:notebetAge,
-          notebetSl15:notebetSl15,
-          notebetSl5:notebetSl5,
-          notebetTj5:notebetTj5,
-          notebetaal5:notebetaal5,
-          notebetaal15:notebetaal15,
-          notebetdsl15:notebetdsl15,
-          onSaleLimited:global.onSaleLimited,
-          onSaleRare:global.onSaleRare,
-          onSaleUnique:global.onSaleUnique,
-          onSaleSuperRare:global.onSaleSuperRare,
-          playername:playername,
-          playerpictureURL:global.playerpictureURL,
-          playerslug:playerslug,
-          position:position,
-          priceLimited:priceLimited,
-          priceSuperRare:priceSuperRare,
-          priceUnique:priceUnique,
-          priceRare:priceRare,
-          saal15:saal15,
-          saal5:saal5,
-          score:global.score,
-          sdsl15:sdsl15,
-          sdsl5:sdsl5,
-          sl5:sl5,
-          sl15:sl15,
-          status:global.statut,
-          teamleague:global.teamleague,
-          teamname:global.teamname,
-          teampictureURL:global.teampictureURL,
-          teamslug:global.teamslug,
-          tj5:tj5,
-          tj15:tj15,
-          ratioRare:global.ratioRare,
-          ratioLimited:global.ratioLimited,
-          ratioSuperRare:global.ratioSuperRare,
-          ratioUnique:global.ratioUnique,
-          // allSo5Scores:global.allSo5Scores
-        });
+              if(priceSuperRare !=null && sl5 !=null && priceSuperRare !=0){
+                global.ratioSuperRare = Math.round(sl5/priceSuperRare);
+              }else{global.ratioSuperRare=0}
 
-    console.log("joueur n°: " + (count+1)+" "+playername + " importé!")
+              if(priceUnique !=null && sl5 !=null && priceUnique !=0){
+                global.ratioUnique = Math.round(sl5/priceUnique);
+              }else{global.ratioUnique=0}
+console.log(count,"etape10")
+    const playerRef = collection(db,"players", global.competition, position);
+    await setDoc(doc(playerRef, playerslug),{
+      Maj:Date(),
+      age:age,
+      cardpicturelimited:global.cardpicturelimited,
+      cardpicturerare:global.cardpicturerare,
+      cardpicturecommon:global.cardpicturecommon,
+      cardsOnSaleLimited:global.cardsOnSaleLimited,
+      cardsOnSaleRare:global.cardsOnSaleRare,
+      competition:global.competition,
+      leagueslug:global.leagueslug,
+      minsPlayed:global.minsPlayed,
+      nationalteamPicture:global.nationalteamPicture,
+      nationalteamname:global.nationalteamname,
+      noteBetSorare:noteBetSorare,
+      notebetAge:notebetAge,
+      notebetSl15:notebetSl15,
+      notebetSl5:notebetSl5,
+      notebetTj5:notebetTj5,
+      notebetaal5:notebetaal5,
+      notebetaal15:notebetaal15,
+      notebetdsl15:notebetdsl15,
+      onSaleLimited:global.onSaleLimited,
+      onSaleRare:global.onSaleRare,
+      onSaleUnique:global.onSaleUnique,
+      onSaleSuperRare:global.onSaleSuperRare,
+      playername:playername,
+      playerpictureURL:global.playerpictureURL,
+      playerslug:playerslug,
+      position:position,
+      priceLimited:priceLimited,
+      priceSuperRare:priceSuperRare,
+      priceUnique:priceUnique,
+      priceRare:priceRare,
+      saal15:saal15,
+      saal5:saal5,
+      score:global.score,
+      sdsl15:sdsl15,
+      sdsl5:sdsl5,
+      sl5:sl5,
+      sl15:sl15,
+      status:global.statut,
+      teamleague:global.teamleague,
+      teamname:global.teamname,
+      teampictureURL:global.teampictureURL,
+      teamslug:global.teamslug,
+      tj5:tj5,
+      tj15:tj15,
+      ratioRare:global.ratioRare,
+      ratioLimited:global.ratioLimited,
+      ratioSuperRare:global.ratioSuperRare,
+      ratioUnique:global.ratioUnique,
+      // allSo5Scores:global.allSo5Scores
+    });
+
+    console.log("joueur n°: " + (count)+" "+playername + " importé!")
 
       }else{console.log("joueur n°: " + (count+1)+" "+playername + " non importé!")}
 
@@ -4785,9 +4745,8 @@ for(let i=0; i< nbPlayersLicense; i++){
 
   
   main().catch((error) => console.error(error))
-
 });
- 
+
 myJob1.start();
 
 app1.use('/',router);
