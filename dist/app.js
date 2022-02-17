@@ -207,7 +207,7 @@ router.get('/players', (res, response) => {
                         const age = get_player.age;
                         const position = get_player.position;
                         const playerslug = get_player.slug;
-                        console.log(count, playerslug, "etape1");
+                        // console.log(count,playerslug,"etape1")
                         if (get_player.status != null && get_player.status.playingStatus != null) {
                             global.statut = get_player.status.playingStatus;
                             ////set(ref(getDatabase(),'/test/clubsReady/' +count+ '/status'),(global.statut));
@@ -231,7 +231,7 @@ router.get('/players', (res, response) => {
                         let sdsl15 = 0;
                         let saal5 = 0;
                         let saal15 = 0;
-                        console.log(count, "etape2");
+                        // console.log(count,"etape2")
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -331,7 +331,7 @@ router.get('/players', (res, response) => {
                             global.teamslug = "";
                         }
                         ;
-                        console.log(count, "etape3");
+                        // console.log(count,"etape3")
                         let detailScore = [];
                         const reducer = (previousValue, currentValue) => previousValue + currentValue;
                         if (get_player.allSo5Scores.nodes.length === 0) {
@@ -358,7 +358,7 @@ router.get('/players', (res, response) => {
                             }
                             ;
                         }
-                        console.log(count, "etape3-2");
+                        // console.log(count,"etape3-2")
                         //Notation saalx & sdslx
                         //#######################
                         const baremeNoteSadx = [[0, -1], [0.5, 5], [1, 8], [1.5, 10], [2, 15], [2.5, 18], [3, 22], [3.5, 25], [4, 35], [4.5, 50], [5, 99]];
@@ -432,7 +432,7 @@ router.get('/players', (res, response) => {
                         ;
                         let noteBetSorare = Math.round((+notebetTj5 + notebetdsl5 + notebetTj15 + notebetdsl15 + notebetaal15 + notebetSl5 + notebetSl15 + notebetAge + notebetaal5) * 2.22);
                         //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
-                        console.log(count, "etape4");
+                        // console.log(count,"etape4")
                         let tabSlugCardRare = [];
                         let tabSlugCardLimited = [];
                         let tabSlugCardSuperRare = [];
