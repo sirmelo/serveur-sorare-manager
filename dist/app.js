@@ -504,7 +504,7 @@ router.get('/players', (res, response) => {
                             }
                         }
                         ;
-                        console.log(count, "etape5");
+                        console.log("etape5");
                         // ######## RECHERCHE PRIX RARE ########
                         if (nbArrayRare != 0 && nbArrayRare != null && nbArrayRare != undefined) {
                             let slugsRare = [];
@@ -546,7 +546,6 @@ router.get('/players', (res, response) => {
                             global.onSaleRare = "false";
                             global.cardpicturerare = "";
                             global.cardsOnSaleRare = [];
-                            console.log(count, "etape6");
                         }
                         // ######## RECHERCHE PRIX LIMITED ########
                         if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
@@ -570,6 +569,8 @@ router.get('/players', (res, response) => {
                                         }
                                     }
                                 }
+                                ;
+                                console.log(count, "etape6");
                                 for (let n = 0; n < result.length; n++) {
                                     if ((result[n].liveSingleSaleOffer != null)) {
                                         tabPriceLimited.push([result[n].liveSingleSaleOffer.price]);

@@ -472,7 +472,7 @@ console.log(count,"etape4")
                     }
                 };
 
-console.log(count,"etape5")
+console.log("etape5")
               // ######## RECHERCHE PRIX RARE ########
               if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
                 let slugsRare: any[] =[];
@@ -506,7 +506,8 @@ console.log(count,"etape5")
                       global.onSaleRare="false";
                       global.cardpicturerare="";
                       global.cardsOnSaleRare=[];
-console.log(count,"etape6")                   }
+                 }
+
               // ######## RECHERCHE PRIX LIMITED ########
               if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
                 let slugsLimited: any[] =[];
@@ -527,8 +528,8 @@ console.log(count,"etape6")                   }
                                 global.cardpicturelimited = result[i].pictureUrl;
                             }
                         }
-                    }
-
+                    };
+console.log(count,"etape6")
                     for ( let n = 0; n < result.length; n++ ){
                         if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
                         bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
