@@ -474,46 +474,53 @@ console.log(count,"etape4")
 
 console.log("etape5");
 console.log(nbArrayRare);
-              // ######## RECHERCHE PRIX RARE ########
-              if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
-                let slugsRare: any[] =[];
-                for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
-                    const variables = {slugs: slugsRare};
-                    const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
-                    const getCardsrare = cardsRareData.cards;
-                    tabCardsRare.push([getCardsrare.flat(Infinity)]);
-                    tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
-                    result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
-                    if(result !=null ) {
-                        global.cardsOnSaleRare = result;
-                        for(let i=0; i<result.length;i++){
-                            if (result[i].pictureUrl !=undefined){
-                                global.cardpicturerare = result[i].pictureUrl;
-                            }
-                        }
-                    };
-                    console.log("test")
 
-                    for ( let n = 0; n < result.length; n++ ){
-                        if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
-                        bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceRare === Infinity){
-                            priceRare=0;
-                            global.onSaleRare="false";
-                            global.cardpicturerare="";
-                            global.cardsOnSaleRare=[];
-                        }
-                        else {
-                          priceRare=bestpriceRare;
-                          global.onSaleRare="true";
-                        };
-                      }
-                    }else{
-                      global.onSaleRare="false";
-                      global.cardpicturerare="";
-                      global.cardsOnSaleRare=[];
-                 }
-                 console.log("test2")
+global.onSaleRare="false";
+global.cardpicturerare="";
+global.cardsOnSaleRare=[];
+priceRare=bestpriceRare;
+
+              // // ######## RECHERCHE PRIX RARE ########
+              // if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
+              //   let slugsRare: any[] =[];
+              //   for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
+              //       const variables = {slugs: slugsRare};
+              //       const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
+              //       const getCardsrare = cardsRareData.cards;
+              //       tabCardsRare.push([getCardsrare.flat(Infinity)]);
+              //       tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
+              //       result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
+              //       if(result !=null ) {
+              //           global.cardsOnSaleRare = result;
+              //           for(let i=0; i<result.length;i++){
+              //               if (result[i].pictureUrl !=undefined){
+              //                   global.cardpicturerare = result[i].pictureUrl;
+              //               }
+              //           }
+              //       };
+              //       console.log("test")
+
+              //       for ( let n = 0; n < result.length; n++ ){
+              //           if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
+              //           bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
+              //           if (bestpriceRare === Infinity){
+              //               priceRare=0;
+              //               global.onSaleRare="false";
+              //               global.cardpicturerare="";
+              //               global.cardsOnSaleRare=[];
+              //           }
+              //           else {
+              //             priceRare=bestpriceRare;
+              //             global.onSaleRare="true";
+              //           };
+              //         }
+              //       }else{
+              //         global.onSaleRare="false";
+              //         global.cardpicturerare="";
+              //         global.cardsOnSaleRare=[];
+              //         priceRare=bestpriceRare;
+              //    }
+              //    console.log("test2")
 
               // ######## RECHERCHE PRIX LIMITED ########
               if(nbArrayLimited!=0 && nbArrayLimited!=null && nbArrayLimited!=undefined){
