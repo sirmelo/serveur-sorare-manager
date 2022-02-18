@@ -5,7 +5,7 @@ module.exports = {
   }],
   deploy: {
     production:{
-      user:'root',
+      user:'sirmelo',
       host:'164.92.205.219',
       ref:'origin/main',
       repo:'https://github.com/sirmelo/serveur-sorare-manager/',
