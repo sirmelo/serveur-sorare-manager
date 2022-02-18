@@ -1586,9 +1586,7 @@ router.get('/api/profil', async function(req, res) {
   
       console.log("Toutes les data de cartes de : " + global.user+ ' importées');
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+
   });  
 
 // ########################  REQUETES  ##############################

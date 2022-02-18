@@ -1723,9 +1723,6 @@ router.get('/api/profil', function (req, res) {
                 // },{onlyOnce: true});
                 console.log("Toutes les data de cartes de : " + global.user + ' importées');
             });
-        })
-            .catch(function (error) {
-            console.log(error);
         });
     });
 });
