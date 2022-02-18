@@ -506,50 +506,48 @@ router.get('/players', (res, response) => {
                         ;
                         console.log("etape5");
                         console.log(nbArrayRare);
-                        global.onSaleRare = "false";
-                        global.cardpicturerare = "";
-                        global.cardsOnSaleRare = [];
-                        priceRare = bestpriceRare;
-                        // // ######## RECHERCHE PRIX RARE ########
-                        // if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
-                        //   let slugsRare: any[] =[];
-                        //   for ( let k = 0; k < nbArrayRare ; k++) { slugsRare = tabSlugCardRare.slice(0+(k*100),100+(k*100))
-                        //       const variables = {slugs: slugsRare};
-                        //       const cardsRareData = await graphQLClient.request(GET_PRICE,variables);
-                        //       const getCardsrare = cardsRareData.cards;
-                        //       tabCardsRare.push([getCardsrare.flat(Infinity)]);
-                        //       tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
-                        //       result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
-                        //       if(result !=null ) {
-                        //           global.cardsOnSaleRare = result;
-                        //           for(let i=0; i<result.length;i++){
-                        //               if (result[i].pictureUrl !=undefined){
-                        //                   global.cardpicturerare = result[i].pictureUrl;
-                        //               }
-                        //           }
-                        //       };
-                        //       console.log("test")
-                        //       for ( let n = 0; n < result.length; n++ ){
-                        //           if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
-                        //           bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
-                        //           if (bestpriceRare === Infinity){
-                        //               priceRare=0;
-                        //               global.onSaleRare="false";
-                        //               global.cardpicturerare="";
-                        //               global.cardsOnSaleRare=[];
-                        //           }
-                        //           else {
-                        //             priceRare=bestpriceRare;
-                        //             global.onSaleRare="true";
-                        //           };
-                        //         }
-                        //       }else{
-                        //         global.onSaleRare="false";
-                        //         global.cardpicturerare="";
-                        //         global.cardsOnSaleRare=[];
-                        //         priceRare=bestpriceRare;
-                        //    }
-                        //    console.log("test2")
+                        // ######## RECHERCHE PRIX RARE ########
+                        if (nbArrayRare != 0 && nbArrayRare != null && nbArrayRare != undefined) {
+                            let slugsRare = [];
+                            for (let k = 0; k < nbArrayRare; k++) {
+                                slugsRare = tabSlugCardRare.slice(0 + (k * 100), 100 + (k * 100));
+                                const variables = { slugs: slugsRare };
+                                const cardsRareData = yield graphQLClient.request(GET_PRICE, variables);
+                                const getCardsrare = cardsRareData.cards;
+                                tabCardsRare.push([getCardsrare.flat(Infinity)]);
+                                tabCardsRareTOTAL = tabCardsRare.flat(Infinity);
+                                result = tabCardsRareTOTAL.filter(tabCardsRareTOTAL => tabCardsRareTOTAL.onSale === true);
+                                if (result != null) {
+                                    global.cardsOnSaleRare = result;
+                                    for (let i = 0; i < result.length; i++) {
+                                        if (result[i].pictureUrl != undefined) {
+                                            global.cardpicturerare = result[i].pictureUrl;
+                                        }
+                                    }
+                                }
+                                ;
+                                for (let n = 0; n < result.length; n++) {
+                                    if ((result[n].liveSingleSaleOffer != null)) {
+                                        tabPriceRare.push([result[n].liveSingleSaleOffer.price]);
+                                    }
+                                    bestpriceRare = Math.min(...(tabPriceRare.flat(Infinity))) / Math.pow(10, 18);
+                                }
+                                if (bestpriceRare === Infinity) {
+                                    priceRare = 0;
+                                    global.onSaleRare = "false";
+                                }
+                                else {
+                                    priceRare = bestpriceRare;
+                                    global.onSaleRare = "true";
+                                }
+                                ;
+                            }
+                        }
+                        else {
+                            global.onSaleRare = "false";
+                            global.cardpicturerare = "";
+                            global.cardsOnSaleRare = [];
+                        }
                         // ######## RECHERCHE PRIX LIMITED ########
                         if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
                             let slugsLimited = [];
@@ -582,16 +580,13 @@ router.get('/players', (res, response) => {
                                 }
                                 if (bestpriceLimited === Infinity) {
                                     priceLimited = 0;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
                                     global.onSaleLimited = "false";
                                 }
                                 else {
                                     priceLimited = bestpriceLimited;
+                                    global.onSaleLimited = "true";
                                 }
                                 ;
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
-                                global.onSaleLimited = "true";
                             }
                             ;
                         }
@@ -631,16 +626,13 @@ router.get('/players', (res, response) => {
                                 }
                                 if (bestpriceSuperRare === Infinity) {
                                     priceSuperRare = 0;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
                                     global.onSaleSuperRare = "false";
                                 }
                                 else {
                                     priceSuperRare = bestpriceSuperRare;
+                                    global.onSaleSuperRare = "true";
                                 }
                                 ;
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
-                                global.onSaleSuperRare = "true";
                             }
                             ;
                         }
@@ -680,16 +672,13 @@ router.get('/players', (res, response) => {
                                 }
                                 if (bestpriceUnique === Infinity) {
                                     priceUnique = 0;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
                                     global.onSaleUnique = "false";
                                 }
                                 else {
                                     priceUnique = bestpriceUnique;
+                                    global.onSaleUnique = "true";
                                 }
                                 ;
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
-                                //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
-                                global.onSaleUnique = "true";
                             }
                             ;
                         }
@@ -764,6 +753,7 @@ router.get('/players', (res, response) => {
                             global.ratioUnique = 0;
                         }
                         console.log(count, "etape10");
+                        console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
                         const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                         yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                             Maj: Date(),
