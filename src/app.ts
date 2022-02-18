@@ -471,7 +471,6 @@ console.log(count,"etape4")
                       };  
                     }
                 };
-console.log(nbArrayRare,nbArrayLimited,nbArraySuperRare,nbArrayUnique,"etape5")
 
 console.log(count,"etape5")
               // ######## RECHERCHE PRIX RARE ########
