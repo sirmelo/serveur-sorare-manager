@@ -526,6 +526,7 @@ router.get('/players', (res, response) => {
                                     }
                                 }
                                 ;
+                                console.log("test");
                                 for (let n = 0; n < result.length; n++) {
                                     if ((result[n].liveSingleSaleOffer != null)) {
                                         tabPriceRare.push([result[n].liveSingleSaleOffer.price]);
@@ -535,12 +536,14 @@ router.get('/players', (res, response) => {
                                 if (bestpriceRare === Infinity) {
                                     priceRare = 0;
                                     global.onSaleRare = "false";
+                                    global.cardpicturerare = "";
+                                    global.cardsOnSaleRare = [];
                                 }
                                 else {
                                     priceRare = bestpriceRare;
+                                    global.onSaleRare = "true";
                                 }
                                 ;
-                                global.onSaleRare = "true";
                             }
                         }
                         else {
@@ -548,6 +551,7 @@ router.get('/players', (res, response) => {
                             global.cardpicturerare = "";
                             global.cardsOnSaleRare = [];
                         }
+                        console.log("test2");
                         // ######## RECHERCHE PRIX LIMITED ########
                         if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
                             let slugsLimited = [];
