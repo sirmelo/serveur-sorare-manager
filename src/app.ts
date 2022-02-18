@@ -1031,7 +1031,7 @@ router.get('/api/profil', async function(req, res) {
   .then(async function (response) {
     res=response.data.access_token;
     global.user_token = response.data.access_token;
-
+    console.log(response);
     const endpoint = 'https://api.sorare.com/graphql'
     const graphQLClient = new GraphQLClient(endpoint, {
       headers: {
