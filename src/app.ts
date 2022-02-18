@@ -496,7 +496,7 @@ router.get('/players', (res, response) => {res
                     for ( let n = 0; n < result.length; n++ ){
                         if ((result[n].liveSingleSaleOffer != null)) {tabPriceRare.push([result[n].liveSingleSaleOffer.price])}
                         bestpriceRare =  Math.min(...(tabPriceRare.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceRare === Infinity){
+                        if (bestpriceRare === Infinity || bestpriceRare === 0){
                             priceRare=0;
                             global.onSaleRare="false";
                         }
@@ -536,7 +536,7 @@ router.get('/players', (res, response) => {res
                     for ( let n = 0; n < result.length; n++ ){
                         if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
                         bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceLimited === Infinity){
+                        if (bestpriceLimited === Infinity || bestpriceLimited === 0){
                             priceLimited=0
                             global.onSaleLimited ="false";
                         }
@@ -576,7 +576,7 @@ router.get('/players', (res, response) => {res
                         if ((result[n].liveSingleSaleOffer != null)) {tabPriceSuperRare.push([result[n].liveSingleSaleOffer.price])}
                         bestpriceSuperRare =  Math.min(...(tabPriceSuperRare.flat(Infinity)))/Math.pow(10,18)}
                         console.log(bestpriceSuperRare)
-                        if (bestpriceSuperRare === Infinity){
+                        if (bestpriceSuperRare === Infinity || bestpriceSuperRare === 0){
                             priceSuperRare=0
                             global.onSaleSuperRare ="false";
                         }
@@ -617,7 +617,7 @@ router.get('/players', (res, response) => {res
                     for ( let n = 0; n < result.length; n++ ){
                         if ((result[n].liveSingleSaleOffer != null)) {tabPriceUnique.push([result[n].liveSingleSaleOffer.price])}
                         bestpriceUnique =  Math.min(...(tabPriceUnique.flat(Infinity)))/Math.pow(10,18)}
-                        if (bestpriceUnique === Infinity){
+                        if (bestpriceUnique === Infinity || bestpriceUnique === 0){
                             priceUnique=0
                             global.onSaleUnique ="false";
                         }

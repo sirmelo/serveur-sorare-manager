@@ -532,7 +532,7 @@ router.get('/players', (res, response) => {
                                     }
                                     bestpriceRare = Math.min(...(tabPriceRare.flat(Infinity))) / Math.pow(10, 18);
                                 }
-                                if (bestpriceRare === Infinity) {
+                                if (bestpriceRare === Infinity || bestpriceRare === 0) {
                                     priceRare = 0;
                                     global.onSaleRare = "false";
                                 }
@@ -578,7 +578,7 @@ router.get('/players', (res, response) => {
                                     }
                                     bestpriceLimited = Math.min(...(tabPriceLimited.flat(Infinity))) / Math.pow(10, 18);
                                 }
-                                if (bestpriceLimited === Infinity) {
+                                if (bestpriceLimited === Infinity || bestpriceLimited === 0) {
                                     priceLimited = 0;
                                     global.onSaleLimited = "false";
                                 }
@@ -625,7 +625,7 @@ router.get('/players', (res, response) => {
                                     bestpriceSuperRare = Math.min(...(tabPriceSuperRare.flat(Infinity))) / Math.pow(10, 18);
                                 }
                                 console.log(bestpriceSuperRare);
-                                if (bestpriceSuperRare === Infinity) {
+                                if (bestpriceSuperRare === Infinity || bestpriceSuperRare === 0) {
                                     priceSuperRare = 0;
                                     global.onSaleSuperRare = "false";
                                 }
@@ -671,7 +671,7 @@ router.get('/players', (res, response) => {
                                     }
                                     bestpriceUnique = Math.min(...(tabPriceUnique.flat(Infinity))) / Math.pow(10, 18);
                                 }
-                                if (bestpriceUnique === Infinity) {
+                                if (bestpriceUnique === Infinity || bestpriceUnique === 0) {
                                     priceUnique = 0;
                                     global.onSaleUnique = "false";
                                 }
