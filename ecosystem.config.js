@@ -1,5 +1,6 @@
 module.exports = {
   apps : [{
+    name: "serveurSorareReport",
     script : "dist/app.js"
   }],
   deploy: {
