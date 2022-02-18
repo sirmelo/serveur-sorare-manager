@@ -505,6 +505,7 @@ router.get('/players', (res, response) => {
                         }
                         ;
                         console.log("etape5");
+                        console.log(nbArrayRare);
                         // ######## RECHERCHE PRIX RARE ########
                         if (nbArrayRare != 0 && nbArrayRare != null && nbArrayRare != undefined) {
                             let slugsRare = [];
