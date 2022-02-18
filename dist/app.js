@@ -1098,9 +1098,9 @@ router.get('/api/profil', function (req, res) {
         axios_1.default.post('https://api.sorare.com/oauth/token', 'client_id=Jx38v06GOdnDTFVriMGYuh5A0DN26eCYP0txLu614AI&client_secret=z7d_cdmmj2zJsUY-Ko-q2gjJ58zewWnJYH-X9P_e2qg&code=' + code + '&grant_type=authorization_code&redirect_uri=https://betsorare.web.app/auth/sorare/callback', { headers: headers })
             .then(function (response) {
             return __awaiter(this, void 0, void 0, function* () {
+                response;
                 res = response.data.access_token;
                 global.user_token = response.data.access_token;
-                console.log(response);
                 const endpoint = 'https://api.sorare.com/graphql';
                 const graphQLClient = new graphql_request_1.GraphQLClient(endpoint, {
                     headers: {
@@ -4822,7 +4822,8 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 }
                             }
                             ;
-                            console.log(count, "etape5");
+                            // console.log("etape5");
+                            // console.log(nbArrayRare);
                             // ######## RECHERCHE PRIX RARE ########
                             if (nbArrayRare != 0 && nbArrayRare != null && nbArrayRare != undefined) {
                                 let slugsRare = [];
@@ -4849,22 +4850,21 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                         }
                                         bestpriceRare = Math.min(...(tabPriceRare.flat(Infinity))) / Math.pow(10, 18);
                                     }
-                                    if (bestpriceRare === Infinity) {
+                                    if (bestpriceRare === Infinity || bestpriceRare === 0) {
                                         priceRare = 0;
                                         global.onSaleRare = "false";
                                     }
                                     else {
                                         priceRare = bestpriceRare;
+                                        global.onSaleRare = "true";
                                     }
                                     ;
-                                    global.onSaleRare = "true";
                                 }
                             }
                             else {
                                 global.onSaleRare = "false";
                                 global.cardpicturerare = "";
                                 global.cardsOnSaleRare = [];
-                                console.log(count, "etape6");
                             }
                             // ######## RECHERCHE PRIX LIMITED ########
                             if (nbArrayLimited != 0 && nbArrayLimited != null && nbArrayLimited != undefined) {
@@ -4888,24 +4888,23 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                             }
                                         }
                                     }
+                                    ;
+                                    // console.log(count,"etape6")
                                     for (let n = 0; n < result.length; n++) {
                                         if ((result[n].liveSingleSaleOffer != null)) {
                                             tabPriceLimited.push([result[n].liveSingleSaleOffer.price]);
                                         }
                                         bestpriceLimited = Math.min(...(tabPriceLimited.flat(Infinity))) / Math.pow(10, 18);
                                     }
-                                    if (bestpriceLimited === Infinity) {
+                                    if (bestpriceLimited === Infinity || bestpriceLimited === 0) {
                                         priceLimited = 0;
-                                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("false"));
                                         global.onSaleLimited = "false";
                                     }
                                     else {
                                         priceLimited = bestpriceLimited;
+                                        global.onSaleLimited = "true";
                                     }
                                     ;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceLimited'),(priceLimited));
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleLimited'),("true"));
-                                    global.onSaleLimited = "true";
                                 }
                                 ;
                             }
@@ -4914,7 +4913,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 global.cardpicturelimited = "";
                                 global.cardsOnSaleLimited = [];
                             }
-                            console.log(count, "etape6");
+                            // console.log(count,"etape6")
                             // ######## RECHERCHE PRIX SUPER RARE ########
                             if (nbArraySuperRare != 0 && nbArraySuperRare != null && nbArraySuperRare != undefined) {
                                 let slugsSuperRare = [];
@@ -4943,18 +4942,16 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                         }
                                         bestpriceSuperRare = Math.min(...(tabPriceSuperRare.flat(Infinity))) / Math.pow(10, 18);
                                     }
-                                    if (bestpriceSuperRare === Infinity) {
+                                    console.log(bestpriceSuperRare);
+                                    if (bestpriceSuperRare === Infinity || bestpriceSuperRare === 0) {
                                         priceSuperRare = 0;
-                                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("false"));
                                         global.onSaleSuperRare = "false";
                                     }
                                     else {
                                         priceSuperRare = bestpriceSuperRare;
+                                        global.onSaleSuperRare = "true";
                                     }
                                     ;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceSuperRare'),(priceSuperRare));
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleSuperRare'),("true"));
-                                    global.onSaleSuperRare = "true";
                                 }
                                 ;
                             }
@@ -4963,7 +4960,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 global.cardpictureSuperRare = "";
                                 global.cardsOnSaleSuperRare = [];
                             }
-                            console.log(count, "etape7");
+                            // console.log(count,"etape7")
                             // ######## RECHERCHE PRIX UNIQUE ########
                             if (nbArrayUnique != 0 && nbArrayUnique != null && nbArrayUnique != undefined) {
                                 let slugsUnique = [];
@@ -4992,18 +4989,15 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                         }
                                         bestpriceUnique = Math.min(...(tabPriceUnique.flat(Infinity))) / Math.pow(10, 18);
                                     }
-                                    if (bestpriceUnique === Infinity) {
+                                    if (bestpriceUnique === Infinity || bestpriceUnique === 0) {
                                         priceUnique = 0;
-                                        //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("false"));
                                         global.onSaleUnique = "false";
                                     }
                                     else {
                                         priceUnique = bestpriceUnique;
+                                        global.onSaleUnique = "true";
                                     }
                                     ;
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/priceUnique'),(priceUnique));
-                                    //set(ref(getDatabase(),'/test/clubsReady/' +count+  '/onSaleUnique'),("true"));
-                                    global.onSaleUnique = "true";
                                 }
                                 ;
                             }
@@ -5012,7 +5006,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 global.cardpictureUnique = "";
                                 global.cardsOnSaleUnique = [];
                             }
-                            console.log(count, "etape8");
+                            // console.log(count,"etape8")
                             variables = { slug: playerslug, };
                             const liste_resultats = yield graphQLClient.request(GET_RESULTATS, variables);
                             if (position === "Goalkeeper") {
@@ -5051,7 +5045,7 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                                 }
                             }
                             ;
-                            console.log(count, "etape9");
+                            // console.log(count,"etape9")
                             if (priceLimited != null && sl5 != null && priceLimited != 0) {
                                 global.ratioLimited = Math.round(sl5 / priceLimited);
                             }
@@ -5077,7 +5071,9 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                             else {
                                 global.ratioUnique = 0;
                             }
-                            console.log(count, "etape10");
+                            // console.log(count,"etape10")
+                            console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
+                            console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
                             const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                             yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                                 Maj: Date(),
