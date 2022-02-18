@@ -1098,7 +1098,6 @@ router.get('/api/profil', function (req, res) {
         axios_1.default.post('https://api.sorare.com/oauth/token', 'client_id=Jx38v06GOdnDTFVriMGYuh5A0DN26eCYP0txLu614AI&client_secret=z7d_cdmmj2zJsUY-Ko-q2gjJ58zewWnJYH-X9P_e2qg&code=' + code + '&grant_type=authorization_code&redirect_uri=https://betsorare.web.app/auth/sorare/callback', { headers: headers })
             .then(function (response) {
             return __awaiter(this, void 0, void 0, function* () {
-                response;
                 res = response.data.access_token;
                 global.user_token = response.data.access_token;
                 const endpoint = 'https://api.sorare.com/graphql';
@@ -1722,6 +1721,7 @@ router.get('/api/profil', function (req, res) {
                 //   }
                 // },{onlyOnce: true});
                 console.log("Toutes les data de cartes de : " + global.user + ' importées');
+                return response.status;
             });
         });
     });
