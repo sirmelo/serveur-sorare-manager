@@ -754,6 +754,7 @@ router.get('/players', (res, response) => {
                         }
                         console.log(count, "etape10");
                         console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
+                        console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
                         const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                         yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                             Maj: Date(),

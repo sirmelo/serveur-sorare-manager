@@ -681,7 +681,9 @@ console.log(count,"etape9")
                     global.ratioUnique = Math.round(sl5/priceUnique);
                   }else{global.ratioUnique=0}
 console.log(count,"etape10")
-console.log(count, playerslug, "limited: "+priceLimited, "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
+console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
+console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
+
         const playerRef = collection(db,"players", global.competition, position);
         await setDoc(doc(playerRef, playerslug),{
           Maj:Date(),
