@@ -2855,7 +2855,9 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
         const myProfil = profil.currentUser;
         console.log(myProfil);
+        console.log("date: ", myProfil.createdAt);
         global.dateCreation = new Date(myProfil.createdAt);
+        console.log("dateCreation: ", global.dateCreation);
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/token'), (user_token));
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nickname'), (myProfil.nickname));
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));

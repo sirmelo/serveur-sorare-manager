@@ -2659,7 +2659,11 @@ router.get('/api/refresh', async (req,res) => {
           const profil = await graphQLClient.request(GET_PROFIL_CURRENT_USER);
           const myProfil=profil.currentUser;
           console.log(myProfil);
+          console.log("date: ",myProfil.createdAt);
+
           global.dateCreation=new Date(myProfil.createdAt);
+          console.log("dateCreation: ",global.dateCreation);
+
           set(ref(getDatabase(), user+'/profil/token'),(user_token));
           set(ref(getDatabase(), user+'/profil/nickname'),(myProfil.nickname));
           set(ref(getDatabase(), user+'/profil/totalBalance'),(myProfil.totalBalance/Math.pow(10,18)));
