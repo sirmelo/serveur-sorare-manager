@@ -1564,7 +1564,7 @@ router.get('/api/profil', async function(req, res) {
         if(wallet.historique != undefined){
         const nbHistory = wallet.historique.length
         }else{
-        set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(global.dateCreation));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(new Date(global.dateCreation)));
         set(ref(getDatabase(), global.user+'/profil/historique/0/balanceReceived'),(0));
         set(ref(getDatabase(), global.user+'/profil/historique/0/balanceSent'),(0));
         set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
@@ -2341,6 +2341,7 @@ router.get('/api/cards', (req,res) => {
       const nbHistory = wallet.historique.length
       set(ref(getDatabase(), user+'/profil/historique/'+nbHistory),(wallet.watching));
       set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
+      
 
       }else{
       set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
@@ -2658,6 +2659,7 @@ router.get('/api/refresh', async (req,res) => {
           const profil = await graphQLClient.request(GET_PROFIL_CURRENT_USER);
           const myProfil=profil.currentUser;
           console.log(myProfil);
+          global.dateCreation=myProfil.createdAt;
           set(ref(getDatabase(), user+'/profil/token'),(user_token));
           set(ref(getDatabase(), user+'/profil/nickname'),(myProfil.nickname));
           set(ref(getDatabase(), user+'/profil/totalBalance'),(myProfil.totalBalance/Math.pow(10,18)));
@@ -3181,9 +3183,25 @@ router.get('/api/refresh', async (req,res) => {
               set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
         
               }else{
+                set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(new Date(global.dateCreation)));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/balanceReceived'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/balanceSent'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalValueWallet'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalWallet'),(0));
+        
+        
+                set(ref(getDatabase(), global.user+'/profil/historique/1/'),(wallet.watching));
+                set(ref(getDatabase(), global.user+'/profil//historique/1/date'),(Date()));
+        
               set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
               set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
               }
+              const points = wallet.points;
+              const newPoints = points-10;
+              set(ref(getDatabase(), user+'/profil/points'),(newPoints));
+              console.log(newPoints)
+
             },{onlyOnce: true});  
         
             console.log("Toutes les data de cartes de : " + user+ ' importées');
@@ -4013,7 +4031,7 @@ var myJob = new CronJob('0 1 * * *', async function(){
               set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
         
               }else{
-                set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(global.dateCreation));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(new Date(global.dateCreation)));
                 set(ref(getDatabase(), global.user+'/profil/historique/0/balanceReceived'),(0));
                 set(ref(getDatabase(), global.user+'/profil/historique/0/balanceSent'),(0));
                 set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
