@@ -1068,6 +1068,10 @@ router.get('/api/profil', async function(req, res) {
         const points = 300;
         set(ref(getDatabase(), global.user+'/profil/points'),(points));
       }
+      if(profil.status === undefined){
+        const status = "coach";
+        set(ref(getDatabase(), global.user+'/profil/status'),(status));
+      }
     },{onlyOnce: true});  
 
     if(myProfil.profile.pictureUrl===""){
@@ -3546,6 +3550,10 @@ var myJob = new CronJob('0 1 * * *', async function(){
             }else{
               const points = 300;
               set(ref(getDatabase(), user+'/profil/points'),(points));
+            }
+            if(profil.status === undefined){
+              const status = "coach";
+              set(ref(getDatabase(), user+'/profil/status'),(status));
             }
           },{onlyOnce: true});  
       

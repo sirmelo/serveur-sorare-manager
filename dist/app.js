@@ -1135,6 +1135,10 @@ router.get('/api/profil', function (req, res) {
                         const points = 300;
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (points));
                     }
+                    if (profil.status === undefined) {
+                        const status = "coach";
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/status'), (status));
+                    }
                 }, { onlyOnce: true });
                 if (myProfil.profile.pictureUrl === "") {
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/pictureUrl'), ("https://firebasestorage.googleapis.com/v0/b/betsorare.appspot.com/o/avatar-unknow.png?alt=media&token=8b97f8a9-3c6b-4c46-b0f7-e9b31317d83b"));
@@ -3793,6 +3797,10 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                 else {
                     const points = 300;
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (points));
+                }
+                if (profil.status === undefined) {
+                    const status = "coach";
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/status'), (status));
                 }
             }, { onlyOnce: true });
             if (myProfil.profile.pictureUrl === "") {
