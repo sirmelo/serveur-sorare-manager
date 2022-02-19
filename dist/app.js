@@ -756,8 +756,8 @@ router.get('/players', (res, response) => {
                         // console.log(count,"etape10")
                         console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
                         console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
-                        const priceRef = (0, firestore_1.collection)(db, "price", playerslug);
-                        yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef, Date()), {
+                        const priceRef = (0, firestore_1.collection)(db, "price", playerslug, Date());
+                        yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef), {
                             priceLimited: priceLimited,
                             priceSuperRare: priceSuperRare,
                             priceUnique: priceUnique,
@@ -5120,8 +5120,8 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                             // console.log(count,"etape10")
                             console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
                             console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
-                            const priceRef = (0, firestore_1.collection)(db, "price", playerslug);
-                            yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef, Date()), {
+                            const priceRef = (0, firestore_1.collection)(db, "price", playerslug, Date());
+                            yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef), {
                                 priceLimited: priceLimited,
                                 priceSuperRare: priceSuperRare,
                                 priceUnique: priceUnique,

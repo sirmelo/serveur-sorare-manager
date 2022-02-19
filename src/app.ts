@@ -685,8 +685,8 @@ router.get('/players', (res, response) => {res
 console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
 console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
 
-        const priceRef = collection(db,"price",playerslug);
-        await setDoc(doc(priceRef, Date()),{
+        const priceRef = collection(db,"price",playerslug,Date());
+        await setDoc(doc(priceRef),{
         priceLimited:priceLimited,
         priceSuperRare:priceSuperRare,
         priceUnique:priceUnique,
@@ -4746,14 +4746,14 @@ for(let i=0; i< nbPlayersLicense; i++){
 console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
 console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
 
-  const priceRef = collection(db,"price",playerslug);
-   await setDoc(doc(priceRef, Date()),{
-    priceLimited:priceLimited,
-    priceSuperRare:priceSuperRare,
-    priceUnique:priceUnique,
-    priceRare:priceRare,
-    Maj:Date()
-   });
+const priceRef = collection(db,"price",playerslug,Date());
+await setDoc(doc(priceRef),{
+priceLimited:priceLimited,
+priceSuperRare:priceSuperRare,
+priceUnique:priceUnique,
+priceRare:priceRare,
+Maj:Date()
+});
 
   const playerRef = collection(db,"players", global.competition, position);
     await setDoc(doc(playerRef, playerslug),{
