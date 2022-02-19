@@ -1573,7 +1573,7 @@ router.get('/api/profil', async function(req, res) {
                 set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
                 set(ref(getDatabase(), global.user+'/profil/historique/0/totalValueWallet'),(0));
                 set(ref(getDatabase(), global.user+'/profil/historique/0/totalWallet'),(0));
-                set(ref(getDatabase(), global.user+'/profil/historique/0/ethValue'),(global.ethValue));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/ethValue'),({EUR:0,USD:0}));
         
         
                 set(ref(getDatabase(), global.user+'/profil/historique/1/'),(wallet.watching));

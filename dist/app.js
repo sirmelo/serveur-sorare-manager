@@ -1714,7 +1714,7 @@ router.get('/api/profil', function (req, res) {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalValueWallet'), (0));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalWallet'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/ethValue'), (global.ethValue));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/ethValue'), ({ EUR: 0, USD: 0 }));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/'), (wallet.watching));
