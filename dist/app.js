@@ -1110,8 +1110,6 @@ router.get('/api/profil', function (req, res) {
                 const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
                 const myProfil = profil.currentUser;
                 console.log("date: ", myProfil.createdAt);
-                global.dateCreation = new Date(myProfil.createdAt);
-                console.log("dateCreation: ", global.dateCreation);
                 console.log(response.data.access_token);
                 console.log(myProfil);
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/token'), (global.user_token));
@@ -1700,23 +1698,32 @@ router.get('/api/profil', function (req, res) {
                 axios_1.default.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {
                     global.ethValue = resp.data;
                     (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/watching/ethValue'), (resp.data));
+                    (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
+                        const wallet = snapshot.val();
+                        if (wallet.historique != undefined) {
+                            const nbHistory = wallet.historique.length;
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/' + nbHistory), (wallet.watching));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/' + nbHistory + '/date'), (Date()));
+                        }
+                        else {
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (Date()));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceReceived'), (0));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceSent'), (0));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalValueWallet'), (0));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalWallet'), (0));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/ethValue'), (resp.data));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/'), (wallet.watching));
+                            (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/0/date'), (Date()));
+                        }
+                        const points = wallet.points;
+                        const newPoints = points - 10;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (newPoints));
+                        console.log(newPoints);
+                    }, { onlyOnce: true });
                 });
-                (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/'), (snapshot) => {
-                    const wallet = snapshot.val();
-                    if (wallet.historique != undefined) {
-                        const nbHistory = wallet.historique.length;
-                    }
-                    else {
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (global.dateCreation));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceReceived'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceSent'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalValueWallet'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalWallet'), (0));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
-                    }
-                }, { onlyOnce: true });
                 // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
                 //   global.myLockedPrice = snapshot.val();
                 //   if(global.myLockedPrice != undefined){
@@ -3765,7 +3772,6 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
             const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
             const myProfil = profil.currentUser;
             console.log(myProfil);
-            global.dateCreation = new Date(myProfil.createdAt);
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/token'), (user_token));
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nickname'), (myProfil.nickname));
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));
@@ -4352,31 +4358,32 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
             axios_1.default.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {
                 global.ethValue = resp.data;
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/watching/ethValue'), (resp.data));
+                (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/'), (snapshot) => {
+                    const wallet = snapshot.val();
+                    if (wallet.historique != undefined) {
+                        const nbHistory = wallet.historique.length;
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory), (wallet.watching));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory + '/date'), (Date()));
+                    }
+                    else {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/date'), (Date()));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/balanceReceived'), (0));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/balanceSent'), (0));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/totalAuctions'), (0));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/totalValueWallet'), (0));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/totalWallet'), (0));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/ethValue'), (resp.data));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/1/'), (wallet.watching));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/1/date'), (Date()));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/'), (wallet.watching));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/0/date'), (Date()));
+                    }
+                    const points = wallet.points;
+                    const newPoints = points - 10;
+                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (newPoints));
+                    console.log(newPoints);
+                }, { onlyOnce: true });
             });
-            (0, database_1.onValue)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/'), (snapshot) => {
-                const wallet = snapshot.val();
-                if (wallet.historique != undefined) {
-                    const nbHistory = wallet.historique.length;
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory), (wallet.watching));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory + '/date'), (Date()));
-                }
-                else {
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (new Date(global.dateCreation)));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceReceived'), (0));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceSent'), (0));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalValueWallet'), (0));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalWallet'), (0));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/0/'), (wallet.watching));
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil//historique/0/date'), (Date()));
-                }
-                const points = wallet.points;
-                const newPoints = points - 10;
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/points'), (newPoints));
-                console.log(newPoints);
-            }, { onlyOnce: true });
             // onValue(ref(getDatabase(), user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
             //   global.myLockedPrice = snapshot.val();
             //   if(global.myLockedPrice != undefined){
