@@ -685,6 +685,15 @@ router.get('/players', (res, response) => {res
 console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
 console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
 
+        const priceRef = collection(db,"price",playerslug);
+        await setDoc(doc(priceRef, Date()),{
+        priceLimited:priceLimited,
+        priceSuperRare:priceSuperRare,
+        priceUnique:priceUnique,
+        priceRare:priceRare,
+        Maj:Date()
+        });
+
         const playerRef = collection(db,"players", global.competition, position);
         await setDoc(doc(playerRef, playerslug),{
           Maj:Date(),
@@ -1580,10 +1589,10 @@ router.get('/api/profil', async function(req, res) {
                 set(ref(getDatabase(), global.user+'/profil//historique/1/date'),(Date()));
         
               }
-              const points = wallet.points;
-              const newPoints = points-10;
-              set(ref(getDatabase(), global.user+'/profil/points'),(newPoints));
-              console.log(newPoints)
+            //   const points = wallet.points;
+            //   const newPoints = points-10;
+            //   set(ref(getDatabase(), global.user+'/profil/points'),(newPoints));
+            //   console.log(newPoints)
 
             },{onlyOnce: true});  
 
@@ -4737,7 +4746,16 @@ for(let i=0; i< nbPlayersLicense; i++){
 console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
 console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
 
-    const playerRef = collection(db,"players", global.competition, position);
+  const priceRef = collection(db,"price",playerslug);
+   await setDoc(doc(priceRef, Date()),{
+    priceLimited:priceLimited,
+    priceSuperRare:priceSuperRare,
+    priceUnique:priceUnique,
+    priceRare:priceRare,
+    Maj:Date()
+   });
+
+  const playerRef = collection(db,"players", global.competition, position);
     await setDoc(doc(playerRef, playerslug),{
       Maj:Date(),
       age:age,

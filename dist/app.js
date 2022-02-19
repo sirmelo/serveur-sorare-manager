@@ -756,6 +756,14 @@ router.get('/players', (res, response) => {
                         // console.log(count,"etape10")
                         console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
                         console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
+                        const priceRef = (0, firestore_1.collection)(db, "price", playerslug);
+                        yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef, Date()), {
+                            priceLimited: priceLimited,
+                            priceSuperRare: priceSuperRare,
+                            priceUnique: priceUnique,
+                            priceRare: priceRare,
+                            Maj: Date()
+                        });
                         const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                         yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                             Maj: Date(),
@@ -1718,10 +1726,10 @@ router.get('/api/profil', function (req, res) {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
                     }
-                    const points = wallet.points;
-                    const newPoints = points - 10;
-                    (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/points'), (newPoints));
-                    console.log(newPoints);
+                    //   const points = wallet.points;
+                    //   const newPoints = points-10;
+                    //   set(ref(getDatabase(), global.user+'/profil/points'),(newPoints));
+                    //   console.log(newPoints)
                 }, { onlyOnce: true });
                 // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
                 //   global.myLockedPrice = snapshot.val();
@@ -5112,6 +5120,14 @@ var myJob1 = new cron_1.CronJob('0 2 * * *', function () {
                             // console.log(count,"etape10")
                             console.log(count, playerslug, "limited: " + priceLimited, "rare: " + priceRare, "superRare: " + priceSuperRare, "unique: " + priceUnique);
                             console.log(count, playerslug, "limited: " + global.onSaleLimited, "rare: " + global.onSaleRare, "superRare: " + global.onSaleSuperRare, "unique: " + global.onSaleUnique);
+                            const priceRef = (0, firestore_1.collection)(db, "price", playerslug);
+                            yield (0, firestore_2.setDoc)((0, firestore_2.doc)(priceRef, Date()), {
+                                priceLimited: priceLimited,
+                                priceSuperRare: priceSuperRare,
+                                priceUnique: priceUnique,
+                                priceRare: priceRare,
+                                Maj: Date()
+                            });
                             const playerRef = (0, firestore_1.collection)(db, "players", global.competition, position);
                             yield (0, firestore_2.setDoc)((0, firestore_2.doc)(playerRef, playerslug), {
                                 Maj: Date(),
