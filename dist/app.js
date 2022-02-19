@@ -1705,7 +1705,7 @@ router.get('/api/profil', function (req, res) {
                         const nbHistory = wallet.historique.length;
                     }
                     else {
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (new Date(global.dateCreation)));
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (global.dateCreation));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceReceived'), (0));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceSent'), (0));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
@@ -2855,7 +2855,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
         const myProfil = profil.currentUser;
         console.log(myProfil);
-        global.dateCreation = myProfil.createdAt;
+        global.dateCreation = new Date(myProfil.createdAt);
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/token'), (user_token));
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nickname'), (myProfil.nickname));
         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));
@@ -3451,7 +3451,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/historique/' + nbHistory + '/date'), (Date()));
             }
             else {
-                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (new Date(global.dateCreation)));
+                (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (global.dateCreation));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceReceived'), (0));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/balanceSent'), (0));
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/totalAuctions'), (0));
@@ -3761,7 +3761,7 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
             const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
             const myProfil = profil.currentUser;
             console.log(myProfil);
-            global.dateCreation = myProfil.createdAt;
+            global.dateCreation = new Date(myProfil.createdAt);
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/token'), (user_token));
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/nickname'), (myProfil.nickname));
             (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), user + '/profil/totalBalance'), (myProfil.totalBalance / Math.pow(10, 18)));
