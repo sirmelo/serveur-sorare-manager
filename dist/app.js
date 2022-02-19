@@ -1704,8 +1704,8 @@ router.get('/api/profil', function (req, res) {
                     const wallet = snapshot.val();
                     if (wallet.historique != undefined) {
                         const nbHistory = wallet.historique.length;
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/' + nbHistory), (wallet.watching));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/' + nbHistory + '/date'), (Date()));
+                        // set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
+                        // set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
                     }
                     else {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/date'), (Date()));
@@ -1717,8 +1717,6 @@ router.get('/api/profil', function (req, res) {
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/ethValue'), ({ EUR: 0, USD: 0 }));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/1/'), (wallet.watching));
                         (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/1/date'), (Date()));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/historique/0/'), (wallet.watching));
-                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil//historique/0/date'), (Date()));
                     }
                     const points = wallet.points;
                     const newPoints = points - 10;

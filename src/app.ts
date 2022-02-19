@@ -1563,8 +1563,8 @@ router.get('/api/profil', async function(req, res) {
               const wallet = snapshot.val();
               if(wallet.historique != undefined){
               const nbHistory = wallet.historique.length
-              set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
-              set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
+              // set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
+              // set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
         
               }else{
                 set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(Date()));
@@ -1579,8 +1579,6 @@ router.get('/api/profil', async function(req, res) {
                 set(ref(getDatabase(), global.user+'/profil/historique/1/'),(wallet.watching));
                 set(ref(getDatabase(), global.user+'/profil//historique/1/date'),(Date()));
         
-              set(ref(getDatabase(), global.user+'/profil/historique/0/'),(wallet.watching));
-              set(ref(getDatabase(), global.user+'/profil//historique/0/date'),(Date()));
               }
               const points = wallet.points;
               const newPoints = points-10;
