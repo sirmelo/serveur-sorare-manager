@@ -1109,7 +1109,9 @@ router.get('/api/profil', function (req, res) {
                 });
                 const profil = yield graphQLClient.request(GET_PROFIL_CURRENT_USER);
                 const myProfil = profil.currentUser;
-                global.dateCreation = myProfil.createdAt;
+                console.log("date: ", myProfil.createdAt);
+                global.dateCreation = new Date(myProfil.createdAt);
+                console.log("dateCreation: ", global.dateCreation);
                 console.log(response.data.access_token);
                 console.log(myProfil);
                 (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/profil/token'), (global.user_token));

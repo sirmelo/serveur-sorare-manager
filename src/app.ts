@@ -1041,7 +1041,9 @@ router.get('/api/profil', async function(req, res) {
 
     const profil = await graphQLClient.request(GET_PROFIL_CURRENT_USER);
     const myProfil=profil.currentUser;
-    global.dateCreation = myProfil.createdAt;
+    console.log("date: ",myProfil.createdAt);
+    global.dateCreation=new Date(myProfil.createdAt);
+    console.log("dateCreation: ",global.dateCreation);
     console.log(response.data.access_token);
     console.log(myProfil);
     set(ref(getDatabase(), global.user+'/profil/token'),(global.user_token));
