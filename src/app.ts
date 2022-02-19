@@ -1027,7 +1027,7 @@ router.get('/api/profil', async function(req, res) {
   console.log(code);
 
   const headers = {'content-type': 'application/x-www-form-urlencoded'}
-  axios.post('https://api.sorare.com/oauth/token','client_id=Jx38v06GOdnDTFVriMGYuh5A0DN26eCYP0txLu614AI&client_secret=z7d_cdmmj2zJsUY-Ko-q2gjJ58zewWnJYH-X9P_e2qg&code='+code+'&grant_type=authorization_code&redirect_uri=https://betsorare.web.app/',{headers: headers})
+  axios.post('https://api.sorare.com/oauth/token','client_id=Jx38v06GOdnDTFVriMGYuh5A0DN26eCYP0txLu614AI&client_secret=z7d_cdmmj2zJsUY-Ko-q2gjJ58zewWnJYH-X9P_e2qg&code='+code+'&grant_type=authorization_code&redirect_uri=https://betsorare.web.app/auth/sorare/callback',{headers: headers})
   .then(async function (response) {
     res=response.data.access_token;
     global.user_token = response.data.access_token;
@@ -1041,6 +1041,7 @@ router.get('/api/profil', async function(req, res) {
 
     const profil = await graphQLClient.request(GET_PROFIL_CURRENT_USER);
     const myProfil=profil.currentUser;
+    global.dateCreation = myProfil.createdAt;
     console.log(response.data.access_token);
     console.log(myProfil);
     set(ref(getDatabase(), global.user+'/profil/token'),(global.user_token));
@@ -1553,23 +1554,28 @@ router.get('/api/profil', async function(req, res) {
   
   
       // #####SAVE HISTORY WALLET#####
-      // axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
-      //   global.ethValue=resp.data;
-      //   set(ref(getDatabase(), global.user+'/profil/watching/ethValue'),(resp.data));
-      // });
+      axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR,USD&api_key=3407e811098c81482681d5f96768abacdaa1d3415dfd6f0befe66550a44b65a3').then(resp => {  
+        global.ethValue=resp.data;
+        set(ref(getDatabase(), global.user+'/profil/watching/ethValue'),(resp.data));
+      });
     
-      // onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
-      //   const wallet = snapshot.val();
-      //   if(wallet.historique != undefined){
-      //   const nbHistory = wallet.historique.length
-      //   set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory),(wallet.watching));
-      //   set(ref(getDatabase(), global.user+'/profil/historique/'+nbHistory+'/date'),(Date()));
-  
-      //   }else{
-      //   set(ref(getDatabase(), global.user+'/profil/historique/0/'),(wallet.watching));
-      //   set(ref(getDatabase(), global.user+'/profil//historique/0/date'),(Date()));
-      //   }
-      // },{onlyOnce: true});  
+      onValue(ref(getDatabase(), global.user+'/profil/'), (snapshot:DataSnapshot) => {
+        const wallet = snapshot.val();
+        if(wallet.historique != undefined){
+        const nbHistory = wallet.historique.length
+        }else{
+        set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(global.dateCreation));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/balanceReceived'),(0));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/balanceSent'),(0));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/totalValueWallet'),(0));
+        set(ref(getDatabase(), global.user+'/profil/historique/0/totalWallet'),(0));
+
+
+        set(ref(getDatabase(), global.user+'/profil/historique/1/'),(wallet.watching));
+        set(ref(getDatabase(), global.user+'/profil//historique/1/date'),(Date()));
+        }
+      },{onlyOnce: true});  
   
     // onValue(ref(getDatabase(), global.user+'/mycards/lockedprice'), (snapshot:DataSnapshot) => {
     //   global.myLockedPrice = snapshot.val();
@@ -3483,6 +3489,7 @@ var myJob = new CronJob('0 1 * * *', async function(){
           const profil = await graphQLClient.request(GET_PROFIL_CURRENT_USER);
           const myProfil=profil.currentUser;
           console.log(myProfil);
+          global.dateCreation=myProfil.createdAt;
           set(ref(getDatabase(), user+'/profil/token'),(user_token));
           set(ref(getDatabase(), user+'/profil/nickname'),(myProfil.nickname));
           set(ref(getDatabase(), user+'/profil/totalBalance'),(myProfil.totalBalance/Math.pow(10,18)));
@@ -4006,6 +4013,17 @@ var myJob = new CronJob('0 1 * * *', async function(){
               set(ref(getDatabase(), user+'/profil/historique/'+nbHistory+'/date'),(Date()));
         
               }else{
+                set(ref(getDatabase(), global.user+'/profil/historique/0/date'),(global.dateCreation));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/balanceReceived'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/balanceSent'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalAuctions'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalValueWallet'),(0));
+                set(ref(getDatabase(), global.user+'/profil/historique/0/totalWallet'),(0));
+        
+        
+                set(ref(getDatabase(), global.user+'/profil/historique/1/'),(wallet.watching));
+                set(ref(getDatabase(), global.user+'/profil//historique/1/date'),(Date()));
+        
               set(ref(getDatabase(), user+'/profil/historique/0/'),(wallet.watching));
               set(ref(getDatabase(), user+'/profil//historique/0/date'),(Date()));
               }
