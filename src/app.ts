@@ -3672,6 +3672,22 @@ var myJob = new CronJob('0 1 * * *', async function(){
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
               global.noteSorareManger = docSnap.data().noteBetSorare;
+              
+              const sl5  =docSnap.data().sl5;
+              const sl15  =docSnap.data().sl15;
+              const tj5  =docSnap.data().tj5;
+              const tj15  =docSnap.data().tj15;
+              if(sl5>sl15){
+                set(ref(getDatabase(), global.user+'/mycards/card/'+i+'/performances'),("increase"));
+              }else{
+                set(ref(getDatabase(), global.user+'/mycards/card/'+i+'/performances'),("discrease"));
+              }
+              if(tj5>tj15){
+                set(ref(getDatabase(), global.user+'/mycards/card/'+i+'/tempsJeu'),("increase"));
+              }else{
+                set(ref(getDatabase(), global.user+'/mycards/card/'+i+'/tempsJeu'),("discrease"));
+              }
+      
               if(rarity==="limited"){global.lastValue = docSnap.data().priceLimited, global.onSale =docSnap.data().onSaleLimited}
               else if(rarity==="rare"){global.lastValue = docSnap.data().priceRare, global.onSale =docSnap.data().onSaleRare}
             } else {

@@ -3924,6 +3924,22 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                 const docSnap = yield (0, firestore_1.getDoc)(docRef);
                 if (docSnap.exists()) {
                     global.noteSorareManger = docSnap.data().noteBetSorare;
+                    const sl5 = docSnap.data().sl5;
+                    const sl15 = docSnap.data().sl15;
+                    const tj5 = docSnap.data().tj5;
+                    const tj15 = docSnap.data().tj15;
+                    if (sl5 > sl15) {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/mycards/card/' + i + '/performances'), ("increase"));
+                    }
+                    else {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/mycards/card/' + i + '/performances'), ("discrease"));
+                    }
+                    if (tj5 > tj15) {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/mycards/card/' + i + '/tempsJeu'), ("increase"));
+                    }
+                    else {
+                        (0, database_1.set)((0, database_1.ref)((0, database_1.getDatabase)(), global.user + '/mycards/card/' + i + '/tempsJeu'), ("discrease"));
+                    }
                     if (rarity === "limited") {
                         global.lastValue = docSnap.data().priceLimited, global.onSale = docSnap.data().onSaleLimited;
                     }
