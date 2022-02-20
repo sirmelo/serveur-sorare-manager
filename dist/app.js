@@ -185,7 +185,7 @@ router.get('/players', (res, response) => {
             const allPlayers = data.releasedPlayerValues;
             const nbPlayersLicense = allPlayers.length;
             var allPlayersLicence = [];
-            let count = -1;
+            let count = 3468;
             let variables;
             for (let i = 0; i < nbPlayersLicense; i++) {
                 allPlayersLicence.push(allPlayers[i].slug);

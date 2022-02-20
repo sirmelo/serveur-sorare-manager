@@ -183,7 +183,7 @@ router.get('/players', (res, response) => {res
     var allPlayersLicence: any[] =[];
 
 
-    let count = -1;
+    let count = 3468;
     let variables
     for(let i=0; i< nbPlayersLicense; i++){
         allPlayersLicence.push(allPlayers[i].slug)
@@ -3672,7 +3672,7 @@ var myJob = new CronJob('0 1 * * *', async function(){
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
               global.noteSorareManger = docSnap.data().noteBetSorare;
-              
+
               const sl5  =docSnap.data().sl5;
               const sl15  =docSnap.data().sl15;
               const tj5  =docSnap.data().tj5;
