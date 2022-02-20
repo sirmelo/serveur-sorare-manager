@@ -183,7 +183,7 @@ router.get('/players', (res, response) => {res
     var allPlayersLicence: any[] =[];
 
 
-    let count = 3468;
+    let count = -1;
     let variables
     for(let i=0; i< nbPlayersLicense; i++){
         allPlayersLicence.push(allPlayers[i].slug)
@@ -230,10 +230,15 @@ console.log(count,playername,"etape1")
                 const sl15 = Math.round(get_player.status.lastFifteenSo5AverageScore);
                 const tj15 = Math.round(((get_player.status.lastFifteenSo5Appearances)/15)*100);
                 const tj5 = Math.round(((get_player.status.lastFiveSo5Appearances)/5)*100);
-                let sdsl5 = 0;
-                let sdsl15 = 0;
-                let saal5 = 0;
-                let saal15 = 0;
+
+                // /#### A MODIFIER POUR LE SCORE AA########
+                let sdsl5 = 18;
+                let sdsl15 = 18;
+                let saal5 = 18;
+                let saal15 = 18;
+                // /#### A MODIFIER POUR LE SCORE AA########
+
+
 console.log(sl5,sl15,tj5,tj15)
 console.log(count,"etape2")
                 //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
@@ -317,6 +322,9 @@ console.log(count,"etape2")
                     global.teamslug = "";
 
                 };
+                // /#### A MODIFIER POUR LE SCORE AA########
+
+
 console.log(count,"etape3")
 
               //   let detailScore: any[] =[];
@@ -359,6 +367,10 @@ console.log(count,"etape3")
               //   console.log(sl15,sdsl15,saal15)                  
 
               // }
+
+              // /#### A MODIFIER POUR LE SCORE AA########
+
+
 console.log(count,"etape3-2")
                     //Notation saalx & sdslx
                     //#######################
@@ -4331,7 +4343,9 @@ for(let i=0; i< nbPlayersLicense; i++){
             const age = get_player.age;
             const position = get_player.position;
             const playerslug = get_player.slug;
-// console.log(count,playerslug,"etape1")
+console.log(count,playerslug,"etape1")
+console.log(count,playername,"etape1")
+
 
             if(  get_player.status !=null && get_player.status.playingStatus !=null){
                 global.statut = get_player.status.playingStatus;
@@ -4349,11 +4363,17 @@ for(let i=0; i< nbPlayersLicense; i++){
             const sl15 = Math.round(get_player.status.lastFifteenSo5AverageScore);
             const tj15 = Math.round(((get_player.status.lastFifteenSo5Appearances)/15)*100);
             const tj5 = Math.round(((get_player.status.lastFiveSo5Appearances)/5)*100);
-            let sdsl5 = 0;
-            let sdsl15 = 0;
-            let saal5 = 0;
-            let saal15 = 0;
-// console.log(count,"etape2")
+
+            // /#### A MODIFIER POUR LE SCORE AA########
+            let sdsl5 = 18;
+            let sdsl15 = 18;
+            let saal5 = 18;
+            let saal15 = 18;
+            // /#### A MODIFIER POUR LE SCORE AA########
+
+
+console.log(sl5,sl15,tj5,tj15)
+console.log(count,"etape2")
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/Maj'),(Date()));
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/country'),("false"));
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sl5'),(sl5));
@@ -4435,32 +4455,56 @@ for(let i=0; i< nbPlayersLicense; i++){
                 global.teamslug = "";
 
             };
-// console.log(count,"etape3")
+            // /#### A MODIFIER POUR LE SCORE AA########
 
-            let detailScore: any[] =[];
+
+console.log(count,"etape3")
+
+          //   let detailScore: any[] =[];
+          //   let detailScore5: any[] =[];
+          //   let detailScore15: any[] =[];
             
-            const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
-            if(get_player.allSo5Scores.nodes.length===0){
-              sdsl5=0;
-              sdsl15=0;
-              saal15=0;
-              saal5=0;  
-          }else{
-            for (let j = 0; j < +get_player.status.lastFiveSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-              sdsl5 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFiveSo5Appearances);
-              saal5 = +sl5-(sdsl5);
-              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal5'),(saal5));
-              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl5'),(sdsl5));
-              };  
-              for (let j = 0; j < +get_player.status.lastFifteenSo5Appearances; j++) {detailScore.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore);
-              sdsl15 = Math.round(detailScore.reduce(reducer)/+get_player.status.lastFifteenSo5Appearances);
-              saal15 = +sl15-(sdsl15);
-              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/saal15'),(saal15));
-              //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/sdsl15'),(sdsl15));
-              };
+          //   const reducer = (previousValue: number, currentValue: number) => previousValue + currentValue;
+          //   if(get_player.allSo5Scores.nodes.length===0){
+          //     sdsl5=0;
+          //     sdsl15=0;
+          //     saal15=0;
+          //     saal5=0;  
+          // }else{
+          //   if (get_player.allSo5Scores.nodes.length < get_player.status.lastFiveSo5Appearances){
+          //     global.nbApparence5=get_player.allSo5Scores.nodes.length
+          //   }else{
+          //     global.nbApparence5=get_player.status.lastFiveSo5Appearances
+          //   }
+          //   for (let j = 0; j < global.nbApparence5; j++)
+          //     {
+          //       detailScore5.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore)
+          //       console.log(detailScore5)
+          //     }; 
+          //       sdsl5 = Math.round(detailScore5.reduce(reducer)/+global.nbApparence5);
+          //       saal5 = +sl5-(sdsl5);
+          //       console.log(sl5,sdsl5,saal5)
 
-          }
-// console.log(count,"etape3-2")
+          //   if (get_player.allSo5Scores.nodes.length < get_player.status.lastFifteenSo5Appearances){
+          //     global.nbApparence15=get_player.allSo5Scores.nodes.length
+          //   }else{
+          //     global.nbApparence15=get_player.status.lastFifteenSo5Appearances
+          //   }
+          //   for (let j = 0; j < global.nbApparence15; j++) 
+          //   {
+          //     detailScore15.push(get_player.allSo5Scores.nodes[j].detailedScore[0].totalScore)
+          //     console.log(detailScore15)
+          //   };
+          //   sdsl15 = Math.round(detailScore15.reduce(reducer)/+global.nbApparence15s);
+          //   saal15 = +sl15-(sdsl15);
+          //   console.log(sl15,sdsl15,saal15)                  
+
+          // }
+
+          // /#### A MODIFIER POUR LE SCORE AA########
+
+
+console.log(count,"etape3-2")
                 //Notation saalx & sdslx
                 //#######################
                 const baremeNoteSadx=[[0,-1],[0.5,5],[1,8],[1.5,10],[2,15],[2.5,18],[3,22],[3.5,25],[4,35],[4.5,50],[5,99]];
@@ -4524,7 +4568,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 };
             let noteBetSorare =Math.round((+notebetTj5+notebetdsl5+notebetTj15+notebetdsl15+notebetaal15+notebetSl5+notebetSl15+notebetAge+notebetaal5)*2.22);
             //set(ref(getDatabase(),'/test/clubsReady/' +count+ '/noteBetSorare'),(noteBetSorare));
-// console.log(count,"etape4")
+console.log(count,"etape4")
             let tabSlugCardRare: any[] =[];
             let tabSlugCardLimited: any[] =[];
             let tabSlugCardSuperRare: any[] =[];
@@ -4593,7 +4637,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 }
             };
 
-// console.log("etape5");
+console.log("etape5");
 // console.log(nbArrayRare);
           // ######## RECHERCHE PRIX RARE ########
           if(nbArrayRare!=0 && nbArrayRare!=null && nbArrayRare!=undefined){
@@ -4653,7 +4697,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                         }
                     }
                 };
-// console.log(count,"etape6")
+console.log(count,"etape6")
                 for ( let n = 0; n < result.length; n++ ){
                     if ((result[n].liveSingleSaleOffer != null)) {tabPriceLimited.push([result[n].liveSingleSaleOffer.price])}
                     bestpriceLimited =  Math.min(...(tabPriceLimited.flat(Infinity)))/Math.pow(10,18)}
@@ -4670,7 +4714,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 global.cardpicturelimited="";
                 global.cardsOnSaleLimited=[];
               }
-// console.log(count,"etape6")
+console.log(count,"etape6")
           // ######## RECHERCHE PRIX SUPER RARE ########
           if(nbArraySuperRare!=0 && nbArraySuperRare!=null && nbArraySuperRare!=undefined){
             let slugsSuperRare: any[] =[];
@@ -4711,7 +4755,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 global.cardpictureSuperRare="";
                 global.cardsOnSaleSuperRare=[];
               }
-// console.log(count,"etape7")
+console.log(count,"etape7")
 
           // ######## RECHERCHE PRIX UNIQUE ########
           if(nbArrayUnique!=0 && nbArrayUnique!=null && nbArrayUnique!=undefined){
@@ -4753,7 +4797,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                 global.cardsOnSaleUnique=[];
               }
 
-// console.log(count,"etape8")
+console.log(count,"etape8")
             variables = {slug: playerslug,};
             const liste_resultats = await graphQLClient.request(GET_RESULTATS,variables);
             
@@ -4785,7 +4829,7 @@ for(let i=0; i< nbPlayersLicense; i++){
                     global.score.push(0);
                 }
               };
-// console.log(count,"etape9")
+console.log(count,"etape9")
               if(priceLimited !=null && sl5 !=null && priceLimited !=0){
                 global.ratioLimited = Math.round(sl5/priceLimited);
                 
@@ -4802,20 +4846,20 @@ for(let i=0; i< nbPlayersLicense; i++){
               if(priceUnique !=null && sl5 !=null && priceUnique !=0){
                 global.ratioUnique = Math.round(sl5/priceUnique);
               }else{global.ratioUnique=0}
-// console.log(count,"etape10")
+console.log(count,"etape10")
 console.log(count, playerslug, "limited: "+priceLimited , "rare: "+priceRare, "superRare: "+priceSuperRare, "unique: "+priceUnique)
 console.log(count, playerslug, "limited: "+global.onSaleLimited , "rare: "+global.onSaleRare, "superRare: "+global.onSaleSuperRare, "unique: "+global.onSaleUnique)
 
-const priceRef = collection(db,"price",playerslug,Date());
-await setDoc(doc(priceRef),{
-priceLimited:priceLimited,
-priceSuperRare:priceSuperRare,
-priceUnique:priceUnique,
-priceRare:priceRare,
-Maj:Date()
-});
+    const priceRef = collection(db,"price",playerslug,Date());
+    await setDoc(doc(priceRef),{
+    priceLimited:priceLimited,
+    priceSuperRare:priceSuperRare,
+    priceUnique:priceUnique,
+    priceRare:priceRare,
+    Maj:Date()
+    });
 
-  const playerRef = collection(db,"players", global.competition, position);
+    const playerRef = collection(db,"players", global.competition, position);
     await setDoc(doc(playerRef, playerslug),{
       Maj:Date(),
       age:age,
