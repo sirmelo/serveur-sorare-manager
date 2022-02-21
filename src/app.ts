@@ -2956,7 +2956,7 @@ router.get('/api/refresh', async (req,res) => {
               global.teamUrl = auctionsCard.player.activeClub.pictureUrl;
             }else{global.teamUrl=""}
         
-            if(auctionsCard.player.activeClub.domesticLeague.slug!=null){
+            if(auctionsCard.player.activeClub=null){
               global.leagueslug= allMyCards[i].player.activeClub.domesticLeague.slug;}
               else{global.league="other"};
         
@@ -3039,7 +3039,7 @@ router.get('/api/refresh', async (req,res) => {
                     global.teamUrl = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
-                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.leagueslug= userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                     else{global.league="other"};
               
@@ -3089,7 +3089,7 @@ router.get('/api/refresh', async (req,res) => {
                       global.teamUrl = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
-                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.leagueslug= userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                       else{global.league="other"};
                 
@@ -3172,7 +3172,7 @@ router.get('/api/refresh', async (req,res) => {
                     global.teamUrl = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
-                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.leagueslug= userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                     else{global.league="other"};
               
@@ -3222,7 +3222,7 @@ router.get('/api/refresh', async (req,res) => {
                       global.teamUrl = userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
-                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.leagueslug= userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                       else{global.league="other"};
                 
