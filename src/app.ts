@@ -2833,8 +2833,8 @@ router.get('/api/refresh', async (req,res) => {
             global.priceAchat = (allMyCards[i].owner.price)/Math.pow(10,18);
             global.lock="lock_open"
         
-            
-            if(allMyCards[i].player.activeClub.domesticLeague.slug!=null){
+            console.log(playerslug,playername)
+            if(allMyCards[i].player.activeClub.domesticLeague.slug!=null && allMyCards[i].player.activeClub.domesticLeague.slug!=undefined){
             global.leagueslug= allMyCards[i].player.activeClub.domesticLeague.slug;}
             else{global.leagueslug="other"};
         
