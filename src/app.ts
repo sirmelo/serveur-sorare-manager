@@ -2774,6 +2774,7 @@ router.get('/api/refresh', async (req,res) => {
           const userWallet = await graphQLClient.request(GET_WALLET_CURRENT_USER);
         
           const myCards = userWallet.currentUser.paginatedCards.nodes;
+          console.log("nombre de cartes: " ,myCards.length)
           const nbRarityCards = userWallet.currentUser.cardCounts;
           const nbCards = myCards.length;
         

@@ -2945,6 +2945,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
         const dbRef = (0, database_1.ref)((0, database_1.getDatabase)());
         const userWallet = yield graphQLClient.request(GET_WALLET_CURRENT_USER);
         const myCards = userWallet.currentUser.paginatedCards.nodes;
+        console.log("nombre de cartes: ", myCards.length);
         const nbRarityCards = userWallet.currentUser.cardCounts;
         const nbCards = myCards.length;
         const userAuctions = userWallet.currentUser.wonEnglishAuctions.nodes;
