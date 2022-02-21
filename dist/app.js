@@ -3534,7 +3534,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
 // ################################################################
 // ################################################################
 // #########################  REFRESH DATA   ######################
-var myJob = new cron_1.CronJob('0 1 * * *', function () {
+var myJob = new cron_1.CronJob('25 1 * * *', function () {
     return __awaiter(this, void 0, void 0, function* () {
         const db = (0, firestore_1.getFirestore)();
         var tabUsers = [];
@@ -3908,7 +3908,7 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                 const transferType = allMyCards[i].owner.transferType;
                 global.priceAchat = (allMyCards[i].owner.price) / Math.pow(10, 18);
                 global.lock = "lock_open";
-                if (allMyCards[i].player.activeClub.domesticLeague.slug != null) {
+                if (allMyCards[i].player.activeClub != null) {
                     global.leagueslug = allMyCards[i].player.activeClub.domesticLeague.slug;
                 }
                 else {
@@ -3931,7 +3931,7 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                     global.competition = "other";
                 }
                 ;
-                if (allMyCards[i].player.activeClub.pictureUrl != null) {
+                if (allMyCards[i].player.activeClub != null) {
                     global.team = allMyCards[i].player.activeClub.name;
                     global.teamUrl = allMyCards[i].player.activeClub.pictureUrl;
                 }
@@ -4059,13 +4059,13 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                     global.teamSlug = "";
                     global.team = "";
                 }
-                if (auctionsCard.player.activeClub.pictureUrl != null) {
+                if (auctionsCard.player.activeClub != null) {
                     global.teamUrl = auctionsCard.player.activeClub.pictureUrl;
                 }
                 else {
                     global.teamUrl = "";
                 }
-                if (auctionsCard.player.activeClub.domesticLeague.slug != null) {
+                if (auctionsCard.player.activeClub != null) {
                     global.leagueslug = allMyCards[i].player.activeClub.domesticLeague.slug;
                 }
                 else {
@@ -4152,13 +4152,13 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                                 global.teamSlug = "";
                                 global.team = "";
                             }
-                            if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                            if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub != null) {
                                 global.teamUrl = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                             }
                             else {
                                 global.teamUrl = "";
                             }
-                            if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug != null) {
+                            if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub != null) {
                                 global.leagueslug = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;
                             }
                             else {
@@ -4218,13 +4218,13 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                                 global.teamSlug = "";
                                 global.team = "";
                             }
-                            if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                            if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub != null) {
                                 global.teamUrl = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                             }
                             else {
                                 global.teamUrl = "";
                             }
-                            if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug != null) {
+                            if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub != null) {
                                 global.leagueslug = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;
                             }
                             else {
@@ -4314,13 +4314,13 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                                 global.teamSlug = "";
                                 global.team = "";
                             }
-                            if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                            if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub != null) {
                                 global.teamUrl = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                             }
                             else {
                                 global.teamUrl = "";
                             }
-                            if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug != null) {
+                            if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub != null) {
                                 global.leagueslug = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;
                             }
                             else {
@@ -4380,13 +4380,13 @@ var myJob = new cron_1.CronJob('0 1 * * *', function () {
                                 global.teamSlug = "";
                                 global.team = "";
                             }
-                            if (userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                            if (userOfferSent[i].sendCardOffers[g].card.player.activeClub != null) {
                                 global.teamUrl = userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                             }
                             else {
                                 global.teamUrl = "";
                             }
-                            if (userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug != null) {
+                            if (userOfferSent[i].sendCardOffers[g].card.player.activeClub != null) {
                                 global.leagueslug = userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;
                             }
                             else {

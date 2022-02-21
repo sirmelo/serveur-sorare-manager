@@ -3298,7 +3298,7 @@ router.get('/api/refresh', async (req,res) => {
 // ################################################################
 // #########################  REFRESH DATA   ######################
 
-var myJob = new CronJob('0 1 * * *', async function(){
+var myJob = new CronJob('25 1 * * *', async function(){
 
   const db = getFirestore();
   var tabUsers: any[] =[];
@@ -3686,7 +3686,7 @@ var myJob = new CronJob('0 1 * * *', async function(){
             global.lock="lock_open"
         
             
-            if(allMyCards[i].player.activeClub.domesticLeague.slug!=null){
+            if(allMyCards[i].player.activeClub !=null){
             global.leagueslug= allMyCards[i].player.activeClub.domesticLeague.slug;}
             else{global.leagueslug="other"};
         
@@ -3696,7 +3696,7 @@ var myJob = new CronJob('0 1 * * *', async function(){
                 else if(global.leagueslug === "superliga-argentina-de-futbol" || global.leagueslug === "campeonato-brasileiro-serie-a" || global.leagueslug === "mlspa" || global.leagueslug === "liga-mx"){global.competition = "champion-america"}
                   else{global.competition = "other"};
         
-            if(allMyCards[i].player.activeClub.pictureUrl !=null){
+            if(allMyCards[i].player.activeClub !=null){
               global.team = allMyCards[i].player.activeClub.name;
               global.teamUrl = allMyCards[i].player.activeClub.pictureUrl;
             }else{global.teamUrl="";global.team =""}
@@ -3820,11 +3820,11 @@ var myJob = new CronJob('0 1 * * *', async function(){
               global.team = auctionsCard.player.activeClub.name;  
             }else{global.teamSlug ="";global.team ="";}
         
-            if(auctionsCard.player.activeClub.pictureUrl !=null){
+            if(auctionsCard.player.activeClub !=null){
               global.teamUrl = auctionsCard.player.activeClub.pictureUrl;
             }else{global.teamUrl=""}
         
-            if(auctionsCard.player.activeClub.domesticLeague.slug!=null){
+            if(auctionsCard.player.activeClub !=null){
               global.leagueslug= allMyCards[i].player.activeClub.domesticLeague.slug;}
               else{global.league="other"};
         
@@ -3903,11 +3903,11 @@ var myJob = new CronJob('0 1 * * *', async function(){
                     global.team = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.name;  
                   }else{global.teamSlug ="";global.team ="";}
               
-                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.teamUrl = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
-                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.leagueslug= userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                     else{global.league="other"};
               
@@ -3953,11 +3953,11 @@ var myJob = new CronJob('0 1 * * *', async function(){
                       global.team = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.name;  
                     }else{global.teamSlug ="";global.team ="";}
                 
-                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.teamUrl = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
-                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.leagueslug= userOfferReceived[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                       else{global.league="other"};
                 
@@ -4036,11 +4036,11 @@ var myJob = new CronJob('0 1 * * *', async function(){
                     global.team = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.name;  
                   }else{global.teamSlug ="";global.team ="";}
               
-                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.teamUrl = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
-                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.leagueslug= userOfferSent[i].receiveCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                     else{global.league="other"};
               
@@ -4086,11 +4086,11 @@ var myJob = new CronJob('0 1 * * *', async function(){
                       global.team = userOfferSent[i].sendCardOffers[g].card.player.activeClub.name;  
                     }else{global.teamSlug ="";global.team ="";}
                 
-                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.teamUrl = userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
-                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug!=null){
+                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.leagueslug= userOfferSent[i].sendCardOffers[g].card.player.activeClub.domesticLeague.slug;}
                       else{global.league="other"};
                 
