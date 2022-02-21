@@ -2,7 +2,7 @@ import express from 'express';
 import { GraphQLClient, gql } from 'graphql-request';
 import { initializeApp } from 'firebase/app';
 import { child, DataSnapshot, get, getDatabase,onValue,ref, set } from "firebase/database";
-import { collection, getDocs, getDoc, getFirestore, query, where } from "firebase/firestore";
+import { collection, getDocs, getDoc, getFirestore, query, where, connectFirestoreEmulator } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import qs from 'qs';
 import axios, { AxiosError } from 'axios';
@@ -2946,7 +2946,7 @@ router.get('/api/refresh', async (req,res) => {
             const playerName = auctionsCard.player.displayName;
             const position = auctionsCard.player.position;
             const age = auctionsCard.player.age;
-        
+         console.log(cardSlug)
             if(auctionsCard.player.activeClub!=null){
               global.teamSlug = auctionsCard.player.activeClub.slug;
               global.team = auctionsCard.player.activeClub.name;  

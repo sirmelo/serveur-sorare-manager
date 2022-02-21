@@ -3125,6 +3125,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
             const playerName = auctionsCard.player.displayName;
             const position = auctionsCard.player.position;
             const age = auctionsCard.player.age;
+            console.log(cardSlug);
             if (auctionsCard.player.activeClub != null) {
                 global.teamSlug = auctionsCard.player.activeClub.slug;
                 global.team = auctionsCard.player.activeClub.name;
