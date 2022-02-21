@@ -2834,7 +2834,7 @@ router.get('/api/refresh', async (req,res) => {
             global.lock="lock_open"
         
             console.log(playerslug,playername)
-            if(allMyCards[i].player.activeClub.domesticLeague.slug!=null && allMyCards[i].player.activeClub.domesticLeague.slug!=undefined){
+            if(allMyCards[i].player.activeClub !=null){
             global.leagueslug= allMyCards[i].player.activeClub.domesticLeague.slug;}
             else{global.leagueslug="other"};
         
@@ -2844,7 +2844,7 @@ router.get('/api/refresh', async (req,res) => {
                 else if(global.leagueslug === "superliga-argentina-de-futbol" || global.leagueslug === "campeonato-brasileiro-serie-a" || global.leagueslug === "mlspa" || global.leagueslug === "liga-mx"){global.competition = "champion-america"}
                   else{global.competition = "other"};
         
-            if(allMyCards[i].player.activeClub.pictureUrl !=null){
+            if(allMyCards[i].player.activeClub !=null){
               global.team = allMyCards[i].player.activeClub.name;
               global.teamUrl = allMyCards[i].player.activeClub.pictureUrl;
             }else{global.teamUrl="";global.team =""}

@@ -2998,7 +2998,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
             global.priceAchat = (allMyCards[i].owner.price) / Math.pow(10, 18);
             global.lock = "lock_open";
             console.log(playerslug, playername);
-            if (allMyCards[i].player.activeClub.domesticLeague.slug != null && allMyCards[i].player.activeClub.domesticLeague.slug != undefined) {
+            if (allMyCards[i].player.activeClub != null) {
                 global.leagueslug = allMyCards[i].player.activeClub.domesticLeague.slug;
             }
             else {
@@ -3021,7 +3021,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 global.competition = "other";
             }
             ;
-            if (allMyCards[i].player.activeClub.pictureUrl != null) {
+            if (allMyCards[i].player.activeClub != null) {
                 global.team = allMyCards[i].player.activeClub.name;
                 global.teamUrl = allMyCards[i].player.activeClub.pictureUrl;
             }
