@@ -2983,6 +2983,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
             }
         }
         const nbCardqRarity = allMyCards.length;
+        console.log("nombre carte rareté: ", nbCardqRarity);
         for (let i = 0; i < nbCardqRarity; i++) {
             const playername = allMyCards[i].player.displayName;
             const age = allMyCards[i].player.age;
