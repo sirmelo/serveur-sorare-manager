@@ -2741,7 +2741,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 }
               }
              }    
-            paginatedCards(first:300){
+            paginatedCards(first:100){
               nodes{
                 rarity
                 player{

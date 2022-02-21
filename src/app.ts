@@ -2563,7 +2563,7 @@ router.get('/api/refresh', async (req,res) => {
                 }
               }
              }    
-            paginatedCards(first:300){
+            paginatedCards(first:100){
               nodes{
                 rarity
                 player{
