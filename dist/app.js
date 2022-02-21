@@ -3134,7 +3134,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                 global.teamSlug = "";
                 global.team = "";
             }
-            if (auctionsCard.player.activeClub.pictureUrl != null) {
+            if (auctionsCard.player.activeClub != null) {
                 global.teamUrl = auctionsCard.player.activeClub.pictureUrl;
             }
             else {
@@ -3227,7 +3227,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                             global.teamSlug = "";
                             global.team = "";
                         }
-                        if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                        if (userOfferReceived[i].receiveCardOffers[g].card.player.activeClub != null) {
                             global.teamUrl = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                         }
                         else {
@@ -3293,7 +3293,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                             global.teamSlug = "";
                             global.team = "";
                         }
-                        if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                        if (userOfferReceived[i].sendCardOffers[g].card.player.activeClub != null) {
                             global.teamUrl = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                         }
                         else {
@@ -3389,7 +3389,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                             global.teamSlug = "";
                             global.team = "";
                         }
-                        if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                        if (userOfferSent[i].receiveCardOffers[g].card.player.activeClub != null) {
                             global.teamUrl = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                         }
                         else {
@@ -3455,7 +3455,7 @@ router.get('/api/refresh', (req, res) => __awaiter(void 0, void 0, void 0, funct
                             global.teamSlug = "";
                             global.team = "";
                         }
-                        if (userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl != null) {
+                        if (userOfferSent[i].sendCardOffers[g].card.player.activeClub != null) {
                             global.teamUrl = userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                         }
                         else {

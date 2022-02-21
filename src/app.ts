@@ -2947,12 +2947,13 @@ router.get('/api/refresh', async (req,res) => {
             const position = auctionsCard.player.position;
             const age = auctionsCard.player.age;
          console.log(cardSlug)
+
             if(auctionsCard.player.activeClub!=null){
               global.teamSlug = auctionsCard.player.activeClub.slug;
               global.team = auctionsCard.player.activeClub.name;  
             }else{global.teamSlug ="";global.team ="";}
         
-            if(auctionsCard.player.activeClub.pictureUrl !=null){
+            if(auctionsCard.player.activeClub !=null){
               global.teamUrl = auctionsCard.player.activeClub.pictureUrl;
             }else{global.teamUrl=""}
         
@@ -3035,7 +3036,7 @@ router.get('/api/refresh', async (req,res) => {
                     global.team = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.name;  
                   }else{global.teamSlug ="";global.team ="";}
               
-                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                  if(userOfferReceived[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.teamUrl = userOfferReceived[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
@@ -3085,7 +3086,7 @@ router.get('/api/refresh', async (req,res) => {
                       global.team = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.name;  
                     }else{global.teamSlug ="";global.team ="";}
                 
-                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                    if(userOfferReceived[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.teamUrl = userOfferReceived[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
@@ -3168,7 +3169,7 @@ router.get('/api/refresh', async (req,res) => {
                     global.team = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.name;  
                   }else{global.teamSlug ="";global.team ="";}
               
-                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                  if(userOfferSent[i].receiveCardOffers[g].card.player.activeClub !=null){
                     global.teamUrl = userOfferSent[i].receiveCardOffers[g].card.player.activeClub.pictureUrl;
                   }else{global.teamUrl=""}
               
@@ -3218,7 +3219,7 @@ router.get('/api/refresh', async (req,res) => {
                       global.team = userOfferSent[i].sendCardOffers[g].card.player.activeClub.name;  
                     }else{global.teamSlug ="";global.team ="";}
                 
-                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl !=null){
+                    if(userOfferSent[i].sendCardOffers[g].card.player.activeClub !=null){
                       global.teamUrl = userOfferSent[i].sendCardOffers[g].card.player.activeClub.pictureUrl;
                     }else{global.teamUrl=""}
                 
